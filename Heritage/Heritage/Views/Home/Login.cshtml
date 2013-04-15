@@ -1,0 +1,49 @@
+﻿@model Heritage.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div class="loginBox">
+    <div class="loginHead">
+        <img src="~/Content/aquarius/img/logo.png"alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel"/>
+    </div>
+    <!--new { @class = "form-horizontal" }-->
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)       
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Nome)
+
+            @Html.EditorFor(model => model.Nome, new { id = "inputEmail" })
+            @Html.ValidationMessageFor(model => model.Nome)
+        </div>
+
+        <div class="control-group">
+            @Html.LabelFor(model => model.Senha)
+
+            @Html.EditorFor(model => model.Senha, new { id = "inputPassword" })
+            @Html.ValidationMessageFor(model => model.Senha)
+        </div>
+
+        <div class="control-group" style="margin-bottom: 5px;">
+            @Html.LabelFor(model => model.Lembrar)
+
+            @Html.EditorFor(model => model.Lembrar, new { @type = "checkbox" })
+            @Html.ValidationMessageFor(model => model.Lembrar)
+        </div>
+
+         <div class="form-actions">
+            <input type="submit" value="Entrar" class="btn btn-block" />
+        </div>
+   
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

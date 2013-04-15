@@ -1,0 +1,71 @@
+﻿@model Heritage.Models.Endereco
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Novo Endereço</h2>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)
+
+            <div class="block-fluid">
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.CEP)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.CEP, new { id = "cep", name = "cep", maxlength = "8", placeholder = "Digite o cep sem pontos ou traços" })
+                        @Html.ValidationMessageFor(model => model.CEP)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Descricao)
+                    </div>
+                    <div class="span9">
+
+                        @Html.TextBoxFor(model => model.Descricao, new { id = "logradouro", name = "logradouro", placeholder = "Digite a descrição: rua, avenida etc." })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdBairro, "Bairro:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdBairro.Id_Bairro, (IEnumerable<SelectListItem>)ViewBag.Bairro, "Selecione Bairro", new { id = "bairro", name = "bairro" })@Html.ActionLink("Novo Bairro", "Create", "Bairro")
+                        @Html.ValidationMessageFor(model => model.IdBairro)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Adicionar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

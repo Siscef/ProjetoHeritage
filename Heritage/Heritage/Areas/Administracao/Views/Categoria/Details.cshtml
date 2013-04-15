@@ -1,0 +1,46 @@
+﻿@model Heritage.Models.Categoria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<h3>Detalhes do Categoria: @Model.Nome</h3>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Categoria)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+
+        <th>
+            Usuário:
+        </th>
+        <th>
+            Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Categoria)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Categoria }) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Categoria })
+        </td>
+    </tr>
+</table>
+

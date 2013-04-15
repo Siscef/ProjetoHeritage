@@ -1,0 +1,46 @@
+﻿@model Heritage.Models.Estado
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    <h2>Excluir Estado: @Model.Nome</h2>
+</div>
+<div class="span9">
+    <h3>@User.Identity.Name, você tem certeza que deseja excluir esse registro?</h3>
+</div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="span9">
+            <legend>Estado</legend>
+        </div>
+        @Html.HiddenFor(model => model.Id_Estado)
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Id_Estado)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Id_Estado)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Nome)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Sigla)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Sigla)
+        </div>
+    </fieldset>
+
+    <div class="span9">
+       <input class="btn btn-danger" type="submit" value="Delete" />|        
+        @Html.ActionLink("Página Inicial", "Index")
+    </div>
+}

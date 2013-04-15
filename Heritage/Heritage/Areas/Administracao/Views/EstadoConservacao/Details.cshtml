@@ -1,0 +1,36 @@
+﻿@model Heritage.Models.EstadoConservacao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes do estado de conservação bem: @Model.Descricao </h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id_EstadoConservacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>
+        <th>
+            Operações:
+        </th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Id_EstadoConservacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => modelItem.Descricao)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new {  id=Model.Id_EstadoConservacao }) |           
+            @Html.ActionLink("Delete", "Delete", new { id=Model.Id_EstadoConservacao })
+        </td>
+    </tr>
+
+
+</table>

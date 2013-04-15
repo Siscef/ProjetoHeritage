@@ -1,0 +1,84 @@
+﻿@model Heritage.Models.ManutencaoBem
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    <h3>Detalhes da Manutenção: @Model.DescricaoProblema</h3>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            Id:
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescricaoProblema)
+        </th>
+
+         <th>
+            @Html.DisplayNameFor(model => model.DescricaoConserto)
+        </th>
+         <th>
+           Data Saída:
+        </th>
+         <th>
+            Data Volta:
+        </th>
+           <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+
+        <th>
+            Bem:    
+
+        </th>
+
+        <th>
+            Assistência:
+
+        </th>
+        <th>Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_ManutencaoBem)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DescricaoProblema)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DescricaoConserto)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.DataSaidaParaConserto)
+        </td>
+
+         <td>
+            @Html.DisplayFor(model => model.DataVoltaConserto)
+        </td>
+
+         <td>
+            @Html.DisplayFor(model => model.Valor)
+        </td>
+
+         <td>
+            @Html.DisplayFor(model => model.IdBem.Descricao)
+        </td>
+         <td>
+            @Html.DisplayFor(model => model.IdAssistenciaTecnica.RazaoSocial)
+        </td>
+
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_ManutencaoBem }) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_ManutencaoBem })
+        </td>
+    </tr>
+</table>

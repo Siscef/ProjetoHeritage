@@ -1,0 +1,237 @@
+﻿@model IEnumerable<Heritage.Models.Peca>
+
+@{
+    ViewBag.Title = "AllASins";
+    Layout = "~/Areas/Administracao/Views/Shared/_LayoutListas.cshtml";
+}
+
+<div class="header">
+    <a class="logo" href="index.html">
+        <img src="~/Content/aquarius/img/logo.png" alt="Heritage-Página Inicial" title="Aquarius -  Página Inicial" /></a>
+    <ul class="header_menu">
+        <li class="list_icon"><a href="#">&nbsp;</a></li>
+    </ul>
+</div>
+
+<div class="menu">
+    @Html.Partial("MenuIndex")
+</div>
+
+<div class="content">
+
+
+    <div class="breadLine">
+
+        <ul class="breadcrumb">
+            <li><a href="#">@Html.ActionLink("Adicionar Novo", "Create")</a> <span class="divider">></span></li>
+            <li class="active">@Html.ActionLink("Página Inicial", "Index")</li>
+        </ul>
+
+        <ul class="buttons">
+            <li>
+                <a href="#" class="link_bcPopupList"><span class="icon-user"></span><span class="text">Users list</span></a>
+
+                <div id="bcPopupList" class="popup">
+                    <div class="head">
+                        <div class="arrow"></div>
+                        <span class="isw-users"></span>
+                        <span class="name">List users</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="body-fluid users">
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="~Content/aquarius/img/users/aqvatarius.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Aqvatarius</a>
+                                <span>online</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="img/users/olga.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Olga</a>
+                                <span>online</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="img/users/alexey.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Alexey</a>
+                                <span>online</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="img/users/dmitry.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Dmitry</a>
+                                <span>online</span>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="img/users/helen.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Helen</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="item">
+                            <div class="image">
+                                <a href="#">
+                                    <img src="img/users/alexander.jpg" width="32" /></a>
+                            </div>
+                            <div class="info">
+                                <a href="#" class="name">Alexander</a>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                    <div class="footer">
+                        <button class="btn" type="button">Add new</button>
+                        <button class="btn btn-danger link_bcPopupList" type="button">Close</button>
+                    </div>
+                </div>
+
+            </li>
+            <li>
+                <a href="#" class="link_bcPopupSearch"><span class="icon-search"></span><span class="text">Search</span></a>
+
+                <div id="bcPopupSearch" class="popup">
+                    <div class="head">
+                        <div class="arrow"></div>
+                        <span class="isw-zoom"></span>
+                        <span class="name">Search</span>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="body search">
+                        <input type="text" placeholder="Some text for search..." name="search" />
+                    </div>
+                    <div class="footer">
+                        <button class="btn" type="button">Search</button>
+                        <button class="btn btn-danger link_bcPopupSearch" type="button">Close</button>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="workplace">
+
+        @*<div class="row-fluid">
+
+            <div class="span12">
+                <div class="head">
+                   
+                    <ul class="buttons">
+                        <li><a href="#" class="isw-download"></a></li>
+                        <li><a href="#" class="isw-attachment"></a></li>
+                        <li>
+                            <a href="#" class="isw-settings"></a>
+                            <ul class="dd-list">
+                                <li><a href="#"><span class="isw-plus"></span>New document</a></li>
+                                <li><a href="#"><span class="isw-edit"></span>Edit</a></li>
+                                <li><a href="#"><span class="isw-delete"></span>Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+
+        </div>*@
+
+        @* <div class="dr"><span></span></div>
+
+        <div class="row-fluid">
+
+          
+
+        </div>*@
+
+        @* <div class="dr"><span></span></div>*@
+        <div class="row-fluid">
+
+            <div class="span12">
+                <div class="head">
+                    <div class="isw-grid"></div>
+                    <h1>Tabela Peças</h1>
+                    <div class="clear"></div>
+                </div>
+                <div class="block-fluid table-sorting">
+                    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <input type="checkbox" name="checkall" /></th>
+
+                                <th width="25%">Id:</th>
+                                <th width="25%">Descrição:</th>
+                                <th width="25%">Valor:</th>
+                                <th width="25%">Operações:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="checkbox" /></td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id_Peca)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Descricao)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Valor)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Peca }) |
+                                       @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Peca }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Peca })
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="dr"><span></span></div>
+
+    </div>
+
+</div>

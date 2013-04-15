@@ -1,0 +1,80 @@
+﻿@model Heritage.Models.AssistenciaTecnica
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    <h3>Excluir Assistência Técnica: @Model.RazaoSocial</h3>
+</div>
+
+<div class="span9">
+    <h4>@User.Identity.Name, Você tem certeza que deseja excluir esse registro?</h4>
+
+</div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="span9">
+            <legend>Excluir  Assistência Técnica</legend>
+        </div>
+
+        @Html.HiddenFor(model => model.Id_Pessoa)
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.CNPJ)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.RazaoSocial)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.InscricaoEstadual)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.InscricaoEstadual)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Id_Pessoa)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Id_Pessoa)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Nome)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Nome)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Email)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Email)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Telefone)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Telefone)
+        </div>
+    </fieldset>
+
+    <div class="span9">
+        <input class="btn btn-danger" type="submit" value="Delete" />|
+        @Html.ActionLink("Página Inicial", "Index")
+
+    </div>
+}

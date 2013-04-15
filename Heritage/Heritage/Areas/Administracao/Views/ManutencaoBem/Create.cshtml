@@ -1,0 +1,130 @@
+﻿@model Heritage.Models.ManutencaoBem
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Nova Manutenção Bem</h2>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            <div class="block-fluid">
+
+                @Html.ValidationSummary(true)
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdBem, "Bem:")
+                    </div>
+                    <div class="span9">
+                         @Html.DropDownListFor(model => model.IdBem.Id_Bem, (IEnumerable<SelectListItem>)ViewBag.BemManutencao, "Selecione o Bem")@Html.ActionLink("Novo Bem", "Create", "Bem")
+
+                        @Html.ValidationMessageFor(model => model.IdBem)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataSaidaParaConserto)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DataSaidaParaConserto)
+                        @Html.ValidationMessageFor(model => model.DataSaidaParaConserto)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Valor)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Valor, new { placeholder = "Digite o valor da manutenção" })
+                        @Html.ValidationMessageFor(model => model.Valor)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdAssistenciaTecnica, "Assistência Técnica:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdAssistenciaTecnica.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.AssistenciaTecnica, "Selecione Assistência Técnica")@Html.ActionLink("Nova Assistência/Oficina", "Create", "AssistenciaTecnica")
+
+                        @Html.ValidationMessageFor(model => model.IdAssistenciaTecnica)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdPecas, "Peças:")
+                    </div>
+                    <div class="span9">
+                      
+                        @Html.ListBoxFor(model => model.IdPecas, (MultiSelectList)ViewBag.IdPecas, "Selecione Peças")@Html.ActionLink("Nova Peça", "Create", "Peca")
+
+                        @Html.ValidationMessageFor(model => model.IdPecas)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DescricaoProblema)
+                    </div>
+                    <div class="span9">
+                        @Html.TextAreaFor(model => model.DescricaoProblema, new { placeholder = "Digite uma breve descrição do problema" })
+                        @Html.ValidationMessageFor(model => model.DescricaoProblema)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DescricaoConserto)
+                    </div>
+                    <div class="span9">
+                        @Html.TextAreaFor(model => model.DescricaoConserto, new { placeholder = "Digite quais reparos foram feitas no equipamentos, e novas peças que foram trocadas" })
+                        @Html.ValidationMessageFor(model => model.DescricaoConserto)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataVoltaConserto)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DataVoltaConserto)
+                        @Html.ValidationMessageFor(model => model.DataVoltaConserto)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Adicionar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</div>
+
+

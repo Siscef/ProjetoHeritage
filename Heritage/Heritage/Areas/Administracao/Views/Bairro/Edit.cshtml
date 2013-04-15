@@ -1,0 +1,55 @@
+﻿@model Heritage.Models.Bairro
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Alterar Bairro: @Model.Nome</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(model => model.Id_Bairro)
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Nome)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Nome, new { placeholder="Digite o nome do bairro"})
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdCidade, "Cidade:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdCidade.Id_Cidade, (IEnumerable<SelectListItem>)ViewBag.Cidade, "Selecione Cidade")@Html.ActionLink("Nova Cidade", "Create", "Cidade")
+                        @Html.ValidationMessageFor(model => model.IdCidade)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

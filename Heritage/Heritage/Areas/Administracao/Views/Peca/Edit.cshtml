@@ -1,0 +1,83 @@
+﻿@model Heritage.Models.Peca
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Alterar Peça: @Model.Descricao</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.Id_Peca)
+            <div class="block-fluid">
+
+                @Html.ValidationSummary(true)
+
+               <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Descricao)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Descricao, new { placeholder = "Digite a descrição da peça modelo e numero de série." })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Valor)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Valor, new { placeholder = "Digite o valor da peça." })
+                        @Html.ValidationMessageFor(model => model.Valor)
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.AcrescentaValorAoBem)
+                    </div>
+                    <div class="span9">
+                        @Html.CheckBoxFor(model => model.AcrescentaValorAoBem)
+                        @Html.ValidationMessageFor(model => model.AcrescentaValorAoBem)
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdFornecedor, "Fornecedor:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdFornecedor.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Fornecedor, "Selecione Fornecedor")@Html.ActionLink("Novo Fornecedor", "Create", "Fornecedor")
+                        @Html.ValidationMessageFor(model => model.IdFornecedor)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

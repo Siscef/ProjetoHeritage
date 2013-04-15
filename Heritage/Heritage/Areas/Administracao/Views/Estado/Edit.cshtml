@@ -1,0 +1,59 @@
+﻿@model Heritage.Models.Estado
+
+@{
+    ViewBag.Title = "Alterar";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Alterar Estado: @Model.Nome</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.ValidationSummary(true)       
+       
+            @Html.HiddenFor(model => model.Id_Estado)
+            <div class="row-form">
+                <div class="span2">
+                    @Html.LabelFor(model => model.Nome, "Nome:")
+                </div>
+                <div class="span9">
+
+                    @Html.TextBoxFor(model => model.Nome, new { @placeholder = "Nome do estado.", @maxsize = 100 })
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
+                <div class="clear"></div>
+            </div>
+            <div class="row-form">
+                <div class="span2">
+                    @Html.LabelFor(model => model.Sigla)
+                </div>
+                <div class="span9">
+                    @Html.TextBoxFor(model => model.Sigla, new { @placeholder = "Sigla do estado.", @maxsize = 2 })
+                    @Html.ValidationMessageFor(model => model.Sigla)
+                </div>
+                <div class="clear"></div>
+            </div>
+
+            <div class="row-form">
+                <div class="span2">
+                    <input type="submit" class="btn btn-success" value="Salvar" />
+                    <input type="reset" class="btn btn-warning" value="Limpar" />
+
+                </div>
+                <div class="clear"></div>
+            </div>
+    
+        }
+
+    </div>
+</div>

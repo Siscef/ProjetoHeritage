@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>jQuery.CEP</id>
+    <version>1.0</version>
+    <title>jQuery.CEP</title>
+    <authors>Michel Banagouro</authors>
+    <owners>Michel Banagouro</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>O jQuery CEP é um plugin que traz grande facilidade para o desenvolvedor na hora de realizar consultas a base de dados do CEP dos correios pelo lado cliente de sua aplicação Web.
+
+Exemplos de uso do plugin você pode conferir neste post: http://mbanagouro.net/site/2011/09/09/consultando-cep-com-asp-net-mvc-3-e-jquery-cep/</description>
+    <summary>Plugin jQuery para consulta de CEP.</summary>
+    <tags>javascript jquery busca consulta cep</tags>
+    <references />
+  </metadata>
+</package>

@@ -1,0 +1,858 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Heritage</RootNamespace>
+    <AssemblyName>Heritage</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Aspose.BarCode">
+      <HintPath>..\packages\Aspose.BarCode.5.5.0\lib\net40\Aspose.BarCode.dll</HintPath>
+    </Reference>
+    <Reference Include="Aspose.BarCodeRecognition">
+      <HintPath>..\packages\Aspose.BarCode.5.5.0\lib\net40\Aspose.BarCodeRecognition.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.3.0.733\lib\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="NauckIT.PostgreSQLProvider">
+      <HintPath>..\packages\NauckIT.PostgreSQLProvider.2.0.0\lib\NauckIT.PostgreSQLProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.2.4000\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="policy.2.0.Npgsql">
+      <HintPath>..\packages\Npgsql.2.0.12.1\lib\net40\policy.2.0.Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20710.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20710.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Administracao\AdministracaoAreaRegistration.cs" />
+    <Compile Include="Areas\Administracao\Controllers\AssistenciaTecnicaController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\BairroController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\BemController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\CategoriaController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\CidadeController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\EnderecoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\EstabelecimentoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\EstadoConservacaoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\EstadoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\FornecedorController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\GrupoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\LocalizacaoController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\ManutencaoBemController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\PapelController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\PecaController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\ResponsavelController.cs" />
+    <Compile Include="Areas\Contabil\ContabilAreaRegistration.cs" />
+    <Compile Include="Areas\Contabil\Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AssistenciaTecnica.cs" />
+    <Compile Include="Models\AuditoriaInterna.cs" />
+    <Compile Include="Models\Bairro.cs" />
+    <Compile Include="Models\Bem.cs" />
+    <Compile Include="Models\Categoria.cs" />
+    <Compile Include="Models\Cidade.cs" />
+    <Compile Include="Models\ContextoBanco\ContextoDadosNH.cs" />
+    <Compile Include="Models\ContextoBanco\IContextoDados.cs" />
+    <Compile Include="Models\CriarConta.cs" />
+    <Compile Include="Models\DepreciacaoBem.cs" />
+    <Compile Include="Models\Endereco.cs" />
+    <Compile Include="Models\Estabelecimento.cs" />
+    <Compile Include="Models\Estado.cs" />
+    <Compile Include="Models\EstadoConservacao.cs" />
+    <Compile Include="Models\Fornecedor.cs" />
+    <Compile Include="Models\Grupo.cs" />
+    <Compile Include="Models\HistoricoBem.cs" />
+    <Compile Include="Models\Interface\IMaiusculo.cs" />
+    <Compile Include="Models\Localizacao.cs" />
+    <Compile Include="Models\ManutencaoBem.cs" />
+    <Compile Include="Models\Mapeamento\AssistenciaTecnicaMap.cs" />
+    <Compile Include="Models\Mapeamento\AuditoriaInternaMap.cs" />
+    <Compile Include="Models\Mapeamento\BairroMap.cs" />
+    <Compile Include="Models\Mapeamento\BemMap.cs" />
+    <Compile Include="Models\Mapeamento\CategoriaMap.cs" />
+    <Compile Include="Models\Mapeamento\CidadeMap.cs" />
+    <Compile Include="Models\Mapeamento\DepreciacaoBemMap.cs" />
+    <Compile Include="Models\Mapeamento\EnderecoMap.cs" />
+    <Compile Include="Models\Mapeamento\EstabelecimentoMap.cs" />
+    <Compile Include="Models\Mapeamento\EstadoConservacaoMap.cs" />
+    <Compile Include="Models\Mapeamento\EstadoMap.cs" />
+    <Compile Include="Models\Mapeamento\FornecedorMap.cs" />
+    <Compile Include="Models\Mapeamento\GrupoMap.cs" />
+    <Compile Include="Models\Mapeamento\HistoricoBemMap.cs" />
+    <Compile Include="Models\Mapeamento\LocalizacaoMap.cs" />
+    <Compile Include="Models\Mapeamento\ManutencaoBemMap.cs" />
+    <Compile Include="Models\Mapeamento\PapelMap.cs" />
+    <Compile Include="Models\Mapeamento\PecaDaManutencaoMap.cs" />
+    <Compile Include="Models\Mapeamento\PecaMap.cs" />
+    <Compile Include="Models\Mapeamento\ResponsavelMap.cs" />
+    <Compile Include="Models\Papel.cs" />
+    <Compile Include="Models\Peca.cs" />
+    <Compile Include="Models\PecaDaManutencao.cs" />
+    <Compile Include="Models\Pessoa.cs" />
+    <Compile Include="Models\PessoaFisica.cs" />
+    <Compile Include="Models\PessoaJuridica.cs" />
+    <Compile Include="Models\Responsavel.cs" />
+    <Compile Include="Models\TipoOperacao.cs" />
+    <Compile Include="Models\TransformaParaMaiusculo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\aquarius\buttons.html" />
+    <Content Include="Content\aquarius\css\bootstrap-responsive.css" />
+    <Content Include="Content\aquarius\css\bootstrap.css" />
+    <Content Include="Content\aquarius\css\cleditor.css" />
+    <Content Include="Content\aquarius\css\fancybox\blank.gif" />
+    <Content Include="Content\aquarius\css\fancybox\fancybox_loading.gif" />
+    <Content Include="Content\aquarius\css\fancybox\fancybox_overlay.png" />
+    <Content Include="Content\aquarius\css\fancybox\fancybox_sprite.png" />
+    <Content Include="Content\aquarius\css\fancybox\jquery.fancybox.css" />
+    <Content Include="Content\aquarius\css\fullcalendar.css" />
+    <Content Include="Content\aquarius\css\fullcalendar.print.css" />
+    <Content Include="Content\aquarius\css\icons.css" />
+    <Content Include="Content\aquarius\css\login.css" />
+    <Content Include="Content\aquarius\css\mCustomScrollbar.css" />
+    <Content Include="Content\aquarius\css\select2.css" />
+    <Content Include="Content\aquarius\css\stylesheet.css" />
+    <Content Include="Content\aquarius\css\stylesheets.css" />
+    <Content Include="Content\aquarius\css\ui.css" />
+    <Content Include="Content\aquarius\css\uniform.default.css" />
+    <Content Include="Content\aquarius\css\validation.css" />
+    <Content Include="Content\aquarius\favicon.ico" />
+    <Content Include="Content\aquarius\forms.html" />
+    <Content Include="Content\aquarius\gallery.html" />
+    <Content Include="Content\aquarius\icons.html" />
+    <Content Include="Content\aquarius\img\arrow-top.png" />
+    <Content Include="Content\aquarius\img\arrow.png" />
+    <Content Include="Content\aquarius\img\arrow_down.png" />
+    <Content Include="Content\aquarius\img\arrow_up.png" />
+    <Content Include="Content\aquarius\img\backgrounds\body.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\box-head-active.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\box-head.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\divider.png" />
+    <Content Include="Content\aquarius\img\backgrounds\divider_span.png" />
+    <Content Include="Content\aquarius\img\backgrounds\header.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\menu-item-active.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\menu-item.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\menu.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\nav.jpg" />
+    <Content Include="Content\aquarius\img\checkbox\bg-input-focus.png" />
+    <Content Include="Content\aquarius\img\checkbox\bg-input.png" />
+    <Content Include="Content\aquarius\img\checkbox\sprite.png" />
+    <Content Include="Content\aquarius\img\cleditor\buttons.gif" />
+    <Content Include="Content\aquarius\img\cleditor\toolbar.gif" />
+    <Content Include="Content\aquarius\img\datatable\sort_asc.png" />
+    <Content Include="Content\aquarius\img\datatable\sort_asc_disabled.png" />
+    <Content Include="Content\aquarius\img\datatable\sort_both.png" />
+    <Content Include="Content\aquarius\img\datatable\sort_desc.png" />
+    <Content Include="Content\aquarius\img\datatable\sort_desc_disabled.png" />
+    <Content Include="Content\aquarius\img\example.jpg" />
+    <Content Include="Content\aquarius\img\example_full.jpg" />
+    <Content Include="Content\aquarius\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\aquarius\img\glyphicons-halflings.png" />
+    <Content Include="Content\aquarius\img\header_menu_list.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_archive.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_attachment.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_bookmark.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_brush.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_calc.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_calendar.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_cancel.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_chat.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_chats.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_cloud.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_documents.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_down.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_download.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_down_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_edit.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_empty_document.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_favorite.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_folder.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_fullscreen.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_graph.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_grid.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_left.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_left_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_list.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_lock.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_mail.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_minus.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_ok.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_picture.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_pin.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_plus.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_power.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_print.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_refresh.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_right.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_right_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_settings.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_sound.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_sync.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_tag.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_target.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_text_document.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_time.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_unlock.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_up.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_up_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_user.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_users.png" />
+    <Content Include="Content\aquarius\img\icons\bb\ic_zoom.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_archive.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_attachment.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_bookmark.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_brush.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_calc.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_calendar.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_cancel.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_chat.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_chats.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_cloud.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_documents.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_down.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_download.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_down_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_edit.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_empty_document.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_favorite.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_folder.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_fullscreen.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_graph.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_grid.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_left.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_left_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_list.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_lock.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_mail.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_minus.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_ok.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_picture.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_pin.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_plus.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_power.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_print.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_refresh.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_right.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_right_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_settings.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_sound.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_sync.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_tag.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_target.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_text_document.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_time.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_unlock.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_up.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_up_circle.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_user.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_users.png" />
+    <Content Include="Content\aquarius\img\icons\bs\ic_zoom.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_archive.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_attachment.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_bookmark.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_brush.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_calc.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_calendar.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_cancel.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_chat.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_chats.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_cloud.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_documents.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_down.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_download.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_down_circle.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_edit.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_empty_document.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_favorite.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_folder.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_fullscreen.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_graph.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_grid.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_left.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_left_circle.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_list.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_lock.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_mail.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_minus.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_ok.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_picture.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_pin.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_plus.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_power.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_print.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_refresh.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_right.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_right_circle.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_settings.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_sound.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_sync.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_tag.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_target.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_text_document.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_time.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_unlock.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_up.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_up_circle.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_user.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_users.png" />
+    <Content Include="Content\aquarius\img\icons\wb\ic_zoom.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_archive.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_attachment.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_bookmark.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_brush.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_calc.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_calendar.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_cancel.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_chat.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_chats.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_cloud.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_documents.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_down.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_download.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_down_circle.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_edit.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_empty_document.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_favorite.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_folder.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_fullscreen.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_graph.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_grid.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_left.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_left_circle.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_list.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_lock.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_mail.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_minus.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_ok.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_picture.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_pin.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_plus.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_power.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_print.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_refresh.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_right.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_right_circle.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_settings.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_sound.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_sync.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_tag.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_target.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_text_document.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_time.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_unlock.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_up.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_up_circle.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_user.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_users.png" />
+    <Content Include="Content\aquarius\img\icons\ws\ic_zoom.png" />
+    <Content Include="Content\aquarius\img\loaders\c_loader.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_bw.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_ge.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_gr.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_re.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_wh.gif" />
+    <Content Include="Content\aquarius\img\loaders\c_loader_ye.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_bw.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_ge.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_gr.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_re.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_wh.gif" />
+    <Content Include="Content\aquarius\img\loaders\loader_ye.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_bw.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_ge.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_gr.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_re.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_wh.gif" />
+    <Content Include="Content\aquarius\img\loaders\s_loader_ye.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_bw.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_ge.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_gr.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_re.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_wh.gif" />
+    <Content Include="Content\aquarius\img\loaders\w_loader_ye.gif" />
+    <Content Include="Content\aquarius\img\logo.png" />
+    <Content Include="Content\aquarius\img\menu-arrow-down.png" />
+    <Content Include="Content\aquarius\img\menu-arrow-top.png" />
+    <Content Include="Content\aquarius\img\menu_arrow_down.png" />
+    <Content Include="Content\aquarius\img\menu_arrow_up.png" />
+    <Content Include="Content\aquarius\img\select2\select2.png" />
+    <Content Include="Content\aquarius\img\select2\select2x2.png" />
+    <Content Include="Content\aquarius\img\select2\spinner.gif" />
+    <Content Include="Content\aquarius\img\ui\dateArrows.png" />
+    <Content Include="Content\aquarius\img\ui\pboverlay.png" />
+    <Content Include="Content\aquarius\img\ui\slider.png" />
+    <Content Include="Content\aquarius\img\ui\ui-bg_flat_0_aaaaaa_5F40x100.png" />
+    <Content Include="Content\aquarius\img\ui\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\aquarius\img\ui\ui-icons_222222_5F256x240.png" />
+    <Content Include="Content\aquarius\img\ui\ui-icons_2e83ff_5F256x240.png" />
+    <Content Include="Content\aquarius\img\ui\ui-icons_454545_5F256x240.png" />
+    <Content Include="Content\aquarius\img\ui\ui-icons_888888_5F256x240.png" />
+    <Content Include="Content\aquarius\img\ui\ui-icons_cd0a0a_5F256x240.png" />
+    <Content Include="Content\aquarius\img\users\alexander.jpg" />
+    <Content Include="Content\aquarius\img\users\alexey.jpg" />
+    <Content Include="Content\aquarius\img\users\aqvatarius.jpg" />
+    <Content Include="Content\aquarius\img\users\dmitry.jpg" />
+    <Content Include="Content\aquarius\img\users\helen.jpg" />
+    <Content Include="Content\aquarius\img\users\olga.jpg" />
+    <Content Include="Content\aquarius\index.html" />
+    <Content Include="Content\aquarius\js\actions.js" />
+    <Content Include="Content\aquarius\js\charts.js" />
+    <Content Include="Content\aquarius\js\cookies.js" />
+    <Content Include="Content\aquarius\js\plugins.js" />
+    <Content Include="Content\aquarius\js\plugins\animatedprogressbar\animated_progressbar.js" />
+    <Content Include="Content\aquarius\js\plugins\bootstrap.min.js" />
+    <Content Include="Content\aquarius\js\plugins\charts\excanvas.min.js" />
+    <Content Include="Content\aquarius\js\plugins\charts\jquery.flot.js" />
+    <Content Include="Content\aquarius\js\plugins\charts\jquery.flot.pie.js" />
+    <Content Include="Content\aquarius\js\plugins\charts\jquery.flot.resize.js" />
+    <Content Include="Content\aquarius\js\plugins\charts\jquery.flot.stack.js" />
+    <Content Include="Content\aquarius\js\plugins\cleditor\jquery.cleditor.js" />
+    <Content Include="Content\aquarius\js\plugins\cookie\jquery.cookies.2.2.0.min.js" />
+    <Content Include="Content\aquarius\js\plugins\dataTables\jquery.dataTables.min.js" />
+    <Content Include="Content\aquarius\js\plugins\fancybox\jquery.fancybox.pack.js" />
+    <Content Include="Content\aquarius\js\plugins\fullcalendar\fullcalendar.min.js" />
+    <Content Include="Content\aquarius\js\plugins\jquery\jquery.mousewheel.min.js" />
+    <Content Include="Content\aquarius\js\plugins\maskedinput\jquery.maskedinput-1.3.min.js" />
+    <Content Include="Content\aquarius\js\plugins\mcustomscrollbar\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Content\aquarius\js\plugins\qtip\jquery.qtip-1.0.0-rc3.min.js" />
+    <Content Include="Content\aquarius\js\plugins\select2\select2.min.js" />
+    <Content Include="Content\aquarius\js\plugins\sparklines\jquery.sparkline.min.js" />
+    <Content Include="Content\aquarius\js\plugins\uniform\uniform.js" />
+    <Content Include="Content\aquarius\js\plugins\validation\jquery.validationEngine.js" />
+    <Content Include="Content\aquarius\js\plugins\validation\languages\jquery.validationEngine-en.js" />
+    <Content Include="Content\aquarius\login.html" />
+    <Content Include="Content\aquarius\messages.html" />
+    <Content Include="Content\aquarius\statistic.html" />
+    <Content Include="Content\aquarius\tabelacompesqusia.html" />
+    <Content Include="Content\aquarius\tables.html" />
+    <Content Include="Content\aquarius\typography.html" />
+    <Content Include="Content\aquarius\ui.html" />
+    <Content Include="Content\aquarius\users.html" />
+    <Content Include="Content\aquarius\widgets.html" />
+    <Content Include="Content\bootstrap-responsive.css" />
+    <Content Include="Content\bootstrap-responsive.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="DatabaseSchema.sql" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\Administracao\Views\Web.config" />
+    <Content Include="Areas\Contabil\Views\Web.config" />
+    <Content Include="Areas\Administracao\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Contabil\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\ListAll.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\ListLast.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\_LayoutListas.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Cidade\ListLast.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\ListCity.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\LastAdress.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Endereco\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\Adress.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\ListAdress.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bairro\ListNeighborhood.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\LastCategory.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\ListAllCategory.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\LastGroup.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\ListAllGroup.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\LastLocalization.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\ListLocation.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Papel\ListAllRoles.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\ListLastProvider.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Fornecedor\ListAllProvider.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\ListAllEstablishment.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estabelecimento\ListLastEstablishment.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\LastCondition.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\AllCondition.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\LastTechnicalAssistance.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\AllTechnicalAssistance.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Edit.cshtml" />
+    <Content Include="Views\Shared\403.cshtml" />
+    <Content Include="Views\Shared\404.cshtml" />
+    <Content Include="Views\Shared\500.cshtml" />
+    <Content Include="Views\Shared\503.cshtml" />
+    <Content Include="Views\Shared\504.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\AllResponsible.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\LastResponsible.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Responsavel\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\MenuIndex.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\LastProperty.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\AllProperty.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Estado\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\EstadoConservacao\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\AllMaintenance.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\LastMaintenance.cshtml" />
+    <Content Include="Areas\Administracao\Views\ManutencaoBem\Delete.cshtml" />
+    <Content Include="Models\DesignerUML\HeritageClassDiagram.cd" />
+    <Content Include="Areas\Administracao\Views\Peca\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\LastSins.cshtml" />
+    <Content Include="Areas\Administracao\Views\Peca\AllSins.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\CalculatesDepreciationOfAssets.cshtml" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\AcharCep.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.6.3-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.3.js" />
+    <Content Include="Scripts\jquery-1.6.3.min.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.js" />
+    <Content Include="Scripts\jquery-ui-1.8.16.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery-ui.1.8.min.js" />
+    <Content Include="Scripts\jquery.1.7.min.js" />
+    <Content Include="Scripts\jquery.cep-1.0.js" />
+    <Content Include="Scripts\jquery.cep-1.0.min.js" />
+    <Content Include="Scripts\jquery.inputmask.date.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask.extensions.js" />
+    <Content Include="Scripts\jquery.inputmask.js" />
+    <Content Include="Scripts\jquery.inputmask.numeric.extensions.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.1.0.debug.js" />
+    <Content Include="Scripts\knockout-2.1.0.js" />
+    <Content Include="Scripts\mascaras.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Administracao\Models\" />
+    <Folder Include="Areas\Contabil\Models\" />
+    <Folder Include="Areas\Contabil\Views\Shared\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:7618/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,52 @@
+﻿@model Heritage.Models.Estado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    <h3>Detalhes do Estado: @Model.Nome</h3>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>        
+
+        <th>
+            Usuário:
+
+        </th>
+        <th>
+            Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Estado)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nome)
+        </td>
+         
+        <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Estado }) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Estado })|
+            @Html.ActionLink("Ver cidades", "ListCity", new {id=Model.Id_Estado })
+        </td>
+    </tr>
+</table>
+
+

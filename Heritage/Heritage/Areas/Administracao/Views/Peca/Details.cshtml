@@ -1,0 +1,62 @@
+﻿@model Heritage.Models.Peca
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Detalhes da Peça: @Model.Descricao</h3>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Peca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>  
+        <th>
+            @Html.DisplayNameFor(model => model.Valor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AcrescentaValorAoBem)
+        </th>
+         <th>
+           Fornecedor:
+        </th>  
+          <th>
+           Usuário:
+        </th>    
+      
+       
+        <th>Operações:</th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Peca)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Descricao)
+        </td>
+          <td>
+            @Html.DisplayFor(model => model.Valor)
+        </td>
+         <td>
+            @Html.DisplayFor(model => model.AcrescentaValorAoBem)
+        </td>
+         <td>
+            @Html.DisplayFor(model => model.IdFornecedor.RazaoSocial)
+        </td>
+          <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+           
+      
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Peca }) |                  
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Peca })
+        </td>
+    </tr>
+</table>

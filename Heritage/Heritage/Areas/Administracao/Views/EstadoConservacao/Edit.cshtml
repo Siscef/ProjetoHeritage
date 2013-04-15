@@ -1,0 +1,51 @@
+﻿@model Heritage.Models.EstadoConservacao
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Alterar estado conservação: @Model.Descricao</h2>
+            <div class="clear"></div>
+        </div>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <div class="block-fluid">
+
+        @Html.HiddenFor(model => model.Id_EstadoConservacao)
+
+        <div class="row-form">
+        <div class="span2">
+            @Html.LabelFor(model => model.Descricao)
+        </div>
+        <div class="span9">
+            @Html.TextBoxFor(model => model.Descricao, new {placeholder="Digite o estado do bem: Novo, Usado, Sucata etc." })
+            @Html.ValidationMessageFor(model => model.Descricao)
+        </div>
+            <div class="clear"></div>
+            </div>
+
+        <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Adicionar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+        </div>
+
+}
+
+
+</div>
+    </div>

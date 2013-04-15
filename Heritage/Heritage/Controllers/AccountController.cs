@@ -1,0 +1,217 @@
+﻿using Heritage.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+
+namespace Heritage.Controllers
+{
+    public class AccountController : Controller
+    {
+        //
+        // GET: /Account/
+
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        //
+        // GET: /Account/LogOn
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/LogOn
+
+        [HttpPost]
+        public ActionResult Login(Login model, string returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                string nome = model.Nome.ToUpper();
+                string senha = model.Senha.ToUpper();
+
+                if (Membership.ValidateUser(nome, senha))
+                {
+                    FormsAuthentication.SetAuthCookie(nome, model.Lembrar);
+                    if (Url.IsLocalUrl(returnUrl) && returnUrl.Length > 1 && returnUrl.StartsWith("/")
+                        && !returnUrl.StartsWith("//") && !returnUrl.StartsWith("/\\"))
+                    {
+                        return Redirect(returnUrl);
+                    }
+                    else
+                    {
+
+                        if (Roles.IsUserInRole("Administrador"))
+                        {
+                            return RedirectToAction("Index", "Home", new {area = "Administracao" });
+                        }
+                        if (Roles.IsUserInRole("Contabil"))
+                        {
+                            return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                        }
+                        else
+                        {
+                            return View(model);
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "O Nome do Usuário Ou Senha Estão Incorretos.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/LogOff
+
+        public ActionResult Logof()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
+        // GET: /Account/Register
+
+        public ActionResult CadastrarUsuario()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+
+        [HttpPost]
+        public ActionResult CadastrarUsuario(CriarConta model)
+        {
+            if (ModelState.IsValid)
+            {
+                // Attempt to register the user
+                MembershipCreateStatus createStatus;
+                Membership.CreateUser(model.Nome, model.Senha, model.Email, null, null, true, null, out createStatus);
+
+                if (createStatus == MembershipCreateStatus.Success)
+                {
+                    FormsAuthentication.SetAuthCookie(model.Nome, false /* createPersistentCookie */);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", ErrorCodeToString(createStatus));
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ChangePassword
+
+        [Authorize]
+        public ActionResult TrocarSenha()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/ChangePassword
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult TrocarSenha(TrocarSenha model)
+        {
+            if (ModelState.IsValid)
+            {
+
+                // ChangePassword will throw an exception rather
+                // than return false in certain failure scenarios.
+                bool changePasswordSucceeded;
+                try
+                {
+                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
+                    changePasswordSucceeded = currentUser.ChangePassword(model.SenhaAtual, model.NovaSenha);
+                }
+                catch (Exception)
+                {
+                    changePasswordSucceeded = false;
+                }
+
+                if (changePasswordSucceeded)
+                {
+                    return RedirectToAction("TrocaSenhaSucesso");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "A senha atual esta incorreta ou a nova senha é inválida.");
+                }
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        //
+        // GET: /Account/ChangePasswordSuccess
+
+        public ActionResult TrocaSenhaSucesso()
+        {
+            return View();
+        }
+
+        #region Status Codes
+        private static string ErrorCodeToString(MembershipCreateStatus createStatus)
+        {
+            // See http://go.microsoft.com/fwlink/?LinkID=177550 for
+            // a full list of status codes.
+            switch (createStatus)
+            {
+                case MembershipCreateStatus.DuplicateUserName:
+                    return "Nome de usuário já existe. Digite um nome de usuário diferente.";
+
+                case MembershipCreateStatus.DuplicateEmail:
+                    return "Um nome de usuário para esse endereço de e-mail já existe. Digite um endereço de e-mail diferente.";
+
+                case MembershipCreateStatus.InvalidPassword:
+                    return "A senha fornecida é inválida. Por favor, insira um valor de senha válida.";
+
+                case MembershipCreateStatus.InvalidEmail:
+                    return "O endereço de e-mail fornecido é inválido. Por favor, verifique o valor e tente novamente.";
+
+                case MembershipCreateStatus.InvalidAnswer:
+                    return "A resposta de recuperação de senha fornecida é inválida. Por favor, verifique o valor e tente novamente.";
+
+                case MembershipCreateStatus.InvalidQuestion:
+                    return "A questão de recuperação de senha fornecida é inválida. Por favor, verifique o valor e tente novamente.";
+
+                case MembershipCreateStatus.InvalidUserName:
+                    return "O nome de usuário fornecido é inválido. Por favor, verifique o valor e tente novamente.";
+
+                case MembershipCreateStatus.ProviderError:
+                    return "O provedor de autenticação retornou um erro. Por favor, verifique a sua entrada e tente novamente. Se o problema persistir, contate o administrador do sistema.";
+
+                case MembershipCreateStatus.UserRejected:
+                    return "O pedido de criação do usuário foi cancelado. Por favor, verifique a sua entrada e tente novamente. Se o problema persistir, contate o administrador do sistema.";
+
+                default:
+                    return "Ocorreu um erro desconhecido. Por favor, verifique a sua entrada e tente novamente. Se o problema persistir, contate o administrador do sistema.";
+            }
+        }
+        #endregion
+    }
+
+
+}

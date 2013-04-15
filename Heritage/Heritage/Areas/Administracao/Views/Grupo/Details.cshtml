@@ -1,0 +1,45 @@
+﻿@model Heritage.Models.Grupo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<h2>Detalhes do grupo: @Model.Nome</h2>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Grupo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>        
+
+        <th>Usuário:
+        </th>
+        <th>Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Grupo)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nome)
+        </td>
+         
+        <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Grupo }) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Grupo })
+        </td>
+    </tr>
+</table>
+

@@ -1,0 +1,54 @@
+﻿@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo jQuery CEP</title>
+    <script src="@Url.Content("~/Scripts/jquery-1.6.3.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cep-1.0.min.js")" type="text/javascript"></script>
+    <script type="text/javascript">
+        jQuery(function () {
+
+            $('#buscar-cep').click(function () {
+                $('#cep').cep({
+                    load: function () {
+                        //Exibe a div loading
+                        $('#loading').show();
+                    },
+                    complete: function () {
+                        //Esconde a div loading
+                        $('#loading').hide();
+                    },
+                    error: function (msg) {
+                        //Exibe em alert a mensagem de erro retornada
+                        alert(msg);
+                    },
+                    success: function (data) {
+                        $('#logradouro').val(data.tipoLogradouro + ' ' + data.logradouro);
+                        $('#bairro').val(data.bairro);
+                       // $('#estado').val(data.estado);
+                       // $('#cidade').val(data.cidade);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" id="cep" name="cep" value="" maxlength="8" /><br />
+<label id="loading" style="display:none">Buscando...</label><br />
+    
+<button class="btn btn-info" id="buscar-cep">Buscar</button><br /><br />
+
+Logradouro<br />
+<input type="text" id="logradouro" name="logradouro" value="" /><br />
+@*Bairro<br />
+<input type="text" id="bairro" name="bairro" value="" /><br />*@
+@*Estado<br />
+<input type="text" id="estado" name="estado" value="" /><br />
+Cidade<br />
+<input type="text" id="cidade" name="cidade" value="" /><br />*@
+
+</body>
+</html>

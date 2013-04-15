@@ -1,0 +1,252 @@
+﻿@model Heritage.Models.Bem
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Editar Bem: @Model.Descricao</h2>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.Id_Bem)
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Descricao)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Descricao)
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdEstadoConservacao, "Estado Conservação:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdEstadoConservacao.Id_EstadoConservacao, (IEnumerable<SelectListItem>)ViewBag.EstadoConservacao, "Selecione Estado Conservação")@Html.ActionLink("Novo Estado Conservação", "Create", "EstadoConservacao")
+                        @Html.ValidationMessageFor(model => model.IdEstadoConservacao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdEstabelecimento, "Estabelecimento:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdEstabelecimento.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Estabelecimento, "Selecione Estabelecimento")@Html.ActionLink("Novo Estabelecimento ", "Create", "Estabelecimento")
+                        @Html.ValidationMessageFor(model => model.IdEstabelecimento)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdFornecedor, "Fornecedor:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdFornecedor.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Fornecedor, "Selecione Fornecedor")@Html.ActionLink("Novo Fornecedor", "Create", "Fornecedor")
+                        @Html.ValidationMessageFor(model => model.IdFornecedor)
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdCategoria, "Categoria:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdCategoria.Id_Categoria, (IEnumerable<SelectListItem>)ViewBag.Categoria, "Selecione Categoria")@Html.ActionLink("Nova Categoria", "Create", "Categoria")
+                        @Html.ValidationMessageFor(model => model.IdCategoria)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdGrupo, "Grupo:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdGrupo.Id_Grupo, (IEnumerable<SelectListItem>)ViewBag.Grupo, "Selecione Grupo")@Html.ActionLink("Novo Grupo", "Create", "Grupo")
+                        @Html.ValidationMessageFor(model => model.IdGrupo)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdLocalizacao, "Localizacao:")
+                    </div>
+
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdLocalizacao.Id_Localizacao, (IEnumerable<SelectListItem>)ViewBag.Localizacao, "Selecione Localizacao")@Html.ActionLink("Nova Localizacao", "Create", "Localizacao")
+                        @Html.ValidationMessageFor(model => model.IdLocalizacao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdResponsavel, "Responsavel:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdResponsavel.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Responsavel, "Selecione Responsavel")@Html.ActionLink("Novo Responsavel", "Create", "Responsavel")
+                        @Html.ValidationMessageFor(model => model.IdResponsavel)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Inativo)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.Inativo)
+                        @Html.ValidationMessageFor(model => model.Inativo)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DepreciacaoAtiva)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DepreciacaoAtiva)
+                        @Html.ValidationMessageFor(model => model.DepreciacaoAtiva)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Descontinuado)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.Descontinuado)
+                        @Html.ValidationMessageFor(model => model.Descontinuado)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.NumeroNotaFiscal)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.NumeroNotaFiscal, new {placeholder="Digite o número da nota fiscal de compra" })
+                        @Html.ValidationMessageFor(model => model.NumeroNotaFiscal)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ValorCompra)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.ValorCompra, new {placeholder="Digite o valor de compra" })
+                        @Html.ValidationMessageFor(model => model.ValorCompra)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.CoeficienteDepreciacao)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.CoeficienteDepreciacao, new { placeholder="Digite o coeficinte depreciação para turno de 8(oito) horas: 1- um turno, 1,5- dois turnos, 2-três turnos"})
+                        @Html.ValidationMessageFor(model => model.CoeficienteDepreciacao)
+                    </div>
+                    <div class="clear"></div>
+
+                </div>    
+                
+                  <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.TaxaDepreciacaoAnual)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.TaxaDepreciacaoAnual, new { placeholder = "Digite a taxa depreciação anual por exemplo: 5,10,15,20 etc." })
+                        @Html.ValidationMessageFor(model => model.TaxaDepreciacaoAnual)
+                    </div>
+                    <div class="clear"></div>
+                </div>          
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Pis)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Pis, new { placeholder="Digite o Pis do bem"})
+                        @Html.ValidationMessageFor(model => model.Pis)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Cofins)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Cofins, new { placeholder="Digite o Cofins do bem"})
+                        @Html.ValidationMessageFor(model => model.Cofins)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataAquisicao)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DataAquisicao)
+                        @Html.ValidationMessageFor(model => model.DataAquisicao)
+                        @ViewBag.DataInvalida
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataInicioDepreciacao)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DataInicioDepreciacao)
+                        @Html.ValidationMessageFor(model => model.DataInicioDepreciacao)
+                        @ViewBag.DataInicioDepreciacaoMaior
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Adicionar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+            
+        }
+
+    </div>
+</div>

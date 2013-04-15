@@ -1,0 +1,116 @@
+﻿@model Heritage.Models.Bem
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+<h3>Excluir Bem: @Model.Descricao.Substring(0,23)</h3>
+
+<h3>@User.Identity.Name, você tem certeza que deseja excluir esse registro?</h3>
+    </div>
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="span9">
+        <legend>Bem</legend>
+            </div>
+        @Html.HiddenFor(model => model.Id_Bem)
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Id_Bem)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Id_Bem)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Descricao)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Inativo)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Inativo)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Descontinuado)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Descontinuado)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.NumeroNotaFiscal)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.NumeroNotaFiscal)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.ValorCompra)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.ValorCompra)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.CoeficienteDepreciacao)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.CoeficienteDepreciacao)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.ValorAtual)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.ValorAtual)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.ValorDepreciado)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.ValorDepreciado)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Pis)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Pis)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Cofins)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Cofins)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DataAquisicao)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DataAquisicao)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DataInicioDepreciacao)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DataInicioDepreciacao)
+        </div>
+    </fieldset>
+
+    <div class="span9">
+        <input class="btn btn-danger" type="submit" value="Delete" />|
+        @Html.ActionLink("Página Inicial", "Index")
+    </div>
+}

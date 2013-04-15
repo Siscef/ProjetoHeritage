@@ -1,0 +1,47 @@
+﻿@model Heritage.Models.Localizacao
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    <h3>Detalhes da localização: @Model.Descricao</h3>
+</div>
+
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Localizacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descricao)
+        </th>        
+
+        <th>Usuário:
+        </th>
+        <th>Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Localizacao)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Descricao)
+        </td>
+         
+        <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Localizacao}) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Localizacao })
+        </td>
+    </tr>
+</table>

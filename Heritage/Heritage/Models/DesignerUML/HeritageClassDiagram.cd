@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Heritage.Models.AssistenciaTecnica" Collapsed="true">
+    <Position X="12.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AssistenciaTecnica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.AuditoriaInterna" Collapsed="true">
+    <Position X="17.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAABEAAAAAAAEAABAAAAAAAAAgAAAEAAAAAAA=</HashCode>
+      <FileName>Models\AuditoriaInterna.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Bairro" Collapsed="true">
+    <Position X="21.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAIAAACAAAAAAAAAAAAAAAAAAAAEAAIA=</HashCode>
+      <FileName>Models\Bairro.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Bem" Collapsed="true">
+    <Position X="26.5" Y="0.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QAAggEAAAQANAQggACQCgAAAAAAAgABADACEAAAAAGA=</HashCode>
+      <FileName>Models\Bem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Categoria" Collapsed="true">
+    <Position X="23" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAAQAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Categoria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Cidade" Collapsed="true">
+    <Position X="24.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAAAAAAAACAAAAAEAAAAAAAAAAAAAAkAAAA=</HashCode>
+      <FileName>Models\Cidade.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.CriarConta" Collapsed="true">
+    <Position X="19.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAACAAAAAAAACAACAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\CriarConta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.TrocarSenha" Collapsed="true">
+    <Position X="21.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAAAAAAECAAAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\CriarConta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Login" Collapsed="true">
+    <Position X="24.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAEACAA=</HashCode>
+      <FileName>Models\CriarConta.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.DepreciacaoBem" Collapsed="true">
+    <Position X="21.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAgAAAAACAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\DepreciacaoBem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Endereco" Collapsed="true">
+    <Position X="23" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABBAIAAACAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\Endereco.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Estabelecimento" Collapsed="true">
+    <Position X="14.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Estabelecimento.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Estado" Collapsed="true">
+    <Position X="24.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAACAAAAAAAAgAAAAAAAAAAAEAAIA=</HashCode>
+      <FileName>Models\Estado.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.EstadoConservacao" Collapsed="true">
+    <Position X="26.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAFAIAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\EstadoConservacao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Fornecedor" Collapsed="true">
+    <Position X="17" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Fornecedor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Grupo" Collapsed="true">
+    <Position X="19.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAIAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Grupo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.HistoricoBem" Collapsed="true">
+    <Position X="21.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEhAAAAACEAAAAAAAAAABAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\HistoricoBem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Localizacao" Collapsed="true">
+    <Position X="23" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAFAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Localizacao.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.ManutencaoBem" Collapsed="true">
+    <Position X="26.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAgAAgAAAgQAAAACAAAAAEAAIAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\ManutencaoBem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Papel" Collapsed="true">
+    <Position X="19.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Papel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Pessoa" Collapsed="true">
+    <Position X="13.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAgCAAAAAAAAAAAAAAAIAAAAAAAAAAAAkAAMA=</HashCode>
+      <FileName>Models\Pessoa.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.PessoaFisica" Collapsed="true">
+    <Position X="10.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\PessoaFisica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.PessoaJuridica" Collapsed="true">
+    <Position X="14.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAAAAAAAAAAEAAIAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\PessoaJuridica.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Responsavel" Collapsed="true">
+    <Position X="10.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAACAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Responsavel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Models.Peca" Collapsed="true">
+    <Position X="23" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAACAAAAAEAAAAAAAACAAAAAAAAgA=</HashCode>
+      <FileName>Models\Peca.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.Ocorrencia" Collapsed="true">
+    <Position X="26.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQgAAAAAKAAAAgAAAAAAAAgBAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ocorrencia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Heritage.TipoOcorrencia" Collapsed="true">
+    <Position X="24.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Models\TipoOcorrencia.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="Heritage.Models.TipoOperacao" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQRA=</HashCode>
+      <FileName>Models\TipoOperacao.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,64 @@
+﻿@model Heritage.Models.AssistenciaTecnica
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalhes da Assistência Técnica</h2>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_Pessoa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InscricaoEstadual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>Operações:</th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_Pessoa)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.InscricaoEstadual)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.RazaoSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Telefone)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Pessoa }) |            
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Pessoa })
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,177 @@
+﻿@model Heritage.Models.Fornecedor
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Editar Fornecedor</h2>
+            <div class="clear"></div>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.Id_Pessoa)
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.RazaoSocial)
+                    </div>
+
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.RazaoSocial, new { placeholder = "Digite a razão social.", @class = "input-xlarge", maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.RazaoSocial)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Nome, "Fantasia:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Nome, new { placeholder = "Digite o nome fantasia.", @class = "input-xlarge", maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.CNPJ)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.CNPJ, new { placeholder = "Digite o CNPJ.", @class = "input-xlarge", maxlength="14" })
+                        @Html.ValidationMessageFor(model => model.CNPJ)
+                       
+                            @ViewBag.IsNotCNPJ
+                       
+                    </div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.InscricaoEstadual)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.InscricaoEstadual, new { placeholder = "Digite a inscrição estadual.", @class = "input-xlarge", maxlength = "9" })
+                        @Html.ValidationMessageFor(model => model.InscricaoEstadual)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Email)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100" })
+
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Telefone)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Telefone, new {placeholder = "Digite telefone: 999999-9999",maxlength="11" })
+                        @Html.ValidationMessageFor(model => model.Telefone)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="alert alert-error" id="ceperrado">
+                    <h4>Atenção!</h4>
+                    Cep não encontrado...... 
+                </div>
+
+                <div class="alert alert-info" id="loading">                
+                <h4>Info!</h4>
+                Buscando cep na base correios, aguarde.....
+            </div> 
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdEndereco.CEP, "CEP:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.IdEndereco.CEP, new { id = "cep", name = "cep",maxlength="8", placeholder="Digite o cep sem pontos ou traços." })
+                        @Html.ValidationMessageFor(model => model.IdEndereco.CEP)<br />
+                        <button class="btn btn-info" id="buscar-cep" type="button">Buscar</button>
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdEndereco.Descricao, "Descrição:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.IdEndereco.Descricao, new { id = "logradouro", name = "logradouro",placeholder="Digite a descrição do endereco: rua, avenida ou logradouro." })
+                        @Html.ValidationMessageFor(model => model.IdEndereco.Descricao)
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdBairro.Nome, "Bairro:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.IdBairro.Nome, new { id = "bairro", name = "bairro",placeholder="Digite o nome do bairro." })
+                        @Html.ValidationMessageFor(model => model.IdBairro.Nome)
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdCidade.Nome, "Cidade:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.IdCidade.Nome, new { id = "cidade", name = "cidade",placeholder="Digite o nome da cidade, utilize acentos." })
+                        @Html.ValidationMessageFor(model => model.IdCidade.Nome)
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdEstado.Sigla, "Estado:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.IdEstado.Sigla, new { id = "estado", name = "estado" ,placeholder="Digite o nome do estado."})
+                        @Html.ValidationMessageFor(model => model.IdEstado.Sigla)
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+               
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        
+        }
+
+    </div>
+</div>

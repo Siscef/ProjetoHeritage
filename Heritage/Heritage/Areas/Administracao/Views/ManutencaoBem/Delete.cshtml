@@ -1,0 +1,71 @@
+﻿@model Heritage.Models.ManutencaoBem
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    <h2>Excluir Manutenção: @ViewBag.DescricaoManutencao</h2>
+</div>
+<div class="span9">
+    <h3>@User.Identity.Name, você tem certeza que excluir esse registro?</h3>
+
+</div>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="span9">
+            <legend>Manutenção Bem</legend>
+        </div>
+        @Html.HiddenFor(model => model.Id_ManutencaoBem)
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Id_ManutencaoBem)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Id_ManutencaoBem)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DataSaidaParaConserto)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DataSaidaParaConserto)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.Valor)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.Valor)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DescricaoProblema)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DescricaoProblema)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DescricaoConserto)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DescricaoConserto)
+        </div>
+
+        <div class="span9">
+            @Html.DisplayNameFor(model => model.DataVoltaConserto)
+        </div>
+        <div class="span9">
+            @Html.DisplayFor(model => model.DataVoltaConserto)
+        </div>
+    </fieldset>
+
+    <div class="span9">
+        <input class="btn btn-danger" type="submit" value="Delete" />|
+        @Html.ActionLink("Página Inicial", "Index")
+
+    </div>
+}
