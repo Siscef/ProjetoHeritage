@@ -1,0 +1,59 @@
+﻿@model Heritage.Models.CriarConta
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Detalhes da Conta Usuário: @Model.Nome</h3>
+
+<table class="table table-bordered">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Id_CriarConta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            Papel/Função:
+        </th>
+        <th>
+            Inclusão:
+        </th>
+        <th>
+            Operações:
+
+        </th>
+    </tr>
+    <tr>
+
+        <td>
+            @Html.DisplayFor(model => model.Id_CriarConta)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.IdPapel.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.IdAuditoriaInterna.Usuario)
+        </td>
+        <td>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_CriarConta }) |                     
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_CriarConta })
+        </td>
+    </tr>
+</table>
+
+

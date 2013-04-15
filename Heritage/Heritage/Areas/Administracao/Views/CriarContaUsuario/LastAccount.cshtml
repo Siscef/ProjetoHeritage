@@ -1,7 +1,7 @@
-﻿@model IEnumerable<Heritage.Models.Cidade>
+﻿@model IEnumerable<Heritage.Models.CriarConta>
 
 @{
-    ViewBag.Title = "ListLast";
+    ViewBag.Title = "LastAccount";
     Layout = "~/Areas/Administracao/Views/Shared/_LayoutListas.cshtml";
 }
 
@@ -148,7 +148,7 @@
             <div class="span12">
                 <div class="head">
                     <div class="isw-grid"></div>
-                    <h1>Tabela Cidade </h1>
+                    <h1>Tabela Conta Usuário </h1>
                     <div class="clear"></div>
                 </div>
                 <div class="block-fluid table-sorting">
@@ -160,7 +160,7 @@
 
                                 <th width="25%">Id:</th>
                                 <th width="25%">Nome:</th>
-                                <th width="25%">Estado:</th>
+                                <th width="25%">Papel:</th>
                                 <th width="25%">Operações:</th>
                             </tr>
                         </thead>
@@ -172,18 +172,18 @@
                                     <td>
                                         <input type="checkbox" name="checkbox" /></td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Id_Cidade)
+                                        @Html.DisplayFor(modelItem => item.Id_CriarConta)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Nome)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.IdEstado.Nome)
+                                        @Html.DisplayFor(modelItem => item.IdPapel.Nome)
                                     </td>
                                     <td>
-                                        @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Cidade }) |
-                                       @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Cidade }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Cidade })
+                                        @Html.ActionLink("Alterar", "Edit", new { id = item.Id_CriarConta }) |
+                                       @Html.ActionLink("Detalhes", "Details", new { id = item.Id_CriarConta }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_CriarConta })
                                     </td>
                                 </tr>
                             }

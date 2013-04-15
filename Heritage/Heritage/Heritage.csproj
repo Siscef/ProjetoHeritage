@@ -156,6 +156,7 @@
     <Compile Include="Areas\Administracao\Controllers\BemController.cs" />
     <Compile Include="Areas\Administracao\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Administracao\Controllers\CidadeController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\CriarContaUsuarioController.cs" />
     <Compile Include="Areas\Administracao\Controllers\EnderecoController.cs" />
     <Compile Include="Areas\Administracao\Controllers\EstabelecimentoController.cs" />
     <Compile Include="Areas\Administracao\Controllers\EstadoConservacaoController.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Models\Mapeamento\BemMap.cs" />
     <Compile Include="Models\Mapeamento\CategoriaMap.cs" />
     <Compile Include="Models\Mapeamento\CidadeMap.cs" />
+    <Compile Include="Models\Mapeamento\CriarContaMap.cs" />
     <Compile Include="Models\Mapeamento\DepreciacaoBemMap.cs" />
     <Compile Include="Models\Mapeamento\EnderecoMap.cs" />
     <Compile Include="Models\Mapeamento\EstabelecimentoMap.cs" />
@@ -753,6 +755,15 @@
     <Content Include="Areas\Administracao\Views\Peca\LastSins.cshtml" />
     <Content Include="Areas\Administracao\Views\Peca\AllSins.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\CalculatesDepreciationOfAssets.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\Details.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\Edit.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\AllAccount.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\LastAccount.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\Delete.cshtml" />
+    <Content Include="Areas\Administracao\Views\Home\Principal.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\LateCalculateDepreciation.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\bootstrap.js" />

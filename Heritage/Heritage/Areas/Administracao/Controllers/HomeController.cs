@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Heritage.Models;
+using System.Web.Security;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
@@ -17,6 +18,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult Index()
         {
+            
            var TodosBens = (from bem in ContextoBem.GetAll<Bem>()
                             select new { Id_Bem = bem.Id_Bem, ValorAtual = bem.ValorAtual, ValorCompra = bem.ValorCompra, ValorDepreciado = bem.ValorDepreciado, TaxaDepreciacaoAnual = bem.TaxaDepreciacaoAnual ,Descontinuado = bem.Descontinuado,Inativo = bem.Inativo }).ToList();
 
@@ -69,6 +71,9 @@ namespace Heritage.Areas.Administracao.Controllers
             return View();
         }
 
-
+        public ActionResult Principal()
+        {
+            return View();
+        }
     }
 }

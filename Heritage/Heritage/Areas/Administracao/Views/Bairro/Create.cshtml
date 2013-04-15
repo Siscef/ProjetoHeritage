@@ -38,7 +38,7 @@
                         @Html.LabelFor(model => model.IdCidade, "Cidade:")
                     </div>
                     <div class="span9">
-                        @Html.DropDownListFor(model => model.IdCidade.Id_Cidade, (IEnumerable<SelectListItem>)ViewBag.Cidade, "Selecione Cidade")@Html.ActionLink("Nova Cidade", "Create", "Cidade")
+                        @Html.DropDownListFor(model => model.IdCidade.Id_Cidade, (IEnumerable<SelectListItem>)ViewBag.Papel, "Selecione Cidade")@Html.ActionLink("Nova Cidade", "Create", "Cidade")
                         @Html.ValidationMessageFor(model => model.IdCidade)
                     </div>
                     <div class="clear"></div>

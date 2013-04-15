@@ -42,9 +42,17 @@ namespace Heritage
                         PapelAdministrador.Nome = "Administrador";
                         Contexto.Add<Papel>(PapelAdministrador);
                         Contexto.SaveChanges();
-                        Roles.AddUserToRole("ADEMI", "Administrador");
-                       
+
+                        Roles.AddUserToRole("ADEMI", "Administrador");                       
                         Contexto.SaveChanges();
+
+                        Papel PapelContabil = new Papel();
+                        PapelContabil.Nome = "Contabil";
+                        Contexto.Add<Papel>(PapelContabil);
+                        Contexto.SaveChanges();
+
+                        
+
                         Contexto.Dispose();
                     }
 

@@ -50,7 +50,7 @@ namespace Heritage.Controllers
 
                         if (Roles.IsUserInRole("Administrador"))
                         {
-                            return RedirectToAction("Index", "Home", new {area = "Administracao" });
+                            return RedirectToAction("Principal", "Home", new {area = "Administracao" });
                         }
                         if (Roles.IsUserInRole("Contabil"))
                         {

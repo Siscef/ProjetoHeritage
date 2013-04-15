@@ -1,0 +1,93 @@
+﻿@model Heritage.Models.CriarConta
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Alterar Conta Usuário: @Model.Nome</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.Id_CriarConta)
+
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Nome, "Nome:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Nome, new { placeholder = "Digite o nome do usuário." })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Email, "Email:")
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o email do usuário." })
+                        @Html.ValidationMessageFor(model => model.Senha)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Senha, "Senha:")
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.Senha, new { placeholder = "Digite a senha." })
+                        @Html.ValidationMessageFor(model => model.Senha)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ConfirmeSenha, "Repetir senha:")
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.ConfirmeSenha, new { placeholder = "Digite a senha novamente." })
+                        @Html.ValidationMessageFor(model => model.ConfirmeSenha)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IdPapel, "Papel:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.IdPapel.Id_Papel, (IEnumerable<SelectListItem>)ViewBag.Papel, "Selecione Papel")@Html.ActionLink("Novo Papel", "Create", "Papel")
+                        @Html.ValidationMessageFor(model => model.IdPapel)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+ 
+        }
+
+    </div>
+</div>

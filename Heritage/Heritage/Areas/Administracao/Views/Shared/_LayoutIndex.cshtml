@@ -232,7 +232,7 @@
                             <span class="number">@ViewBag.MediaDepreciacao %</span>
                         </div>
                         <div class="rSpace">
-                            <span>R$ @ViewBag.TotalAmortizacaoMensal <b>Total Amortização desse mês</b></span>
+                            <span>R$ @ViewBag.TotalAmortizacaoMensal <b>Total depreciado desse mês</b></span>
                             <span>R$ @ViewBag.TotalPisMensal <b>Total Pis</b></span>
                             <span>R$ @ViewBag.TotalCofinsMensal <b>Total Cofins</b></span>
                         </div>
@@ -264,16 +264,15 @@
 
                     <div class="wBlock blue">
                         <div class="dSpace">
-                            <h3>Last visits</h3>
+                            <h3>Usuário Logado:</h3>
                             <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
                                 <!--240,234,150,290,310,240,210,400,320,198,250,222,111,240,221,340,250,190-->
                             </span>
-                            <span class="number">6,302</span>
+                            <span class="number">@User.Identity.Name.ToLowerInvariant()</span>
                         </div>
                         <div class="rSpace">
-                            <span>65% <b>New</b></span>
-                            <span>35% <b>Returning</b></span>
-                            <span>00:05:12 <b>Average time on site</b></span>
+                            <span>Acessando: <b>@Membership.ApplicationName</b></span>                           
+                            <span>Tempo online: <b>@Membership.UserIsOnlineTimeWindow.ToString() </b></span>
                         </div>
                     </div>
 
