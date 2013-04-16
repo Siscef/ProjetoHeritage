@@ -6,10 +6,9 @@ using System.Web.Mvc;
 
 namespace Heritage.Areas.Contabil.Controllers
 {
+    [Authorize(Roles="Contabil")]
     public class HomeController : Controller
     {
-        //
-        // GET: /Contabil/Home/
 
         public ActionResult Index()
         {

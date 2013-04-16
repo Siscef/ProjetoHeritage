@@ -110,7 +110,8 @@
         </td>
         <td>
             @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Bem }) |            
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Bem })
+            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Bem })|
+            @Html.ActionLink("Hist. Depreciação","CheckHistoricalDepreciation",new {id = Model.Id_Bem})
         </td>
     </tr>
 </table>

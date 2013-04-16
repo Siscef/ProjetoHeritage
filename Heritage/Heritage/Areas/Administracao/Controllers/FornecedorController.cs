@@ -9,7 +9,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Contabil")]
     public class FornecedorController : Controller
     {
         private IContextoDados ContextoFornecedor = new ContextoDadosNH();

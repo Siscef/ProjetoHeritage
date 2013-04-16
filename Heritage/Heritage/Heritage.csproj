@@ -631,7 +631,6 @@
     <Content Include="Areas\Administracao\Views\Web.config" />
     <Content Include="Areas\Contabil\Views\Web.config" />
     <Content Include="Areas\Administracao\Views\Home\Index.cshtml" />
-    <Content Include="Areas\Contabil\Views\Home\Index.cshtml" />
     <Content Include="Areas\Administracao\Views\Estado\Index.cshtml" />
     <Content Include="Areas\Administracao\Views\Estado\Details.cshtml" />
     <Content Include="Areas\Administracao\Views\Estado\Create.cshtml" />
@@ -764,6 +763,13 @@
     <Content Include="Areas\Administracao\Views\CriarContaUsuario\Delete.cshtml" />
     <Content Include="Areas\Administracao\Views\Home\Principal.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\LateCalculateDepreciation.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\CheckHistoricalDepreciation.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\_LayoutListas.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\_LogOnPartial.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\Adress.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\MenuIndex.cshtml" />
+    <Content Include="Areas\Contabil\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -827,7 +833,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Administracao\Models\" />
     <Folder Include="Areas\Contabil\Models\" />
-    <Folder Include="Areas\Contabil\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

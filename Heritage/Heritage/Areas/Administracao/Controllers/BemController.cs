@@ -9,7 +9,7 @@ using System.Numerics;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Contabil")]
     public class BemController : Controller
     {
         private IContextoDados ContextoBem = new ContextoDadosNH();
@@ -352,6 +352,7 @@ namespace Heritage.Areas.Administracao.Controllers
         public ActionResult Delete(int id)
         {
             Bem BemParaExclusao = ContextoBem.Get<Bem>(id);
+            ViewBag.Descricao = BemParaExclusao.Descricao;
             return View(BemParaExclusao);
         }
 
@@ -375,13 +376,22 @@ namespace Heritage.Areas.Administracao.Controllers
                 AuditoriaBem.TipoOperacao = TipoOperacao.Exclusao.ToString();
                 ContextoBem.Add<AuditoriaInterna>(AuditoriaBem);
                 ContextoBem.SaveChanges();
-
+                
                 Bem BemExcluido = ContextoBem.Get<Bem>(BemParaExcluir.Id_Bem);
 
                 ContextoBem.Delete<Bem>(BemExcluido);
                 ContextoBem.SaveChanges();
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+
+                }
+
             }
             catch
             {
@@ -433,144 +443,48 @@ namespace Heritage.Areas.Administracao.Controllers
                     {
                         Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(itemBens.Id_Bem);
 
-                        if (BemParaAtualizarImpostos.CoeficienteDepreciacao == 1)
+
+                        IList<DepreciacaoBem> VerificarDeprecicaoDuplicada = ContextoBem.GetAll<DepreciacaoBem>()
+                                                                             .Where(x => x.DataDepreciacaoBem.Day == itemBens.DataInicioDepreciacao.Day && x.DataDepreciacaoBem.Month == itemBens.DataInicioDepreciacao.Month && x.IdBem.Id_Bem == itemBens.Id_Bem
+                                                                             && x.ValorCofins == ((itemBens.ValorCompra * itemBens.Cofins) / 100) && x.ValorPis == ((itemBens.Pis * itemBens.ValorCompra) / 100)
+                                                                             && x.ValorDepreciado == itemBens.ValorDepreciado)
+                                                                             .ToList();
+                        if (VerificarDeprecicaoDuplicada.Count() == 0)
                         {
-                            IList<DepreciacaoBem> VerificarDeprecicaoDuplicada = ContextoBem.GetAll<DepreciacaoBem>()
-                                                                                 .Where(x => x.DataDepreciacaoBem.Day == itemBens.DataInicioDepreciacao.Day && x.DataDepreciacaoBem.Month == itemBens.DataInicioDepreciacao.Month && x.IdBem.Id_Bem == itemBens.Id_Bem
-                                                                                 && x.ValorCofins == ((itemBens.ValorCompra * itemBens.Cofins) / 100) && x.ValorPis == ((itemBens.Pis * itemBens.ValorCompra) / 100)
-                                                                                 && x.ValorDepreciado == itemBens.ValorDepreciado)
-                                                                                 .ToList();
-                            if (VerificarDeprecicaoDuplicada.Count() == 0)
-                            {
-                                AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
-                                AuditoriaCoeficienteUm.Computador = Environment.MachineName;
-                                AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
-                                AuditoriaCoeficienteUm.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + itemBens.Descricao;
-                                AuditoriaCoeficienteUm.Tabela = "TB_DepreciacaoBem";
-                                AuditoriaCoeficienteUm.TipoOperacao = TipoOperacao.Insercao.ToString();
-                                AuditoriaCoeficienteUm.Usuario = User.Identity.Name;
-                                ContextoBem.Add<AuditoriaInterna>(AuditoriaCoeficienteUm);
-                                ContextoBem.SaveChanges();
+                            AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
+                            AuditoriaCoeficienteUm.Computador = Environment.MachineName;
+                            AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
+                            AuditoriaCoeficienteUm.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + itemBens.Descricao;
+                            AuditoriaCoeficienteUm.Tabela = "TB_DepreciacaoBem";
+                            AuditoriaCoeficienteUm.TipoOperacao = TipoOperacao.Insercao.ToString();
+                            AuditoriaCoeficienteUm.Usuario = User.Identity.Name;
+                            ContextoBem.Add<AuditoriaInterna>(AuditoriaCoeficienteUm);
+                            ContextoBem.SaveChanges();
 
-                                DepreciacaoBem DepreciacaoBemCoeficienteUm = new DepreciacaoBem();
+                            DepreciacaoBem DepreciacaoBemCoeficienteUm = new DepreciacaoBem();
 
-                                DepreciacaoBemCoeficienteUm.DataDepreciacaoBem = DateTime.Now;
-                                DepreciacaoBemCoeficienteUm.ValorCofins = (BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteUm.ValorPis = (BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteUm.ValorDepreciado = ((BemParaAtualizarImpostos.TaxaDepreciacaoAnual * BemParaAtualizarImpostos.ValorCompra) / 100) / 12;
-                                DepreciacaoBemCoeficienteUm.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(AuditoriaCoeficienteUm.Id_AuditoriaInterna);
-                                DepreciacaoBemCoeficienteUm.IdBem = ContextoBem.Get<Bem>(itemBens.Id_Bem);
+                            DepreciacaoBemCoeficienteUm.DataDepreciacaoBem = DateTime.Now;
+                            DepreciacaoBemCoeficienteUm.ValorCofins = (BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100;
+                            DepreciacaoBemCoeficienteUm.ValorPis = (BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100;
+                            DepreciacaoBemCoeficienteUm.ValorDepreciado = (((BemParaAtualizarImpostos.TaxaDepreciacaoAnual * Convert.ToInt64(BemParaAtualizarImpostos.CoeficienteDepreciacao) * BemParaAtualizarImpostos.ValorCompra) / 100) / 12);
+                            DepreciacaoBemCoeficienteUm.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(AuditoriaCoeficienteUm.Id_AuditoriaInterna);
+                            DepreciacaoBemCoeficienteUm.IdBem = ContextoBem.Get<Bem>(itemBens.Id_Bem);
 
-                                ContextoBem.Add<DepreciacaoBem>(DepreciacaoBemCoeficienteUm);
-                                ContextoBem.SaveChanges();
+                            ContextoBem.Add<DepreciacaoBem>(DepreciacaoBemCoeficienteUm);
+                            ContextoBem.SaveChanges();
 
-                                BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteUm.ValorDepreciado;
-                                BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorCompra - BemParaAtualizarImpostos.ValorDepreciado;
-                                TryUpdateModel<Bem>(BemParaAtualizarImpostos);
-                                ContextoBem.SaveChanges();
-
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
+                            BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteUm.ValorDepreciado;
+                            BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorCompra - BemParaAtualizarImpostos.ValorDepreciado;
+                            TryUpdateModel<Bem>(BemParaAtualizarImpostos);
+                            ContextoBem.SaveChanges();
 
                         }
-                        else if (BemParaAtualizarImpostos.CoeficienteDepreciacao == 2)
-                        {
-
-                            IList<DepreciacaoBem> VerificarDeprecicaoDuplicada = ContextoBem.GetAll<DepreciacaoBem>()
-                                                                                .Where(x => x.DataDepreciacaoBem.Day == itemBens.DataInicioDepreciacao.Day && x.DataDepreciacaoBem.Month == itemBens.DataInicioDepreciacao.Month && x.IdBem.Id_Bem == itemBens.Id_Bem
-                                                                                && x.ValorCofins == ((itemBens.ValorCompra * itemBens.Cofins) / 100) && x.ValorPis == ((itemBens.Pis * itemBens.ValorCompra) / 100)
-                                                                                && x.ValorDepreciado == itemBens.ValorDepreciado)
-                                                                                .ToList();
-                            if (VerificarDeprecicaoDuplicada.Count() == 0)
-                            {
-                                AuditoriaInterna AuditoriaCoeficienteDois = new AuditoriaInterna();
-                                AuditoriaCoeficienteDois.Computador = Environment.MachineName;
-                                AuditoriaCoeficienteDois.DataInsercao = DateTime.Now;
-                                AuditoriaCoeficienteDois.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + itemBens.Descricao;
-                                AuditoriaCoeficienteDois.Tabela = "TB_DepreciacaoBem";
-                                AuditoriaCoeficienteDois.TipoOperacao = TipoOperacao.Insercao.ToString();
-                                AuditoriaCoeficienteDois.Usuario = User.Identity.Name;
-                                ContextoBem.Add<AuditoriaInterna>(AuditoriaCoeficienteDois);
-                                ContextoBem.SaveChanges();
-
-                                DepreciacaoBem DepreciacaoBemCoeficienteDois = new DepreciacaoBem();
-                                DepreciacaoBemCoeficienteDois.DataDepreciacaoBem = DateTime.Now;
-                                DepreciacaoBemCoeficienteDois.ValorCofins = (BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteDois.ValorPis = (BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteDois.ValorDepreciado = (((BemParaAtualizarImpostos.TaxaDepreciacaoAnual * 2) * BemParaAtualizarImpostos.ValorCompra) / 100) / 12;
-                                DepreciacaoBemCoeficienteDois.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(AuditoriaCoeficienteDois.Id_AuditoriaInterna);
-                                DepreciacaoBemCoeficienteDois.IdBem = ContextoBem.Get<Bem>(itemBens.Id_Bem);
-
-                                ContextoBem.Add<DepreciacaoBem>(DepreciacaoBemCoeficienteDois);
-                                ContextoBem.SaveChanges();
-
-                                BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteDois.ValorDepreciado;
-                                BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorCompra - BemParaAtualizarImpostos.ValorDepreciado;
-                                TryUpdateModel<Bem>(BemParaAtualizarImpostos);
-                                ContextoBem.SaveChanges();
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
-
-                        }
-                        else
-                        {
-                            IList<DepreciacaoBem> VerificarDeprecicaoDuplicada = ContextoBem.GetAll<DepreciacaoBem>()
-                                                                               .Where(x => x.DataDepreciacaoBem.Day == itemBens.DataInicioDepreciacao.Day && x.DataDepreciacaoBem.Month == itemBens.DataInicioDepreciacao.Month && x.IdBem.Id_Bem == itemBens.Id_Bem
-                                                                               && x.ValorCofins == ((itemBens.ValorCompra * itemBens.Cofins) / 100) && x.ValorPis == ((itemBens.Pis * itemBens.ValorCompra) / 100)
-                                                                               && x.ValorDepreciado == itemBens.ValorDepreciado)
-                                                                               .ToList();
-                            if (VerificarDeprecicaoDuplicada.Count() == 0)
-                            {
-                                AuditoriaInterna AuditoriaCoeficienteUmEMeio = new AuditoriaInterna();
-                                AuditoriaCoeficienteUmEMeio.Computador = Environment.MachineName;
-                                AuditoriaCoeficienteUmEMeio.DataInsercao = DateTime.Now;
-                                AuditoriaCoeficienteUmEMeio.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + itemBens.Descricao;
-                                AuditoriaCoeficienteUmEMeio.Tabela = "TB_DepreciacaoBem";
-                                AuditoriaCoeficienteUmEMeio.TipoOperacao = TipoOperacao.Insercao.ToString();
-                                AuditoriaCoeficienteUmEMeio.Usuario = User.Identity.Name;
-                                ContextoBem.Add<AuditoriaInterna>(AuditoriaCoeficienteUmEMeio);
-                                ContextoBem.SaveChanges();
-
-                                DepreciacaoBem DepreciacaoBemCoeficienteUmEMeio = new DepreciacaoBem();
-                                DepreciacaoBemCoeficienteUmEMeio.DataDepreciacaoBem = DateTime.Now;
-                                DepreciacaoBemCoeficienteUmEMeio.ValorCofins = (BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteUmEMeio.ValorPis = (BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100;
-                                DepreciacaoBemCoeficienteUmEMeio.ValorDepreciado = (((BemParaAtualizarImpostos.TaxaDepreciacaoAnual * Convert.ToInt64(1.5)) * BemParaAtualizarImpostos.ValorCompra) / 100) / 12;
-                                DepreciacaoBemCoeficienteUmEMeio.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(AuditoriaCoeficienteUmEMeio.Id_AuditoriaInterna);
-                                DepreciacaoBemCoeficienteUmEMeio.IdBem = ContextoBem.Get<Bem>(itemBens.Id_Bem);
-
-                                ContextoBem.Add<DepreciacaoBem>(DepreciacaoBemCoeficienteUmEMeio);
-                                ContextoBem.SaveChanges();
-
-                                BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteUmEMeio.ValorDepreciado;
-                                BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorCompra - BemParaAtualizarImpostos.ValorDepreciado;
-                                TryUpdateModel<Bem>(BemParaAtualizarImpostos);
-                                ContextoBem.SaveChanges();
-
-                            }
-                            else
-                            {
-                                return RedirectToAction("Index", "Home");
-                            }
-
-
-                        }
-
                     }
-
                 }
-
             }
-
-
             return RedirectToAction("Index", "Home");
         }
+
 
         public ActionResult LateCalculateDepreciation(int id)
         {
@@ -585,7 +499,6 @@ namespace Heritage.Areas.Administracao.Controllers
             Auditoria.Usuario = User.Identity.Name;
             ContextoBem.Add<AuditoriaInterna>(Auditoria);
             ContextoBem.SaveChanges();
-
 
             TimeSpan DiferencaDeMeses = Convert.ToDateTime(DateTime.Now) - Convert.ToDateTime(BemParaCalculoDepreciacaoAtrasada.DataInicioDepreciacao.ToString("yyyy/MM/dd HH:mm:ss"));
             decimal Meses = Convert.ToDecimal(DiferencaDeMeses.Days);
@@ -602,17 +515,24 @@ namespace Heritage.Areas.Administracao.Controllers
                 {
                     DepreciacaoBem Depreciacao = new DepreciacaoBem();
 
+                    long IdUltimaDepreciacao = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                      .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                                select c.Id_DepreciacaoBem).Max();
+                    DateTime UltimoMes = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                          .Where(x => x.Id_DepreciacaoBem == IdUltimaDepreciacao)
+                                          select c.DataDepreciacaoBem).First();
 
                     Depreciacao.ValorCofins = (BemParaCalculoDepreciacaoAtrasada.Cofins * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100;
                     Depreciacao.ValorPis = (BemParaCalculoDepreciacaoAtrasada.Pis * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100;
                     Depreciacao.ValorDepreciado = (((BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual * Convert.ToInt64(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao) * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100) / 12);
                     Depreciacao.IdBem = ContextoBem.Get<Bem>(BemParaCalculoDepreciacaoAtrasada.Id_Bem);
                     Depreciacao.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(Auditoria.Id_AuditoriaInterna);
-                    Depreciacao.DataDepreciacaoBem = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                     .Where(x => x.DataDepreciacaoBem.Day == BemParaCalculoDepreciacaoAtrasada.DataInicioDepreciacao.Day && x.DataDepreciacaoBem.Month == BemParaCalculoDepreciacaoAtrasada.DataInicioDepreciacao.Month && x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem
-                                                     && x.ValorCofins == ((BemParaCalculoDepreciacaoAtrasada.ValorCompra * BemParaCalculoDepreciacaoAtrasada.Cofins) / 100) && x.ValorPis == ((BemParaCalculoDepreciacaoAtrasada.Pis * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100)
-                                                     && x.ValorDepreciado == BemParaCalculoDepreciacaoAtrasada.ValorDepreciado)
-                                                     select c.DataDepreciacaoBem).Last().AddMonths(1);
+                    if (UltimoMes.Month == 12)
+                    {
+                        Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1).AddYears(1);
+                    }
+                    Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1);
+
                     ContextoBem.Add<DepreciacaoBem>(Depreciacao);
                     ContextoBem.SaveChanges();
 
@@ -629,10 +549,21 @@ namespace Heritage.Areas.Administracao.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-
             }
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult CheckHistoricalDepreciation(int id)
+        {
+            IList<DepreciacaoBem> ListHistoricoBemDepreciado = ContextoBem.GetAll<DepreciacaoBem>()
+                                                               .Where(x => x.IdBem.Id_Bem == id)
+                                                               .ToList();
+            ViewBag.NomeBem = (from c in ContextoBem.GetAll<Bem>()
+                               .Where(x => x.Id_Bem == id)
+                               select c.Descricao).First();
+
+            return View(ListHistoricoBemDepreciado);
         }
     }
 }

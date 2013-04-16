@@ -5,7 +5,7 @@
     Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
 }
 <div class="span9">
-<h3>Excluir Bem: @Model.Descricao.Substring(0,23)</h3>
+<h3>Excluir Bem: @ViewBag.Descricao</h3>
 
 <h3>@User.Identity.Name, você tem certeza que deseja excluir esse registro?</h3>
     </div>

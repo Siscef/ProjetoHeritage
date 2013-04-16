@@ -34,8 +34,8 @@ namespace Heritage.Controllers
         {
             if (ModelState.IsValid)
             {
-                string nome = model.Nome.ToUpper();
-                string senha = model.Senha.ToUpper();
+                string nome = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(model.Nome);
+                string senha = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(model.Senha);               
 
                 if (Membership.ValidateUser(nome, senha))
                 {

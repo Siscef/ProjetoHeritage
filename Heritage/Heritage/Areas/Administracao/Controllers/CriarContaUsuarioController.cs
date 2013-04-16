@@ -51,7 +51,7 @@ namespace Heritage.Areas.Administracao.Controllers
                 try
                 {
                     MembershipCreateStatus statusCriacao;
-                    Membership.CreateUser(TransformaParaMaiusculo.PrimeiraLetraMaiuscula(CriarContaParaSalvar.Nome), CriarContaParaSalvar.Senha, CriarContaParaSalvar.Email, null, null, true, out statusCriacao);
+                    Membership.CreateUser(TransformaParaMaiusculo.PrimeiraLetraMaiuscula(CriarContaParaSalvar.Nome), TransformaParaMaiusculo.PrimeiraLetraMaiuscula(CriarContaParaSalvar.Senha), CriarContaParaSalvar.Email, null, null, true, out statusCriacao);
                     if (statusCriacao == MembershipCreateStatus.Success)
                     {
                         AuditoriaInterna AuditoriaCriarConta = new AuditoriaInterna();
