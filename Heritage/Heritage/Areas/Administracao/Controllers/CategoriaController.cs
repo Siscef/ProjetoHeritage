@@ -156,7 +156,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoCategoria.SaveChanges();
 
 
-                return RedirectToAction("Index","Home");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

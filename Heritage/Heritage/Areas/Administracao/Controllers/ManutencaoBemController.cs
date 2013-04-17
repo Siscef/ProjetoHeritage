@@ -197,7 +197,7 @@ namespace Heritage.Areas.Administracao.Controllers
         // GET: /Administracao/ManutencaoBem/Edit/5
 
         public ActionResult Edit(int id)
-        {       
+        {
 
             ManutencaoBem ManutencaoBemParaEdicao = ContextoManutencao.Get<ManutencaoBem>(id);
             ViewBag.IdPecas = new MultiSelectList(ContextoManutencao.GetAll<Peca>(), "Id_Peca", "Descricao");
@@ -213,7 +213,7 @@ namespace Heritage.Areas.Administracao.Controllers
         // POST: /Administracao/ManutencaoBem/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(ManutencaoBem ManutencaoBemParaEdicao, string [] IdPecas)
+        public ActionResult Edit(ManutencaoBem ManutencaoBemParaEdicao, string[] IdPecas)
         {
 
             ModelState["IdBem.Descricao"].Errors.Clear();
@@ -266,7 +266,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         AuditoraManutencaoBem.Tabela = "TB_ManutencaoBem";
                         ContextoManutencao.Add<AuditoriaInterna>(AuditoraManutencaoBem);
                         ContextoManutencao.SaveChanges();
-                       
+
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaEdicao.DataSaidaParaConserto;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaEdicao.DataVoltaConserto;
@@ -298,7 +298,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         ContextoManutencao.Add<AuditoriaInterna>(AuditoraManutencaoBem);
                         ContextoManutencao.SaveChanges();
 
-                       
+
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaEdicao.DataSaidaParaConserto;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaEdicao.DataVoltaConserto;
@@ -343,7 +343,7 @@ namespace Heritage.Areas.Administracao.Controllers
                                             TryUpdateModel<PecaDaManutencao>(PecaManutencao);
                                             ContextoManutencao.SaveChanges();
                                         }
-                                       
+
 
                                     }
                                 }
@@ -407,7 +407,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoManutencao.SaveChanges();
 
 
-                return RedirectToAction("Index","Home");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

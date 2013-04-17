@@ -359,7 +359,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoAssistencia.SaveChanges();
 
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

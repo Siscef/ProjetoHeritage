@@ -23,7 +23,7 @@
     <div class="breadLine">
 
         <ul class="breadcrumb">
-            <li><a href="#">@Html.ActionLink("Adicionar Novo Bem", "Create","Bem")</a> <span class="divider">></span></li>
+            <li><a href="#">@Html.ActionLink("Adicionar Novo", "Create")</a> <span class="divider">></span></li>
             <li class="active">@Html.ActionLink("Página Inicial", "Index")</li>
         </ul>
 
@@ -143,47 +143,83 @@
 
     <div class="workplace">
 
-         <div class="row-fluid">
+        @*<div class="row-fluid">
+
+            <div class="span12">
+                <div class="head">
+                   
+                    <ul class="buttons">
+                        <li><a href="#" class="isw-download"></a></li>
+                        <li><a href="#" class="isw-attachment"></a></li>
+                        <li>
+                            <a href="#" class="isw-settings"></a>
+                            <ul class="dd-list">
+                                <li><a href="#"><span class="isw-plus"></span>New document</a></li>
+                                <li><a href="#"><span class="isw-edit"></span>Edit</a></li>
+                                <li><a href="#"><span class="isw-delete"></span>Delete</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+
+        </div>*@
+
+        @* <div class="dr"><span></span></div>
+
+        <div class="row-fluid">
+
+          
+
+        </div>*@
+
+        @* <div class="dr"><span></span></div>*@
+        <div class="row-fluid">
 
             <div class="span12">
                 <div class="head">
                     <div class="isw-grid"></div>
-                    <h1>Tabela Histórico Depreciação Bem: @ViewBag.NomeBem</h1>
+                    <h1>Tabela Deprecição do Bem </h1>
                     <div class="clear"></div>
                 </div>
                 <div class="block-fluid table-sorting">
                     <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable">
                         <thead>
-                            <tr>        
+                            <tr>
+                                <th>
+                                    <input type="checkbox" name="checkall" /></th>
 
-                                                              
-                                <th width="25%">Data Depreciação:</th> 
-                                <th width="25%">Valor Depreciado:</th> 
+                                <th width="25%">Data:</th>
                                 <th width="25%">Valor Pis:</th> 
-                                <th width="25%">Valor Cofins:</th> 
-                                                               
-                                
+                                <th width="25%">Valor Depreciado</th>                               
+                                <th width="25%">Valor Cofins:</th>
                             </tr>
                         </thead>
                         <tbody>
-
+                            <h4>@ViewBag.NomeBem</h4>
+                            <h6> Soma Valor Depreciado: @Math.Round(Model.Sum(model => model.ValorDepreciado),3)</h6>
+                            <h6> Soma Valor Pis: @Math.Round(Model.Sum(model => model.ValorPis),3)</h6>
+                            <h6> Soma Valor Cofins: @Math.Round(Model.Sum(model => model.ValorCofins),3)</h6>
                             @foreach (var item in Model)
                             {
                                 <tr>
-                                   
+                                    <td>
+                                        <input type="checkbox" name="checkbox" /></td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.DataDepreciacaoBem)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.ValorDepreciado)
-                                    </td>
-                                     <td>
                                         @Html.DisplayFor(modelItem => item.ValorPis)
                                     </td>
+                                     <td>
+                                        @Html.DisplayFor(modelItem => item.ValorDepreciado)
+                                    </td>
+                                   
                                     <td>
                                         @Html.DisplayFor(modelItem => item.ValorCofins)
                                     </td>
-                                   
                                 </tr>
                             }
 

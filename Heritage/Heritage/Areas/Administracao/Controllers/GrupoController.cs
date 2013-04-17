@@ -149,7 +149,16 @@ namespace Heritage.Areas.Administracao.Controllers
                 Grupo GrupoExcluido = ContextoGrupo.Get<Grupo>(GrupoParaExclusao.Id_Grupo);
                 ContextoGrupo.Delete<Grupo>(GrupoExcluido);
                 ContextoGrupo.SaveChanges();
-                return RedirectToAction("Index","Home");
+
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

@@ -8,7 +8,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador,Contabil")]
     public class EstadoConservacaoController : Controller
     {
         private IContextoDados ContextoEstadoConservacao = new ContextoDadosNH();
@@ -99,13 +99,13 @@ namespace Heritage.Areas.Administracao.Controllers
 
                 AuditoriaEstadoConservacao.Computador = Environment.MachineName;
                 AuditoriaEstadoConservacao.DataInsercao = DateTime.Now;
-                AuditoriaEstadoConservacao.DetalhesOperacao = "Alteracao Tabela EstadoConservacao, Registro: " + EstadoConservacaoEditado.Descricao + "  Para: " + EstadoConservacaoParaEdicao.Descricao ;
+                AuditoriaEstadoConservacao.DetalhesOperacao = "Alteracao Tabela EstadoConservacao, Registro: " + EstadoConservacaoEditado.Descricao + "  Para: " + EstadoConservacaoParaEdicao.Descricao;
                 AuditoriaEstadoConservacao.Tabela = "TB_EstadoConservacao";
                 AuditoriaEstadoConservacao.Usuario = User.Identity.Name;
                 AuditoriaEstadoConservacao.TipoOperacao = TipoOperacao.Alteracao.ToString();
                 ContextoEstadoConservacao.Add<AuditoriaInterna>(AuditoriaEstadoConservacao);
-                ContextoEstadoConservacao.SaveChanges();  
-             
+                ContextoEstadoConservacao.SaveChanges();
+
                 EstadoConservacaoEditado.Descricao = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(EstadoConservacaoParaEdicao.Descricao);
                 EstadoConservacaoEditado.IdAuditoriaInterna = ContextoEstadoConservacao.Get<AuditoriaInterna>(AuditoriaEstadoConservacao.Id_AuditoriaInterna);
                 TryUpdateModel<EstadoConservacao>(EstadoConservacaoEditado);
@@ -151,7 +151,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoEstadoConservacao.Delete<EstadoConservacao>(EstadoConservacaoExcluido);
                 ContextoEstadoConservacao.SaveChanges();
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

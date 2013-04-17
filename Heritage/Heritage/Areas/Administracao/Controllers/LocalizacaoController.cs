@@ -151,7 +151,16 @@ namespace Heritage.Areas.Administracao.Controllers
                 Localizacao LocalizacaoExcluida = ContextoLocalizacao.Get<Localizacao>(LocalizacaoParaExclusao.Id_Localizacao);
                 ContextoLocalizacao.Delete<Localizacao>(LocalizacaoExcluida);
                 ContextoLocalizacao.SaveChanges();
-                return RedirectToAction("Index","Home");
+
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

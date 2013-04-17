@@ -48,6 +48,7 @@ namespace Heritage.Areas.Administracao.Controllers
             ModelState["IdCidade.IdEstado"].Errors.Clear();
             ModelState["IdEstado.Sigla"].Errors.Clear();
             ModelState["IdEstado.Nome"].Errors.Clear();
+
             if (ModelState.IsValid)
             {
                 try
@@ -346,7 +347,14 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoResponsavel.Add<AuditoriaInterna>(AuditoraResponsavel);
                 ContextoResponsavel.SaveChanges();
 
-                return RedirectToAction("Index","Home");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
 
 
             }

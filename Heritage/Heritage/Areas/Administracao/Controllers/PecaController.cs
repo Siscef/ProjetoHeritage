@@ -196,7 +196,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoPeca.Delete<Peca>(PecaExcluida);
                 ContextoPeca.SaveChanges();
 
-                return RedirectToAction("Index", "Home");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {

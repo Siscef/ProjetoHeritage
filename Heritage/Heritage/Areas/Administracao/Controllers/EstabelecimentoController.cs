@@ -363,7 +363,15 @@ namespace Heritage.Areas.Administracao.Controllers
                 ContextoEstabelecimento.Add<AuditoriaInterna>(AuditoraEstabelecimento);
                 ContextoEstabelecimento.SaveChanges();
 
-                return RedirectToAction("Index");
+                if (User.IsInRole("Administrador"))
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", new { area = "Contabil" });
+                }
+
             }
             catch
             {
