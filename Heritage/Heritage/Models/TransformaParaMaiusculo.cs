@@ -28,7 +28,7 @@ namespace Heritage.Models
         {
             if (campo != null)
             {
-                campo = TransformarParaMinusculo(campo);
+                campo = campo.ToLower();
                 string[] palavras = campo.Split(' ');
 
                 string primeiraLetra = "";
