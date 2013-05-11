@@ -55,10 +55,10 @@ namespace Heritage.Areas.Administracao.Controllers
             {
                 try
                 {
-                    string NomeCidade = FornecedorParaSalvar.IdCidade.Nome;
+                    string NomeCidade = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.IdCidade.Nome);
                     string SiglaEstado = FornecedorParaSalvar.IdEstado.Sigla;
-                    string NomeBairro = FornecedorParaSalvar.IdBairro.Nome;
-                    string DescricaoEndereco = FornecedorParaSalvar.IdEndereco.Descricao;
+                    string NomeBairro = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.IdBairro.Nome);
+                    string DescricaoEndereco = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.IdEndereco.Descricao);
                     string CEPEndereco = FornecedorParaSalvar.IdEndereco.CEP;
                     if (PessoaJuridica.IsCnpj(FornecedorParaSalvar.CNPJ) == false)
                     {
@@ -100,7 +100,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     else
                     {
                         Cidade NovaCidade = new Cidade();
-                        NovaCidade.Nome = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(NomeCidade);
+                        NovaCidade.Nome = NomeCidade;
                         NovaCidade.IdEstado = (from c in ContextoFornecedor.GetAll<Estado>()
                                                .Where(x => x.Sigla == SiglaEstado)
                                                select c).First();
@@ -122,7 +122,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     else
                     {
                         Bairro NovoBairro = new Bairro();
-                        NovoBairro.Nome = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(NomeBairro);
+                        NovoBairro.Nome = NomeBairro;
                         NovoBairro.IdCidade = ContextoFornecedor.GetAll<Cidade>().Where(x => x.Nome == NomeCidade).First();
                         ContextoFornecedor.Add<Bairro>(NovoBairro);
                         ContextoFornecedor.SaveChanges();
@@ -143,7 +143,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     else
                     {
                         Endereco NovoEndereco = new Endereco();
-                        NovoEndereco.Descricao = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(DescricaoEndereco);
+                        NovoEndereco.Descricao = DescricaoEndereco;
                         NovoEndereco.IdBairro = ContextoFornecedor.GetAll<Bairro>().Where(x => x.Nome == NomeBairro).First();
                         NovoEndereco.CEP = CEPEndereco;
                         ContextoFornecedor.Add<Endereco>(NovoEndereco);

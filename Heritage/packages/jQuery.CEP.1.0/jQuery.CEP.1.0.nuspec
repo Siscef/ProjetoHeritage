@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>jQuery.CEP</id>
     <version>1.0</version>
@@ -11,7 +11,9 @@
 
 Exemplos de uso do plugin você pode conferir neste post: http://mbanagouro.net/site/2011/09/09/consultando-cep-com-asp-net-mvc-3-e-jquery-cep/</description>
     <summary>Plugin jQuery para consulta de CEP.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
     <tags>javascript jquery busca consulta cep</tags>
-    <references />
   </metadata>
 </package>

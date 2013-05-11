@@ -12,7 +12,7 @@ namespace Heritage.Models.Mapeamento
         {
             Table("TB_Cidade");
             Id(x => x.Id_Cidade, "Id_Cidade");
-            Map(x => x.Nome, "Nome").Not.Nullable().Length(50);
+            Map(x => x.Nome, "Nome").Not.Nullable().Length(50).Unique();
 
             References(x => x.IdEstado, "IdEstado")
                 .Cascade.SaveUpdate()

@@ -6,8 +6,9 @@ using System.Web;
 
 namespace Heritage.Models
 {
-    public class PessoaJuridica : Pessoa
-    {   //00.000.000/0000-00
+    public class PessoaJuridica:Pessoa
+    {
+        //00.000.000/0000-00
         //00000000000000
         //00.000.000-0
         [Required(ErrorMessage = "O CNPJ não pode ser vazio.")]
@@ -20,7 +21,7 @@ namespace Heritage.Models
         public virtual string RazaoSocial { get; set; }
         [Display(Name = "Inscrição Estadual:")]
         [Required(ErrorMessage = "A inscrição estadual não pode ser vazia.")]
-        [StringLength(9, ErrorMessage = "A inscrição estadual que ter no mínimo 9 letras e no máximo 9.", MinimumLength = 9)]
+        [StringLength(16, ErrorMessage = "A inscrição estadual que ter no mínimo 9 letras e no máximo 16.", MinimumLength = 9)]
         public virtual string InscricaoEstadual { get; set; }
 
         public static bool IsCnpj(string cnpj)

@@ -10,7 +10,7 @@ namespace Heritage.Models
     {
         public virtual long Id_Estado { get; set; }
         [Required(ErrorMessage = "O nome não pode ser vazio.")]
-        [Display(Name="Nome:")]
+        [Display(Name = "Nome:")]
         [StringLength(100, ErrorMessage = "O nome tem que ter no mínimo 3 letras e no máximo 100.", MinimumLength = 3)]
         public virtual string Nome { get; set; }
         [Required(ErrorMessage = "A sigla não pode ser vazia.")]

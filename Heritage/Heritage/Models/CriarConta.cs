@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Heritage.Models
 {
@@ -10,13 +11,13 @@ namespace Heritage.Models
     {
         public virtual long Id_CriarConta { get; set; }
         [Display(Name = "Nome:")]
-        [Required(ErrorMessage = "O nome do usuário é obrigatório."), MaxLength(20, ErrorMessage = "O Campo nome não pode ter mais de 20 caracteres"), MinLength(3, ErrorMessage = "O Campo nome requer pelo menos três caracteres")]
+        [Required(ErrorMessage = "O nome do usuário é obrigatório."), StringLength(20, ErrorMessage = "O Campo nome não pode ter mais de 20 caracteres")]
         public virtual string Nome { get; set; }
         [Display(Name = "E-mail:")]
         [Required(ErrorMessage = "Email não pode ser vazio.")]
         [DataType(DataType.EmailAddress)]
         public virtual string Email { get; set; }
-        [Required(ErrorMessage = "A senha do usuário é obrigatória."), MinLength(6, ErrorMessage = "O Campo senha requer no mínimo 6 caracteres"), MaxLength(12, ErrorMessage = "O Campo senha requer no máximo doze caracteres")]
+        [Required(ErrorMessage = "A senha do usuário é obrigatória."), StringLength(12)]
         [DataType(DataType.Password)]
         [Display(Name = "Senha:")]
         public virtual string Senha { get; set; }
@@ -30,7 +31,7 @@ namespace Heritage.Models
         public virtual Papel IdPapel { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
 
-       
+
         public virtual string getMD5Hash(string input)
         {
             System.Security.Cryptography.MD5 md5 = System.Security.Cryptography.MD5.Create();
@@ -43,7 +44,6 @@ namespace Heritage.Models
             }
             return sb.ToString();
         }
-
     }
 
     public class TrocarSenha
@@ -67,10 +67,12 @@ namespace Heritage.Models
     public class Login
     {
         public virtual long Id_login { get; set; }
-        [Required(ErrorMessage = "O nome do usuário é obrigatório."), MaxLength(20, ErrorMessage = "O Campo nome não pode ter mais de 20 caracteres"), MinLength(3, ErrorMessage = "O Campo nome requer pelo menos três caracteres")]
+        [Required(ErrorMessage = "O nome do usuário é obrigatório."), StringLength(20, ErrorMessage = "O Campo nome não pode ter mais de 20 caracteres")]
+        [Display(Name="Nome:")]
         public virtual string Nome { get; set; }
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "A senha do usuário é obrigatória."), MinLength(6, ErrorMessage = "O Campo senha requer no mínimo 6 caracteres"), MaxLength(12, ErrorMessage = "O Campo senha requer no máximo doze caracteres")]
+        [Display(Name="Senha:")]
+        [Required(ErrorMessage = "A senha do usuário é obrigatória."), StringLength(12, ErrorMessage = "O Campo senha requer no máximo doze caracteres")]
         public virtual string Senha { get; set; }
         public virtual bool Lembrar { get; set; }
 

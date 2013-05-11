@@ -6,13 +6,13 @@ using System.Web;
 
 namespace Heritage.Models.Mapeamento
 {
-    public class PecaDaManutencaoMap: ClassMap<PecaDaManutencao>
+    public class PecaDaManutencaoMap : ClassMap<PecaDaManutencao>
     {
         public PecaDaManutencaoMap()
         {
             Table("TB_PecaDaManutencao");
             Id(x => x.Id_PecaDaManutencao, "Id_PecaDaManutencao");
-            
+
 
             References(x => x.IdBem, "IdBem")
              .Cascade.SaveUpdate()

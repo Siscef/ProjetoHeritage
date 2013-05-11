@@ -201,7 +201,7 @@
                         @Html.LabelFor(model => model.DataAquisicao)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.DataAquisicao)
+                        @Html.Telerik().DatePickerFor(model => model.DataAquisicao)
                         @Html.ValidationMessageFor(model => model.DataAquisicao)
                         @ViewBag.DataInvalida
                     </div>
@@ -213,7 +213,7 @@
                         @Html.LabelFor(model => model.DataInicioDepreciacao)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.DataInicioDepreciacao)
+                         @Html.Telerik().DatePickerFor(model => model.DataInicioDepreciacao)
                         @Html.ValidationMessageFor(model => model.DataInicioDepreciacao)
                         @ViewBag.DataInicioDepreciacaoMaior
                     </div>

@@ -21,7 +21,7 @@ namespace Heritage.Controllers
         //
         // GET: /Account/LogOn
 
-        public ActionResult Login()
+        public ActionResult LogOn()
         {
             return View();
         }
@@ -30,12 +30,12 @@ namespace Heritage.Controllers
         // POST: /Account/LogOn
 
         [HttpPost]
-        public ActionResult Login(Login model, string returnUrl)
+        public ActionResult LogOn(Login model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 string nome = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(model.Nome);
-                string senha = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(model.Senha);               
+                string senha = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(model.Senha);
 
                 if (Membership.ValidateUser(nome, senha))
                 {
@@ -50,7 +50,7 @@ namespace Heritage.Controllers
 
                         if (Roles.IsUserInRole("Administrador"))
                         {
-                            return RedirectToAction("Principal", "Home", new {area = "Administracao" });
+                            return RedirectToAction("Principal", "Home", new { area = "Administracao" });
                         }
                         if (Roles.IsUserInRole("Contabil"))
                         {
@@ -60,7 +60,7 @@ namespace Heritage.Controllers
                         {
                             return View(model);
                         }
-                        
+
                     }
                 }
                 else
@@ -80,7 +80,7 @@ namespace Heritage.Controllers
         {
             FormsAuthentication.SignOut();
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("LogOn","Account");
         }
 
         //
@@ -211,7 +211,6 @@ namespace Heritage.Controllers
             }
         }
         #endregion
+
     }
-
-
 }

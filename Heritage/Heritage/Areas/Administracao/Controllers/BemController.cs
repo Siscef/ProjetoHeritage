@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Heritage.Models;
 using Heritage.Models.ContextoBanco;
-using System.Numerics;
+
 
 namespace Heritage.Areas.Administracao.Controllers
 {
@@ -483,7 +483,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     }
                 }
             }
-            return RedirectToAction("Index", "Home", new { area = "Administracao" });
+            return null;
         }
 
 
@@ -549,18 +549,18 @@ namespace Heritage.Areas.Administracao.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                        return null;
                     }
 
                 }
 
-                return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                return  null;
 
             }
             catch
             {
 
-                return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                return  null;
             }
 
         }
@@ -657,7 +657,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         }
                         else
                         {
-                            return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                            return null;
                         }
 
                     }
@@ -665,7 +665,7 @@ namespace Heritage.Areas.Administracao.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("Index", "Home", new { area = "Administracao" });
+                    return null;
                 }
 
 
@@ -673,7 +673,7 @@ namespace Heritage.Areas.Administracao.Controllers
             }
 
 
-            return RedirectToAction("Index", "Home", new { area = "Administracao" });
+            return null;
         }
 
         private double CalculaSomaDigitoMesesVidaUtil(double NumeroDeMesesVidaUtil)

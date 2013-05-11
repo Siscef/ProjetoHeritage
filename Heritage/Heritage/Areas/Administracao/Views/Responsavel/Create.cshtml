@@ -36,7 +36,8 @@
                     </div>
                     <div class="span9">
                         
-                        @Html.EditorFor(model => model.DataNascimento, new { placeholder = "Digite a data de nascimento."})
+                        @Html.Telerik().DatePickerFor(model => model.DataNascimento).Effects(
+
                         @Html.ValidationMessageFor(model => model.DataNascimento)
                     </div>
                     <div class="clear"></div>

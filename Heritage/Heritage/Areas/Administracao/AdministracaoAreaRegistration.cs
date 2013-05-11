@@ -18,7 +18,7 @@ namespace Heritage.Areas.Administracao
                 "Administracao_default",
                 "Administracao/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional },
-                new string[] { "Heritage.Areas.Administracao.Controllers" }
+                new string [] {"Heritage.Areas.Administracao.Controllers"}
             );
         }
     }

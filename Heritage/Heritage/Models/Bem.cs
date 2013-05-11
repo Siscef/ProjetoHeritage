@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
-using System.Numerics;
 
 namespace Heritage.Models
 {
@@ -22,7 +21,7 @@ namespace Heritage.Models
         public virtual string NumeroNotaFiscal { get; set; }
         [Required(ErrorMessage = "O valor da compra do bem não pode ser vazio.")]
         [Range(0, int.MaxValue, ErrorMessage = "O valor da compra não pode ser negativo.")]
-        [Display(Name = "Valor compra:")]         
+        [Display(Name = "Valor compra:")]
         public virtual double ValorCompra { get; set; }
         [Required(ErrorMessage = "O coeficiente de depreciação do bem não pode ser vazio.")]
         [Display(Name = "Coeficiente depreciação:")]
@@ -37,14 +36,14 @@ namespace Heritage.Models
         public virtual double Pis { get; set; }
         [Range(0, int.MaxValue, ErrorMessage = "O Cofins não pode ser negativo.")]
         [Display(Name = "Cofins:")]
-        public virtual double   Cofins { get; set; }
+        public virtual double Cofins { get; set; }
         [Required(ErrorMessage = "A data de aquisição do bem não pode ser vazia.")]
         [DataType(DataType.Date)]
         [Display(Name = "Data aquisição:")]
         public virtual DateTime DataAquisicao { get; set; }
-        [Display(Name="Taxa Depreciação Anual %:")]
-        [Required(ErrorMessage="A taxa depreciação anual não pode ser vazia")]
-        [Range(0,100,ErrorMessage="A taxa depreciação não pode ser negativa")]
+        [Display(Name = "Taxa Depreciação Anual %:")]
+        [Required(ErrorMessage = "A taxa depreciação anual não pode ser vazia")]
+        [Range(0, 100, ErrorMessage = "A taxa depreciação não pode ser negativa")]
         public virtual int TaxaDepreciacaoAnual { get; set; }
         [Required(ErrorMessage = "Por favor, escolha o estado de conservação que se encontra o bem.")]
         public virtual EstadoConservacao IdEstadoConservacao { get; set; }
@@ -64,13 +63,12 @@ namespace Heritage.Models
         [DataType(DataType.Date)]
         [Display(Name = "Data Início Depreciação:")]
         public virtual DateTime DataInicioDepreciacao { get; set; }
-        [Display(Name="Depreciação Ativa?")]
+        [Display(Name = "Depreciação Ativa?")]
         public virtual bool DepreciacaoAtiva { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<HistoricoBem> IdsHistoricoBem { get; set; }
         public virtual IList<DepreciacaoBem> IdsDepreciacaoBem { get; set; }
         public virtual IList<ManutencaoBem> IdsManutencaoBem { get; set; }
-
 
     }
 }

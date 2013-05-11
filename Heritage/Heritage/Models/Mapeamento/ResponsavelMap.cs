@@ -45,7 +45,7 @@ namespace Heritage.Models.Mapeamento
             HasMany(x => x.IdsBem)
                 .Cascade.SaveUpdate()
                 .KeyColumn("IdsBem");
-           
+
         }
     }
 }

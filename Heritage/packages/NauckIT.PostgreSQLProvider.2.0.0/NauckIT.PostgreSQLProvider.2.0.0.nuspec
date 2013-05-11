@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>NauckIT.PostgreSQLProvider</id>
     <version>2.0.0</version>
@@ -13,12 +13,12 @@
 
       NauckIT.PostgreSQLProvider is released under the MIT/X11 license.</description>
     <summary>A ASP.NET 2.0+ Membership, Role, Profile and Session-State Store Provider</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
     <tags>ASP.NET Web PostgreSQL Npgsql Provider Membership Role Profile Session Nauck</tags>
     <dependencies>
       <dependency id="Npgsql" version="2.0" />
     </dependencies>
-    <references>
-      <reference file="NauckIT.PostgreSQLProvider.dll" />
-    </references>
   </metadata>
 </package>

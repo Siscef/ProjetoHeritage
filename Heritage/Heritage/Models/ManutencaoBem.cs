@@ -33,6 +33,5 @@ namespace Heritage.Models
         public virtual AssistenciaTecnica IdAssistenciaTecnica { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<Peca> IdPecas { get; set; }
-        
     }
 }

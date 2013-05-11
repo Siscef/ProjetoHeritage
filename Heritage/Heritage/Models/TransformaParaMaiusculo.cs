@@ -1,14 +1,12 @@
-﻿using Heritage.Models.Interface;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace Heritage.Models
 {
-    public static class TransformaParaMaiusculo 
+    public class TransformaParaMaiusculo
     {
-       
         public static string TransformarParaMaiusculo(string Campo)
         {
             if (Campo != null)

@@ -69,7 +69,7 @@ $(document).ready(function(){
         var data = [];
         	        
 	for( var i = 0; i < 5; i++)	
-		data[i] = { label: "Ademi"+(i+1), data: Math.floor(Math.random()*100)+1 };
+		data[i] = { label: "Series"+(i+1), data: Math.floor(Math.random()*100)+1 };
 	
 
         $.plot($("#chart-3"), data, 

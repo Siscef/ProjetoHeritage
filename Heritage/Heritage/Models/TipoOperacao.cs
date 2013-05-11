@@ -10,6 +10,6 @@ namespace Heritage.Models
         Insercao,
         Alteracao,
         Exclusao
-        
+
     }
 }

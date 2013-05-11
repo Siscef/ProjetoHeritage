@@ -12,7 +12,7 @@ namespace Heritage.Models.Mapeamento
         {
             Table("TB_Peca");
             Id(x => x.Id_Peca, "Id_Peca");
-            Map(x => x.Descricao,"Descricao").Length(100).Not.Nullable();
+            Map(x => x.Descricao, "Descricao").Length(100).Not.Nullable();
             Map(x => x.Valor, "Valor").Not.Nullable();
             Map(x => x.AcrescentaValorAoBem, "AcrescentaValorAoBem").Nullable();
 
@@ -26,7 +26,7 @@ namespace Heritage.Models.Mapeamento
               .ForeignKey("FK_TB_Peca_ToTB_AuditoriaInterna")
               .Not.Nullable();
 
-          
+
 
 
         }

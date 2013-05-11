@@ -177,9 +177,9 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     return RedirectToAction("ListLastEstablishment", EstabelecimentoSalvo);
                 }
-                catch (Exception e)
+                catch 
                 {
-                    ViewBag.Message = "Erro codigo: " + e.StackTrace + " mensagem  " + e.Message;
+                    
                     return View();
                 }
             }
@@ -193,7 +193,7 @@ namespace Heritage.Areas.Administracao.Controllers
         public ActionResult Edit(int id)
         {
             Estabelecimento EstabelecimentoParaAlterar = ContextoEstabelecimento.Get<Estabelecimento>(id);
-            return View();
+            return View(EstabelecimentoParaAlterar);
         }
 
         //

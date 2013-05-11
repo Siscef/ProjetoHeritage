@@ -17,7 +17,7 @@ namespace Heritage.Models.Mapeamento
             Map(x => x.Telefone, "Telefone").Not.Nullable().Length(11);
             Map(x => x.CNPJ, "CNPJ").Not.Nullable().Length(14).Unique();
             Map(x => x.RazaoSocial, "RazaoSocial").Not.Nullable().Length(100).Unique();
-            Map(x => x.InscricaoEstadual, "InscricaoEstadual").Not.Nullable().Length(9).Unique();
+            Map(x => x.InscricaoEstadual, "InscricaoEstadual").Nullable().Length(16);
 
 
             References(x => x.IdAuditoriaInterna, "IdAuditoriaInterna")

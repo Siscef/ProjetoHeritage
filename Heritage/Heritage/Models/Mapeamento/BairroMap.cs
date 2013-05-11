@@ -11,9 +11,9 @@ namespace Heritage.Models.Mapeamento
         public BairroMap()
         {
             Table("TB_Bairro");
-            Id(x => x.Id_Bairro,"Id_Bairro");
+            Id(x => x.Id_Bairro, "Id_Bairro");
             Map(x => x.Nome, "Nome").Not.Nullable().Length(50).Unique();
-            
+
             References(x => x.IdCidade, "IdCidade")
                 .Cascade.SaveUpdate()
                 .ForeignKey("FK_TB_Bairro_ToTB_Cidade")

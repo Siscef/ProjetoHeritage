@@ -62,10 +62,7 @@ $(document).ready(function(){
     
     // MASKED INPUTS
         
-        $("#mask_phone").mask('(999) 9999-9999');
-        $("#mask_cnpj").mask('99.999.999/9999-99');
-        $("#mask_ie").mask('99.999.999-9');
-        $("#mask_cpf").mask('(999.999.999-99');
+        $("#mask_phone").mask('99 (999) 999-99-99');
         $("#mask_credit").mask('9999-9999-9999-9999');
         $("#mask_date").mask('99/99/9999');
         $("#mask_tin").mask('99-9999999');

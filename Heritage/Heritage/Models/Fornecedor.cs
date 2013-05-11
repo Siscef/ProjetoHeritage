@@ -9,7 +9,5 @@ namespace Heritage.Models
     {
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<Bem> IdsBem { get; set; }
-
-       
     }
 }

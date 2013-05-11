@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
-    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+    Layout = "../../../../Areas/Administracao/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Detalhes do estabelecimento</h2>
@@ -11,25 +11,26 @@
     <tr>
 
         <th>
-            @Html.DisplayNameFor(model => model.RazaoSocial)
+          
+            @Html.LabelFor(model => model.RazaoSocial)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CNPJ)
+            @Html.LabelFor(model => model.CNPJ)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.InscricaoEstadual)
+            @Html.LabelFor(model => model.InscricaoEstadual)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id_Pessoa)
+            @Html.LabelFor(model => model.Id_Pessoa)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nome)
+            @Html.LabelFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @Html.LabelFor(model => model.Email)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Telefone)
+            @Html.LabelFor(model => model.Telefone)
         </th>
         <th>Operações:</th>
     </tr>

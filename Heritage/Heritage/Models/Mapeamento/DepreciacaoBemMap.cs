@@ -6,16 +6,16 @@ using System.Web;
 
 namespace Heritage.Models.Mapeamento
 {
-    public class DepreciacaoBemMap:ClassMap<DepreciacaoBem>
+    public class DepreciacaoBemMap : ClassMap<DepreciacaoBem>
     {
         public DepreciacaoBemMap()
         {
             Table("TB_DepreciacaoBem");
-            Id(x => x.Id_DepreciacaoBem,"Id_DepreciacaoBem");
+            Id(x => x.Id_DepreciacaoBem, "Id_DepreciacaoBem");
             Map(x => x.ValorDepreciado, "ValorDepreciado");
             Map(x => x.ValorCofins, "ValorCofins");
             Map(x => x.ValorPis, "ValorPis");
-            Map(x => x.DataDepreciacaoBem,"DataDepreciacaoBem").Not.Nullable();
+            Map(x => x.DataDepreciacaoBem, "DataDepreciacaoBem").Not.Nullable();
 
 
             References(x => x.IdBem, "IdBem")

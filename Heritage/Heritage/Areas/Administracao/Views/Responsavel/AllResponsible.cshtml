@@ -5,13 +5,6 @@
     Layout = "~/Areas/Administracao/Views/Shared/_LayoutListas.cshtml";
 }
 
-<div class="header">
-    <a class="logo" href="index.html">
-        <img src="~/Content/aquarius/img/logo.png" alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel" /></a>
-    <ul class="header_menu">
-        <li class="list_icon"><a href="#">&nbsp;</a></li>
-    </ul>
-</div>
 
 <div class="menu">
     @Html.Partial("MenuIndex")
@@ -23,8 +16,8 @@
     <div class="breadLine">
 
         <ul class="breadcrumb">
-            <li><a href="#">Simple Admin</a> <span class="divider">></span></li>
-            <li class="active">Tables</li>
+            <li><a href="#">@Html.ActionLink("Adicionar Novo", "Create")</a> <span class="divider">></span></li>
+            <li class="active">@Html.ActionLink("Página Inicial", "Index")</li>
         </ul>
 
         <ul class="buttons">

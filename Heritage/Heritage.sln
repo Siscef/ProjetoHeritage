@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heritage", "Heritage\Heritage.csproj", "{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HeritageTeste", "HeritageTeste\HeritageTeste.csproj", "{33C8BE95-F131-413E-A777-CFF2ABE535FF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heritage", "Heritage\Heritage.csproj", "{D465FD4B-FA7A-4BB7-A6D0-6FA31878CACF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4EE6B90A-9EBB-4115-8E75-B8DF23A6440E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{33C8BE95-F131-413E-A777-CFF2ABE535FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{33C8BE95-F131-413E-A777-CFF2ABE535FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{33C8BE95-F131-413E-A777-CFF2ABE535FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{33C8BE95-F131-413E-A777-CFF2ABE535FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D465FD4B-FA7A-4BB7-A6D0-6FA31878CACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D465FD4B-FA7A-4BB7-A6D0-6FA31878CACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D465FD4B-FA7A-4BB7-A6D0-6FA31878CACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D465FD4B-FA7A-4BB7-A6D0-6FA31878CACF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

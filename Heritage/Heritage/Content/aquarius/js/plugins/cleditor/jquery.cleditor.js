@@ -410,7 +410,7 @@
         // URL
         if (popupName == "url") {
 
-          // Check for selection before Mostrando the link url popup
+          // Check for selection before showing the link url popup
           if (buttonName == "link" && selectedText(editor) === "") {
             showMessage(editor, "A selection is required when inserting a link.", buttonDiv);
             return false;
@@ -459,7 +459,7 @@
 
         }
 
-        // Show the popup if not already Mostrando for this button
+        // Show the popup if not already showing for this button
         if (buttonDiv !== $.data(popup, BUTTON)) {
           showPopup(editor, popup, buttonDiv);
           return false; // stop propagination to document click
@@ -1057,7 +1057,7 @@
 
   }
 
-  // sourceMode - returns true if the textarea is Mostrando
+  // sourceMode - returns true if the textarea is showing
   function sourceMode(editor) {
     return editor.$area.is(":visible");
   }

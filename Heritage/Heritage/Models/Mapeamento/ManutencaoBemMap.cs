@@ -37,8 +37,8 @@ namespace Heritage.Models.Mapeamento
                 .Cascade.SaveUpdate()
                 .KeyColumn("IdPecas");
 
-           
-           
+
+
 
         }
     }

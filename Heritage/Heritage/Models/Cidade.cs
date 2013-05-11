@@ -10,13 +10,12 @@ namespace Heritage.Models
     {
         public virtual long Id_Cidade { get; set; }
         [Required(ErrorMessage = "O nome da cidade não pode ser vazia.")]
-        [Display(Name="Nome:")]
+        [Display(Name = "Nome:")]
         [StringLength(50, ErrorMessage = "O nome tem que ter no mínimo 3 letras e no máximo 50.", MinimumLength = 3)]
         public virtual string Nome { get; set; }
-        [Required(ErrorMessage="Por favor, selecione um estado.")]
+        [Required(ErrorMessage = "Por favor, selecione um estado.")]
         public virtual Estado IdEstado { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<Bairro> IdsBairro { get; set; }
-
     }
 }
