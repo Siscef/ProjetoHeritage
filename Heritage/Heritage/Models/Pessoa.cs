@@ -22,6 +22,7 @@ namespace Heritage.Models
         [Required(ErrorMessage = "O número do telefone não pode ser vazio.")]
         [StringLength(11, ErrorMessage = "O número do telefone tem que ter no mínimo 11 letras e no máximo 11.", MinimumLength = 11)]
         [Display(Name = "Telefone:")]
+        [DataType(DataType.PhoneNumber)]
         public virtual string Telefone { get; set; }
         [Required(ErrorMessage = "Por favor, selecione um endereço.")]
         public virtual Endereco IdEndereco { get; set; }

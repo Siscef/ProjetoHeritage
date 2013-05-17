@@ -312,6 +312,7 @@
     <Compile Include="Areas\Administracao\Controllers\BemController.cs" />
     <Compile Include="Areas\Administracao\Controllers\CategoriaController.cs" />
     <Compile Include="Areas\Administracao\Controllers\CidadeController.cs" />
+    <Compile Include="Areas\Administracao\Controllers\ConfiguracaoSistemaController.cs" />
     <Compile Include="Areas\Administracao\Controllers\CriarContaUsuarioController.cs" />
     <Compile Include="Areas\Administracao\Controllers\EnderecoController.cs" />
     <Compile Include="Areas\Administracao\Controllers\EstabelecimentoController.cs" />
@@ -1124,6 +1125,9 @@
     <Content Include="Areas\Contabil\Views\Shared\_LayoutListas.cshtml" />
     <Content Include="Areas\Contabil\Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Areas\Administracao\Views\Shared\Noticias.cshtml" />
+    <Content Include="Areas\Administracao\Views\ConfiguracaoSistema\Index.cshtml" />
+    <Content Include="Areas\Administracao\Views\ConfiguracaoSistema\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\ConfiguracaoSistema\Edit.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\2013.1.219\jquery-1.7.1.min.js" />
     <Content Include="Scripts\2013.1.219\jquery.validate.min.js" />

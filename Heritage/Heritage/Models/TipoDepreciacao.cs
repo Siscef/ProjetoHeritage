@@ -7,7 +7,7 @@ namespace Heritage.Models
 {
  public  enum TipoDepreciacao
     {
-        Linear,
-        DigitoCumulativo
+        Linear = 1,
+        DigitoCumulativo = 2
     }
 }

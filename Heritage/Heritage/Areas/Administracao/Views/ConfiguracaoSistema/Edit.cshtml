@@ -1,0 +1,173 @@
+﻿@model Heritage.Models.Parametros
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Parâmetros do Sistema Edição</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(model => model.IdParametro)
+    
+            <div class="block-fluid">
+
+                @Html.ValidationSummary(true)
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.NomeEmpresaParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.NomeEmpresaParaExibir)
+                        @Html.ValidationMessageFor(model => model.NomeEmpresaParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.CnpjParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.CnpjParaExibir)
+                        @Html.ValidationMessageFor(model => model.CnpjParaExibir)
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.IEParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.IEParaExibir)
+                        @Html.ValidationMessageFor(model => model.IEParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.EnderecoParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.EnderecoParaExibir)
+                        @Html.ValidationMessageFor(model => model.EnderecoParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.BairroParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.BairroParaExibir)
+                        @Html.ValidationMessageFor(model => model.BairroParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.CidadeParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.CidadeParaExibir)
+                        @Html.ValidationMessageFor(model => model.CidadeParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.EstadoParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.EstadoParaExibir)
+                        @Html.ValidationMessageFor(model => model.EstadoParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+
+                    <div class="span2">
+                        @Html.LabelFor(model => model.TelefoneParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.TelefoneParaExibir)
+                        @Html.ValidationMessageFor(model => model.TelefoneParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.EmailParaExibir)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.EmailParaExibir)
+                        @Html.ValidationMessageFor(model => model.EmailParaExibir)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.EMatriz)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.EMatriz)
+                        @Html.ValidationMessageFor(model => model.EMatriz)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.RamoEmpresarial)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.RamoEmpresarial)
+                        @Html.ValidationMessageFor(model => model.RamoEmpresarial)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.TipoParaDepreciacao, "Tipo Depreciação:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.TipoParaDepreciacao,(from Heritage.Models.TipoDepreciacao e in Enum.GetValues(typeof(Heritage.Models.TipoDepreciacao))
+                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione Tipo Depreciação")
+                        @Html.ValidationMessageFor(model => model.TipoParaDepreciacao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+

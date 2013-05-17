@@ -61,7 +61,7 @@
         </div>
     </div>
     <div class="header">
-        <a class="logo" href="http://www.depreciacao.supaquariuscf.net/Administracao/Home/Principal">
+        <a class="logo" href="http://localhost:10112/Administracao/Home/Principal">
             <img src="../../Content/aquarius/img/logo.png" alt="Aquarius -  responsive admin panel" title="Aquarius -  responsive admin panel" /></a>
         <ul class="header_menu">
             <li class="list_icon"><a href="#">&nbsp;</a></li>
@@ -88,26 +88,25 @@
 
         <div class="workplace">
 
-            <div class="row-fluid">
+         @*   <div class="row-fluid">
                 <div class="span12">
 
                     <div class="widgetButtons">
-                        <div class="bb"><a href="http://www.depreciacao.supaquariuscf.net/Administracao/Bem/create"><span class="ibw-edit"></span></a></div>
+                        <div class="bb"><a href="http://localhost:10112/Administracao/Bem/create"><span class="ibw-edit"></span></a></div>
                         <div class="bb">
                             <a href="#"><span class="ibw-folder"></span></a>
-                            <div class="caption red">31</div>
-                        </div>
-                        <div class="bb"><a href="#"><span class="ibw-plus"></span></a></div>
-                        <div class="bb"><a href="#"><span class="ibw-favorite"></span></a></div>
+                           
+                        </div>                      
+                       
                         <div class="bb">
                             <a href="#"><span class="ibw-mail"></span></a>
-                            <div class="caption green">31</div>
+                           
                         </div>
-                        <div class="bb"><a href="http://www.depreciacao.supaquariuscf.net/Administracao/ManutencaoBem/Create"><span class="ibw-settings"></span></a></div>
+                        <div class="bb"><a href="http://localhost:10112/Administracao/ConfiguracaoSistema/Create"><span class="ibw-settings"></span></a></div>
                     </div>
 
                 </div>
-            </div>
+            </div>*@
 
             <div class="row-fluid">
 
@@ -129,29 +128,49 @@
                     </div>
 
                 </div>
+                 <div class="span4">
+
+                    <div class="wBlock green">
+                        <div class="dSpace">
+                            <h3>Bens Cadastrados</h3>
+                            <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                                <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                            </span>
+                            <span class="number">@ViewBag.TotalBens</span>
+                        </div>
+                        <div class="rSpace">
+                            <span>@ViewBag.TotalBensAtivos <b>ativos</b></span>
+                            <span>@ViewBag.TotalBensObsoletos <b>obsoletos</b></span>
+                            <span>@ViewBag.TotalBensInativos <b>inativos</b></span>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
 
                
             </div>
 
-            <div class="dr"><span></span></div>
+           
+
+
+           @* <div class="dr"><span></span></div>*@
 
             <div class="row-fluid">
 
-               @Html.Partial("Noticias")
-
-            
+              @* @Html.Partial("Noticias")*@     
 
               
 
 
             </div>
 
-            <div class="dr"><span></span></div>
+           @* <div class="dr"><span></span></div>
 
 
 
 
-            <div class="dr"><span></span></div>
+            <div class="dr"><span></span></div>*@
 
         </div>
 
