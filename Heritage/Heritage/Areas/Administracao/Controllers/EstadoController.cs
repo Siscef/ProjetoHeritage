@@ -9,7 +9,7 @@ using Heritage.Models.Interface;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+   [Authorize(Roles = "Administrador,Contabil,Desenvolvedor")]
     public class EstadoController : Controller
     {
         private IContextoDados ContextoEstado = new ContextoDadosNH();

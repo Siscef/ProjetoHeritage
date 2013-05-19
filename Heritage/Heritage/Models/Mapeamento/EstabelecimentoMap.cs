@@ -14,8 +14,8 @@ namespace Heritage.Models.Mapeamento
             Id(x => x.Id_Pessoa, "IdEstabelecimento");
             Map(x => x.Nome, "Nome").Not.Nullable().Length(100).Unique();
             Map(x => x.Email, "Email").Not.Nullable().Length(100).Unique();
-            Map(x => x.Telefone, "Telefone").Not.Nullable().Length(11);
-            Map(x => x.CNPJ, "CNPJ").Not.Nullable().Length(14).Unique();
+            Map(x => x.Telefone, "Telefone").Not.Nullable().Length(16);//(083) 8832-4192
+            Map(x => x.CNPJ, "CNPJ").Not.Nullable().Length(20).Unique();//02.742.263/0001/00
             Map(x => x.RazaoSocial, "RazaoSocial").Not.Nullable().Length(100).Unique();
             Map(x => x.InscricaoEstadual, "InscricaoEstadual").Nullable().Length(16);
 

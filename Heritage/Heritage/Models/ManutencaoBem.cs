@@ -31,6 +31,7 @@ namespace Heritage.Models
         public virtual DateTime DataVoltaConserto { get; set; }
         [Required(ErrorMessage = "Por favor, selecione uma assistência técnica ou oficina.")]
         public virtual AssistenciaTecnica IdAssistenciaTecnica { get; set; }
+        public virtual TipoManutencao TipoDaManutencao { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<Peca> IdPecas { get; set; }
     }

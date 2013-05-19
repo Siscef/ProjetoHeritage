@@ -134,6 +134,27 @@
 
                 <div class="row-form">
                     <div class="span2">
+                        @Html.LabelFor(model => model.BemDepreciavel)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.BemDepreciavel)
+                        @Html.ValidationMessageFor(model => model.BemDepreciavel)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DepreciacaoAtiva)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.DepreciacaoAtiva)
+                        @Html.ValidationMessageFor(model => model.DepreciacaoAtiva)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
                         @Html.LabelFor(model => model.NumeroNotaFiscal)
                     </div>
                     <div class="span9">

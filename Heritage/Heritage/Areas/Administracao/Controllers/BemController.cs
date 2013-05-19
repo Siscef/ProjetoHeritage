@@ -9,7 +9,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador,Contabil")]
+    [Authorize(Roles = "Administrador,Contabil,Desenvolvedor")]
     public class BemController : Controller
     {
         private IContextoDados ContextoBem = new ContextoDadosNH();
@@ -139,7 +139,8 @@ namespace Heritage.Areas.Administracao.Controllers
                     Bem BemSalvo = new Bem();
 
                     BemSalvo.CoeficienteDepreciacao = BemParaSalvar.CoeficienteDepreciacao;
-                    BemSalvo.DepreciacaoAtiva = true;
+                    BemSalvo.DepreciacaoAtiva = BemParaSalvar.DepreciacaoAtiva;
+                    BemSalvo.BemDepreciavel = BemParaSalvar.BemDepreciavel;
                     BemSalvo.Cofins = BemParaSalvar.Cofins;
                     BemSalvo.DataAquisicao = BemParaSalvar.DataAquisicao;
                     BemSalvo.DataInicioDepreciacao = BemParaSalvar.DataInicioDepreciacao;
@@ -316,6 +317,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     BemEditado.CoeficienteDepreciacao = BemParaEdicao.CoeficienteDepreciacao;
                     BemEditado.DepreciacaoAtiva = BemParaEdicao.DepreciacaoAtiva;
+                    BemEditado.BemDepreciavel = BemParaEdicao.BemDepreciavel;
                     BemEditado.Cofins = BemParaEdicao.Cofins;
                     BemEditado.DataAquisicao = BemParaEdicao.DataAquisicao;
                     BemEditado.DataInicioDepreciacao = BemParaEdicao.DataInicioDepreciacao;

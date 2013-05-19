@@ -48,7 +48,7 @@
                         @Html.LabelFor(model => model.CNPJ)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.CNPJ, new { placeholder = "Digite o CNPJ.", @class = "input-xlarge", maxlength = "14" })
+                        @Html.TextBoxFor(model => model.CNPJ, new {placeholder = "Digite o CNPJ.", @class = "input-xlarge", maxlength = "18", onkeyup="FormataCnpj(this,event)" })
                         @Html.ValidationMessageFor(model => model.CNPJ)
                         @ViewBag.IsNotCNPJ
 
@@ -61,7 +61,7 @@
                         @Html.LabelFor(model => model.InscricaoEstadual)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.InscricaoEstadual, new { placeholder = "Digite a inscrição estadual.", @class = "input-xlarge", maxlength = "9" })
+                        @Html.TextBoxFor(model => model.InscricaoEstadual, new { placeholder = "Digite a inscrição estadual.", @class = "input-xlarge", maxlength = "23" })
                         @Html.ValidationMessageFor(model => model.InscricaoEstadual)
                     </div>
                     <div class="clear"></div>
@@ -72,7 +72,7 @@
                         @Html.LabelFor(model => model.Email)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100" })
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100", onBlur="ValidaEmail()" })
 
                         @Html.ValidationMessageFor(model => model.Email)
                     </div>
@@ -84,7 +84,7 @@
                         @Html.LabelFor(model => model.Telefone)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: 999999-9999", maxlength = "11" })
+                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: (99)9999-9999", id = "telefone",maxlength = "14" })
                         @Html.ValidationMessageFor(model => model.Telefone)
                     </div>
                     <div class="clear"></div>

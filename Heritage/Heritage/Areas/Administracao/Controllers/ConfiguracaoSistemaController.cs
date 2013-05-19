@@ -8,7 +8,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles="Administrador")]
+    [Authorize(Roles="Desenvolvedor")]
     public class ConfiguracaoSistemaController : Controller
     {
         private IContextoDados ContextoConfiguracao = new ContextoDadosNH();
@@ -24,6 +24,18 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult Create()
         {
+            IList<Parametros> Parametr = (from c in ContextoConfiguracao.GetAll<Parametros>()
+                                          select c).ToList();
+            if (Parametr.Count() > 0)
+            {
+                foreach (var item in Parametr)
+                {
+                    return View(item);
+                    
+                }
+                
+            }
+
             
 
             return View();

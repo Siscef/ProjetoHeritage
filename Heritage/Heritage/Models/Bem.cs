@@ -65,6 +65,8 @@ namespace Heritage.Models
         public virtual DateTime DataInicioDepreciacao { get; set; }
         [Display(Name = "Depreciação Ativa?")]
         public virtual bool DepreciacaoAtiva { get; set; }
+        [Display(Name = "O bem é depreciável?")]
+        public virtual bool BemDepreciavel { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<HistoricoBem> IdsHistoricoBem { get; set; }
         public virtual IList<DepreciacaoBem> IdsDepreciacaoBem { get; set; }

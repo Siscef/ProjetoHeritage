@@ -49,6 +49,12 @@
          <th>
             @Html.LabelFor(model => model.DataInicioDepreciacao)
         </th>
+         <th>
+            @Html.LabelFor(model => model.BemDepreciavel)
+        </th>
+         <th>
+            @Html.LabelFor(model => model.DepreciacaoAtiva)
+        </th>
         <th>
             Localização:
         </th>
@@ -101,6 +107,12 @@
         </td>
          <td>
             @Html.DisplayFor(model => model.DataInicioDepreciacao)
+        </td>
+         <td>
+            @Html.DisplayFor(model => model.BemDepreciavel)
+        </td>
+         <td>
+            @Html.DisplayFor(model => model.DepreciacaoAtiva)
         </td>
         <td>
             @Html.DisplayFor(model => model.IdLocalizacao.Descricao)

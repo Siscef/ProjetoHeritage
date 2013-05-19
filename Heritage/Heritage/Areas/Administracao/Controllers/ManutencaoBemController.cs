@@ -8,7 +8,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador,Contabil")]
+    [Authorize(Roles = "Administrador,Contabil,Desenvolvedor")]
     public class ManutencaoBemController : Controller
     {
         private IContextoDados ContextoManutencao = new ContextoDadosNH();
@@ -99,6 +99,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         ManutencaoBem ManutencaoBemSalvo = new ManutencaoBem();
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaSalvar.DataSaidaParaConserto;
+                        ManutencaoBemSalvo.TipoDaManutencao = ManutencaoBemParaSalvar.TipoDaManutencao;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaSalvar.DataVoltaConserto;
                         ManutencaoBemSalvo.DescricaoConserto = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaSalvar.DescricaoConserto);
                         ManutencaoBemSalvo.DescricaoProblema = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaSalvar.DescricaoProblema);
@@ -129,6 +130,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         ManutencaoBem ManutencaoBemSalvo = new ManutencaoBem();
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaSalvar.DataSaidaParaConserto;
+                        ManutencaoBemSalvo.TipoDaManutencao = ManutencaoBemParaSalvar.TipoDaManutencao;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaSalvar.DataVoltaConserto;
                         ManutencaoBemSalvo.DescricaoConserto = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaSalvar.DescricaoConserto);
                         ManutencaoBemSalvo.DescricaoProblema = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaSalvar.DescricaoProblema);
@@ -269,6 +271,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaEdicao.DataSaidaParaConserto;
+                        ManutencaoBemSalvo.TipoDaManutencao = ManutencaoBemParaEdicao.TipoDaManutencao;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaEdicao.DataVoltaConserto;
                         ManutencaoBemSalvo.DescricaoConserto = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaEdicao.DescricaoConserto);
                         ManutencaoBemSalvo.DescricaoProblema = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaEdicao.DescricaoProblema);
@@ -301,6 +304,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
 
                         ManutencaoBemSalvo.DataSaidaParaConserto = ManutencaoBemParaEdicao.DataSaidaParaConserto;
+                        ManutencaoBemSalvo.TipoDaManutencao = ManutencaoBemParaEdicao.TipoDaManutencao;
                         ManutencaoBemSalvo.DataVoltaConserto = ManutencaoBemParaEdicao.DataVoltaConserto;
                         ManutencaoBemSalvo.DescricaoConserto = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaEdicao.DescricaoConserto);
                         ManutencaoBemSalvo.DescricaoProblema = TransformaParaMaiusculo.TransformarParaMaiusculo(ManutencaoBemParaEdicao.DescricaoProblema);

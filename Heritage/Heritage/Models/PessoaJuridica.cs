@@ -12,7 +12,7 @@ namespace Heritage.Models
         //00000000000000
         //00.000.000-0
         [Required(ErrorMessage = "O CNPJ não pode ser vazio.")]
-        [StringLength(14, ErrorMessage = "O CNPJ tem que ter no mínimo 14 letras e no máximo 18.", MinimumLength = 14)]
+        [StringLength(20, ErrorMessage = "O CNPJ tem que ter no mínimo 14 letras e no máximo 18.", MinimumLength = 14)]
         [Display(Name = "CNPJ:")]
         public virtual string CNPJ { get; set; }
         [Display(Name = "Razão Social:")]

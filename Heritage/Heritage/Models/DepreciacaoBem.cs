@@ -19,6 +19,8 @@ namespace Heritage.Models
         public virtual double ValorPis { get; set; }
         [Display(Name = "Valor Cofins:")]
         public virtual double ValorCofins { get; set; }
+        [Display(Name = "Depreciação Feita:")]
+        public virtual bool DepreciacaoFeita { get; set; }
         [Required(ErrorMessage = "Por favor,selecione um bem.")]
         public virtual Bem IdBem { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }

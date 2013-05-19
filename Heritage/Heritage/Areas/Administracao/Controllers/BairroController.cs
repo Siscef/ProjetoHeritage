@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles="Administrador")]
+    [Authorize(Roles = "Administrador,Contabil,Desenvolvedor")]
     public class BairroController : Controller
     {
         private IContextoDados ContextoBairro = new ContextoDadosNH();

@@ -49,6 +49,7 @@ namespace Heritage
 
                     System.Web.Security.Roles.CreateRole("Administrador");
                     System.Web.Security.Roles.CreateRole("Contabil");
+                    System.Web.Security.Roles.CreateRole("Desenvolvedor");
                     MembershipCreateStatus status;
                     Membership.CreateUser("Ademi", "Ademi100787", "ademivieria@gmail.com", null, null, true, out status);
                     if (status == MembershipCreateStatus.Success)
@@ -58,13 +59,20 @@ namespace Heritage
                         Contexto.Add<Papel>(PapelAdministrador);
                         Contexto.SaveChanges();
 
-                        Roles.AddUserToRole("Ademi", "Administrador");
+                        Papel PapelDesenvolvedor = new Papel();
+                        PapelDesenvolvedor.Nome = "Desenvolvedor";
+                        Contexto.Add<Papel>(PapelDesenvolvedor);
+                        Contexto.SaveChanges();
+
+                        Roles.AddUserToRole("Ademi", "Desenvolvedor");
                         Contexto.SaveChanges();
 
                         Papel PapelContabil = new Papel();
                         PapelContabil.Nome = "Contabil";
                         Contexto.Add<Papel>(PapelContabil);
                         Contexto.SaveChanges();
+
+                        
 
                         Contexto.Dispose();
                     }

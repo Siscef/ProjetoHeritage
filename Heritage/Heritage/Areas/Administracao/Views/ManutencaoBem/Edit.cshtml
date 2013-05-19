@@ -68,6 +68,19 @@
                     <div class="clear"></div>
                 </div>
 
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.TipoDaManutencao, "Tipo da Manutenção:")
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.TipoDaManutencao,(from Heritage.Models.TipoManutencao e in Enum.GetValues(typeof(Heritage.Models.TipoManutencao))
+                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione Tipo Manutenção")
+                        @Html.ValidationMessageFor(model => model.TipoDaManutencao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
                  <div class="row-form">
                     <div class="span2">
                         @Html.LabelFor(model => model.IdPecas, "Peças:")

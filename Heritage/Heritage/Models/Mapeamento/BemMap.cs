@@ -26,6 +26,7 @@ namespace Heritage.Models.Mapeamento
             Map(x => x.DataInicioDepreciacao, "DataInicioDepreciacao").Nullable();
             Map(x => x.TaxaDepreciacaoAnual, "TaxaDepreciacaoAnual").Not.Nullable();
             Map(x => x.DepreciacaoAtiva, "DepreciacaoAtiva").Nullable();
+            Map(x => x.BemDepreciavel, "BemDepreciavel").Nullable();
 
 
             References(x => x.IdEstadoConservacao, "IdEstadoConservacao")

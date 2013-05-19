@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    [Authorize(Roles = "Administrador, Desenvolvedor")]
     public class CriarContaUsuarioController : Controller
     {
         private IContextoDados ContextoAccount = new ContextoDadosNH();

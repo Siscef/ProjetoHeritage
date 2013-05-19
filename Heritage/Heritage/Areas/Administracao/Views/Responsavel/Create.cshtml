@@ -50,7 +50,7 @@
                         @Html.LabelFor(model => model.Email)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100" })
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100", onBlur="ValidaEmail()" })
 
                         @Html.ValidationMessageFor(model => model.Email)
                     </div>
@@ -62,7 +62,7 @@
                         @Html.LabelFor(model => model.Telefone)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: 999999-9999", id = "mask_phone" })
+                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: (99)9999-9999", id = "telefone",maxlength = "14" })
                         @Html.ValidationMessageFor(model => model.Telefone)
                     </div>
                     <div class="clear"></div>
