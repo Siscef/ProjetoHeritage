@@ -882,6 +882,38 @@
     <Content Include="Content\aquarius\img\ui\ui-icons_888888_5F256x240.png" />
     <Content Include="Content\aquarius\img\ui\ui-icons_cd0a0a_5F256x240.png" />
     <Content Include="Content\aquarius\img\users\aqvatarius.jpg" />
+    <Content Include="Scripts\2013.1.219\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\2013.1.219\jquery.validate.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.all.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.autocomplete.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.calendar.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.chart.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.combobox.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.common.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.datepicker.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.datetimepicker.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.draganddrop.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.editor.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.editing.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.filtering.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.grouping.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.reordering.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.grid.resizing.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.imagebrowser.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.list.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.menu.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.panelbar.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.slider.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.splitter.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.tabstrip.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.textbox.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.timepicker.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.treeview.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.upload.min.js" />
+    <Content Include="Scripts\2013.1.219\telerik.window.min.js" />
+    <Content Include="Scripts\jquery.cep-1.0.js" />
+    <Content Include="Scripts\jquery.cep-1.0.min.js" />
     <Content Include="Scripts\js\actions.js" />
     <Content Include="Scripts\js\charts.js" />
     <Content Include="Scripts\js\cookies.js" />
@@ -1112,36 +1144,6 @@
     <Content Include="Areas\Administracao\Views\ConfiguracaoSistema\Create.cshtml" />
     <Content Include="Areas\Administracao\Views\ConfiguracaoSistema\Edit.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\2013.1.219\jquery-1.7.1.min.js" />
-    <Content Include="Scripts\2013.1.219\jquery.validate.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.all.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.autocomplete.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.calendar.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.chart.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.combobox.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.common.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.datepicker.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.datetimepicker.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.draganddrop.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.editor.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.editing.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.filtering.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.grouping.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.reordering.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.grid.resizing.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.imagebrowser.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.list.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.menu.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.panelbar.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.slider.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.splitter.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.tabstrip.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.textbox.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.timepicker.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.treeview.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.upload.min.js" />
-    <Content Include="Scripts\2013.1.219\telerik.window.min.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1160,8 +1162,6 @@
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
     <Content Include="Scripts\jquery-ui.1.8.min.js" />
     <Content Include="Scripts\jquery.1.7.min.js" />
-    <Content Include="Scripts\jquery.cep-1.0.js" />
-    <Content Include="Scripts\jquery.cep-1.0.min.js" />
     <Content Include="Scripts\jquery.inputmask.date.extensions.js" />
     <Content Include="Scripts\jquery.inputmask.extensions.js" />
     <Content Include="Scripts\jquery.inputmask.js" />
@@ -1438,6 +1438,9 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

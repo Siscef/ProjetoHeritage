@@ -442,7 +442,7 @@ namespace Heritage.Areas.Administracao.Controllers
         public ActionResult CalculatesDepreciationOfAssets()
         {
             IList<Bem> ListaBensParaCalculoImpostos = ContextoBem.GetAll<Bem>()
-                                                      .Where(x => x.Descontinuado == false && x.Inativo == false && x.DataInicioDepreciacao.Day == DateTime.Now.Day)
+                                                      .Where(x => x.Descontinuado == false && x.Inativo == false && x.DataInicioDepreciacao.Day == DateTime.Now.Day && x.BemDepreciavel == true && x.DepreciacaoAtiva == true)
                                                       .ToList();
             if (ListaBensParaCalculoImpostos.Count() > 0)
             {
@@ -505,6 +505,12 @@ namespace Heritage.Areas.Administracao.Controllers
                        
 
                         }
+                    }
+                    else
+                    {
+                        Bem BemParaAtualizarDepreciacao = ContextoBem.Get<Bem>(itemBens.Id_Bem);
+                        BemParaAtualizarDepreciacao.DepreciacaoAtiva = false;
+                        ContextoBem.SaveChanges();
                     }
                 }
             }
