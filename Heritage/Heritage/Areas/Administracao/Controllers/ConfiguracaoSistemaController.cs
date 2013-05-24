@@ -49,9 +49,26 @@ namespace Heritage.Areas.Administracao.Controllers
         {
             try
             {
-                ContextoConfiguracao.Add<Parametros>(ParametrosParaSalvar);
-                ContextoConfiguracao.SaveChanges();
+                IList<Parametros> ListParametros = (from c in ContextoConfiguracao.GetAll<Parametros>()                                                   
+                                                    select c).ToList();
+                if (ListParametros.Count() > 0)
+                {
+                    foreach (var item in ListParametros)
+                    {
+                        Edit(ParametrosParaSalvar);
+                        
+                    }
+                    
+                }
+                else
+                {
+                    ContextoConfiguracao.Add<Parametros>(ParametrosParaSalvar);
+                    ContextoConfiguracao.SaveChanges();
 
+
+                }
+               
+               
                 return RedirectToAction("Index");
             }
             catch

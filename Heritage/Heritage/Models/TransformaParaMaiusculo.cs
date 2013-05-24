@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Heritage.Models
 {
-    public class TransformaParaMaiusculo
+    public abstract class TransformaParaMaiusculo
     {
         public static string TransformarParaMaiusculo(string Campo)
         {
@@ -26,19 +26,29 @@ namespace Heritage.Models
 
         public static string PrimeiraLetraMaiuscula(string campo)
         {
-            string[] palavras = campo.Split(' ');
-
-            string primeiraLetra = "";
-
-            string restante = "";
-            for (int i = 0; i < palavras.Length; i++)
+            if (campo != null)
             {
-                primeiraLetra = palavras[i].Substring(0, 1).ToString().ToUpper();
-                restante = palavras[i].Substring(1, palavras[i].Length - 1).ToString().ToLower();
-                palavras[i] = primeiraLetra + restante;
+                campo = TransformarParaMinusculo(campo);
+                string[] palavras = campo.Split(' ');
+
+                string primeiraLetra = "";
+
+                string restante = "";
+                for (int i = 0; i < palavras.Length; i++)
+                {
+                    primeiraLetra = palavras[i].Substring(0, 1).ToString().ToUpper();
+                    restante = palavras[i].Substring(1, palavras[i].Length - 1).ToString().ToLower();
+                    palavras[i] = primeiraLetra + restante;
+                }
+                campo = String.Join(" ", palavras);
+                return campo;
+                
             }
-            campo = String.Join(" ", palavras);
-            return campo;
+            else
+            {
+                return campo;
+            }
+            
         }
     }
 }

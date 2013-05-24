@@ -14,7 +14,7 @@ namespace Heritage.Models.Mapeamento
             Id(x => x.Id_Pessoa, "IdResponsavel");
             Map(x => x.Nome, "Nome").Not.Nullable().Length(100).Unique();
             Map(x => x.Email, "Email").Not.Nullable().Length(100).Unique();
-            Map(x => x.Telefone, "Telefone").Not.Nullable().Length(11);
+            Map(x => x.Telefone, "Telefone").Not.Nullable().Length(16);
             Map(x => x.DataNascimento, "DataNascimento").Not.Nullable();
 
 

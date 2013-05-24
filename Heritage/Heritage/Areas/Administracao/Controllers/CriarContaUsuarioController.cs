@@ -35,7 +35,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Papel = new SelectList(ContextoAccount.GetAll<Papel>(), "Id_Papel", "Nome");
+            ViewBag.Papel = new SelectList(ContextoAccount.GetAll<Papel>().Where(x => x.Nome != "Desenvolvedor"), "Id_Papel", "Nome");
             return View();
         }
 

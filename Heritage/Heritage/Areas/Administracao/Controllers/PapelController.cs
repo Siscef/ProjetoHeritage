@@ -9,7 +9,7 @@ using System.Web.Security;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles = "Administrador,Desenvolvedor")]
+    [Authorize(Roles = "Desenvolvedor")]
     public class PapelController : Controller
     {
         private IContextoDados ContextoPapel = new ContextoDadosNH();

@@ -60,6 +60,8 @@ namespace Heritage.Areas.Administracao.Controllers
                     string NomeBairro = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.IdBairro.Nome);
                     string DescricaoEndereco = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.IdEndereco.Descricao);
                     string CEPEndereco = FornecedorParaSalvar.IdEndereco.CEP;
+                    string RazaoSocial = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.RazaoSocial);
+                    string Fantasia = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.Nome);
                     if (PessoaJuridica.IsCnpj(FornecedorParaSalvar.CNPJ) == false)
                     {
                         ViewBag.IsNotCNPJ = "O CNPJ não é válido!";
@@ -164,9 +166,9 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoFornecedor.SaveChanges();
 
 
-                    FornecedorSalvo.Nome = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.Nome);
-                    FornecedorSalvo.RazaoSocial = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(FornecedorParaSalvar.RazaoSocial);
-                    FornecedorSalvo.Email = TransformaParaMaiusculo.TransformarParaMinusculo(FornecedorParaSalvar.Email);
+                    FornecedorSalvo.Nome = Fantasia;
+                    FornecedorSalvo.RazaoSocial = RazaoSocial;
+                    FornecedorSalvo.Email = FornecedorParaSalvar.Email;
                     FornecedorSalvo.Telefone = FornecedorParaSalvar.Telefone;
                     FornecedorSalvo.InscricaoEstadual = FornecedorParaSalvar.InscricaoEstadual;
                     FornecedorSalvo.CNPJ = FornecedorParaSalvar.CNPJ;
@@ -178,8 +180,10 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     return RedirectToAction("ListLastProvider", FornecedorSalvo);
                 }
-                catch
+                catch(Exception Exec)
                 {
+                    ViewBag.nomeclasse = "alert alert-error";
+                    ViewBag.Res = Exec.Message + "  " + Exec.StackTrace;
 
                     return View();
                 }

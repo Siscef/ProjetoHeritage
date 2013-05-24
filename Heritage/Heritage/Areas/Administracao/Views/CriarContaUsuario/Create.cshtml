@@ -72,7 +72,7 @@
                         @Html.LabelFor(model => model.IdPapel, "Papel:")
                     </div>
                     <div class="span9">
-                        @Html.DropDownListFor(model => model.IdPapel.Id_Papel, (IEnumerable<SelectListItem>)ViewBag.Papel, "Selecione Papel")@Html.ActionLink("Novo Papel", "Create", "Papel")
+                        @Html.DropDownListFor(model => model.IdPapel.Id_Papel, (IEnumerable<SelectListItem>)ViewBag.Papel, "Selecione Papel")
                         @Html.ValidationMessageFor(model => model.IdPapel)
                     </div>
                     <div class="clear"></div>

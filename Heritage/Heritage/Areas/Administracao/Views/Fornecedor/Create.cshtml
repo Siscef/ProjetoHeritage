@@ -1,5 +1,4 @@
 ﻿@model Heritage.Models.Fornecedor
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
@@ -7,6 +6,10 @@
 <div class="span9">
     @Html.ActionLink("Página Inicial", "Index")
 </div>
+<div class= @ViewBag.nomeclasse>
+                    
+                   @ViewBag.Res 
+                </div>
 
 <div class="row-fluid">
     <div class="span12">
@@ -48,7 +51,7 @@
                         @Html.LabelFor(model => model.CNPJ)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.CNPJ, new { placeholder = "Digite o CNPJ.", @class = "input-xlarge", maxlength = "18", onkeyup="FormataCnpj(this,event)" })
+                        @Html.TextBoxFor(model => model.CNPJ, new { placeholder = "Digite o CNPJ.", @class = "input-xlarge", maxlength = "18", onkeyup = "FormataCnpj(this,event)" })
                         @Html.ValidationMessageFor(model => model.CNPJ)
                         @ViewBag.IsNotCNPJ
 
@@ -72,7 +75,7 @@
                         @Html.LabelFor(model => model.Email)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100" , onBlur="ValidaEmail()"})
+                        @Html.TextBoxFor(model => model.Email, new { placeholder = "Digite o e-mail.", @class = "input-xlarge", maxlength = "100", onBlur = "ValidaEmail()" })
 
                         @Html.ValidationMessageFor(model => model.Email)
                     </div>
@@ -84,7 +87,7 @@
                         @Html.LabelFor(model => model.Telefone)
                     </div>
                     <div class="span9">
-                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: (99)9999-9999", id = "telefone",maxlength = "14"})
+                        @Html.TextBoxFor(model => model.Telefone, new { placeholder = "Digite telefone: (99)9999-9999", id = "telefone", maxlength = "14" })
                         @Html.ValidationMessageFor(model => model.Telefone)
                     </div>
                     <div class="clear"></div>

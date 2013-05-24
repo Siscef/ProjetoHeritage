@@ -20,7 +20,7 @@ namespace Heritage.Models
         [Display(Name = "Email:")]
         public virtual string Email { get; set; }
         [Required(ErrorMessage = "O número do telefone não pode ser vazio.")]
-        [StringLength(11, ErrorMessage = "O número do telefone tem que ter no mínimo 11 letras e no máximo 11.", MinimumLength = 11)]
+        [StringLength(16, ErrorMessage = "O número do telefone tem que ter no mínimo 11 letras e no máximo 16.", MinimumLength = 11)]
         [Display(Name = "Telefone:")]
         [DataType(DataType.PhoneNumber)]
         public virtual string Telefone { get; set; }
