@@ -33,6 +33,16 @@ namespace Heritage
                 new string [] {"Heritage.Controllers"}// Parameter defaults
             );
 
+            
+        }
+
+        protected void Application_Error(object sender, EventArgs e) 
+        {
+            Exception ex = Server.GetLastError();
+            if (ex is HttpException && ((HttpException)ex).GetHttpCode() == 404)
+            {
+                Response.Redirect("Error/Erro404");
+            }
         }
 
         protected void Application_Start()
