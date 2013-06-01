@@ -1,0 +1,103 @@
+﻿@model Heritage.Models.Graficos
+@{
+    ViewBag.Title = "GraficoBemPorValores";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Gráfico valores dos bens</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ValorPadrao)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.ValorPadrao)
+                        @Html.ValidationMessageFor(model => model.ValorPadrao)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                
+                    <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Largura)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Largura, new {placeholder = "Digite a largura do gráfico, por exemplo: 600" })
+                        @Html.ValidationMessageFor(model => model.Largura)
+                    </div>
+
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Altura)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.Altura, new {placeholder = "Digite a altura do gráfico, por exemplo: 400" })
+                        @Html.ValidationMessageFor(model => model.Altura)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.NumeroElementos)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.NumeroElementos, new {placeholder = "Digite o número de elementos que deseja ver.O padrão é 10 (dez)" })
+                        @Html.ValidationMessageFor(model => model.NumeroElementos)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                    
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.Cor)
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.Cor,(from Heritage.Models.Cores e in Enum.GetValues(typeof(Heritage.Models.Cores))
+                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione a cor do gráfico")
+                       
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                            
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.TipoGrafico)
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownListFor(model => model.TipoGrafico,(from Heritage.Models.TipoGrafico e in Enum.GetValues(typeof(Heritage.Models.TipoGrafico))
+                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione o tipo do gráfico")
+                       
+                    </div>
+                    <div class="clear"></div>
+                </div>
+               
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Visualizar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>

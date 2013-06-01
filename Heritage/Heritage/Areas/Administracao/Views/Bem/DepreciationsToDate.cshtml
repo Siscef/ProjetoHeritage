@@ -1,0 +1,71 @@
+﻿@model Heritage.Models.ValidarData
+@{
+    ViewBag.Title = "DepreciationsToDate";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+<div class="span9">
+    @Html.ActionLink("Página Inicial", "Index")
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+        <div class="head">
+            <div class="isw-documents"></div>
+            <h2>Histórico depreciação</h2>
+            <div class="clear"></div>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            <div class="block-fluid">
+                @Html.ValidationSummary(true)
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataInicial)
+                    </div>
+                    <div class="span9">
+                        @Html.Telerik().DatePickerFor(model => model.DataInicial)
+                        @Html.ValidationMessageFor(model => model.DataInicial)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.DataFinal)
+                    </div>
+                    <div class="span9">
+                        @Html.Telerik().DatePickerFor(model => model.DataFinal)
+                        @Html.ValidationMessageFor(model => model.DataFinal)
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                       Bem:
+                    </div>
+                    <div class="span9">
+                        @Html.DropDownList("Bens", (IEnumerable<SelectListItem>)ViewBag.Bens, "Selecione Bem")
+                        
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Visualizar" />
+                        <input type="reset" class="btn btn-warning" value="Limpar" />
+
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+            </div>
+        }
+
+    </div>
+</div>

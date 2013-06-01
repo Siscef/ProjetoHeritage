@@ -6,12 +6,14 @@ using System.Web.Mvc;
 using Heritage.Models;
 using Heritage.Models.ContextoBanco;
 using System.Web.Security;
+using System.Web.Helpers;
 
 
 
 namespace Heritage.Areas.Administracao.Controllers
 {
     [Authorize(Roles = "Administrador,Contabil,Desenvolvedor")]
+
     public class BemController : Controller
     {
         private IContextoDados ContextoBem = new ContextoDadosNH();
@@ -513,8 +515,8 @@ namespace Heritage.Areas.Administracao.Controllers
                     DepreciacaoBem DepreciacaoBemCoeficienteUm = new DepreciacaoBem();
 
                     DepreciacaoBemCoeficienteUm.DataDepreciacaoBem = DateTime.Now;
-                    DepreciacaoBemCoeficienteUm.ValorCofins = (BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100;
-                    DepreciacaoBemCoeficienteUm.ValorPis = (BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100;
+                    DepreciacaoBemCoeficienteUm.ValorCofins = ((BemParaAtualizarImpostos.Cofins * BemParaAtualizarImpostos.ValorCompra) / 100)/12;
+                    DepreciacaoBemCoeficienteUm.ValorPis = ((BemParaAtualizarImpostos.Pis * BemParaAtualizarImpostos.ValorCompra) / 100)/12;
                     DepreciacaoBemCoeficienteUm.ValorDepreciado = (((BemParaAtualizarImpostos.TaxaDepreciacaoAnual * Convert.ToInt64(BemParaAtualizarImpostos.CoeficienteDepreciacao) * BemParaAtualizarImpostos.ValorCompra) / 100) / 12);
                     DepreciacaoBemCoeficienteUm.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(AuditoriaCoeficienteUm.Id_AuditoriaInterna);
                     DepreciacaoBemCoeficienteUm.IdBem = ContextoBem.Get<Bem>(id);
@@ -570,8 +572,8 @@ namespace Heritage.Areas.Administracao.Controllers
                                           .Where(x => x.Id_DepreciacaoBem == IdUltimaDepreciacao)
                                           select c.DataDepreciacaoBem).First();
 
-                    Depreciacao.ValorCofins = (BemParaCalculoDepreciacaoAtrasada.Cofins * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100;
-                    Depreciacao.ValorPis = (BemParaCalculoDepreciacaoAtrasada.Pis * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100;
+                    Depreciacao.ValorCofins = ((BemParaCalculoDepreciacaoAtrasada.Cofins * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100)/12;
+                    Depreciacao.ValorPis = ((BemParaCalculoDepreciacaoAtrasada.Pis * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100)/12;
                     Depreciacao.ValorDepreciado = (((BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual * Convert.ToInt64(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao) * BemParaCalculoDepreciacaoAtrasada.ValorCompra) / 100) / 12);
                     Depreciacao.IdBem = ContextoBem.Get<Bem>(BemParaCalculoDepreciacaoAtrasada.Id_Bem);
                     Depreciacao.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(Auditoria.Id_AuditoriaInterna);
@@ -677,8 +679,8 @@ namespace Heritage.Areas.Administracao.Controllers
                                                   .Where(x => x.Id_DepreciacaoBem == IdUltimaDepreciacao)
                                                   select c.DataDepreciacaoBem).First();
 
-                            Depreciacao.ValorCofins = (BemParaCalcularSomaDigitos.Cofins * BemParaCalcularSomaDigitos.ValorCompra) / 100;
-                            Depreciacao.ValorPis = (BemParaCalcularSomaDigitos.Pis * BemParaCalcularSomaDigitos.ValorCompra) / 100;
+                            Depreciacao.ValorCofins = ((BemParaCalcularSomaDigitos.Cofins * BemParaCalcularSomaDigitos.ValorCompra) / 100)/12;
+                            Depreciacao.ValorPis = ((BemParaCalcularSomaDigitos.Pis * BemParaCalcularSomaDigitos.ValorCompra) / 100)/12;
                             Depreciacao.ValorDepreciado = (TotalDiferencaDeMeses / SomaDigitosMesesVidaUtil) * BemParaCalcularSomaDigitos.ValorCompra;
                             Depreciacao.IdBem = ContextoBem.Get<Bem>(BemParaCalcularSomaDigitos.Id_Bem);
                             Depreciacao.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(Auditoria.Id_AuditoriaInterna);
@@ -741,6 +743,101 @@ namespace Heritage.Areas.Administracao.Controllers
                                                                     .Where(x => x.IdBem.Id_Bem == id && x.DataDepreciacaoBem.Year != DateTime.Now.Year && x.DataDepreciacaoBem.Month != DateTime.Now.Month && x.DataDepreciacaoBem.Day != DateTime.Now.Day)
                                                                   select c).ToList();
             return VerificarDeprecicaoDuplicada.Count();
+        }
+
+        public ActionResult DepreciationsToDate()
+        {
+            ViewBag.Bens = new SelectList(ContextoBem.GetAll<Bem>().OrderBy(x => x.Descricao), "Id_Bem", "Descricao");
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DepreciationsToDate(ValidarData Datas, int? Bens)
+        {
+            if (Bens == null)
+            {
+                IList<DepreciacaoBem> TodasDepreciacoes = ContextoBem.GetAll<DepreciacaoBem>()
+                                                          .Where(x => x.DataDepreciacaoBem >= Datas.DataInicial && x.DataDepreciacaoBem <= Datas.DataFinal)
+                                                          .ToList();
+                ViewBag.ValorDepreciado = (from c in TodasDepreciacoes
+                                           select c.ValorDepreciado).Sum();
+                ViewBag.ValorCofins = (from c in TodasDepreciacoes
+                                       select c.ValorCofins).Sum();
+                ViewBag.ValorPis = (from c in TodasDepreciacoes
+                                    select c.ValorPis).Sum();
+
+                return View("ListDepreciations", TodasDepreciacoes);
+                
+            }
+            IList<DepreciacaoBem> TodasDepreciacaoComBens = ContextoBem.GetAll<DepreciacaoBem>()
+                                                           .Where(x => x.DataDepreciacaoBem >= Datas.DataInicial && x.DataDepreciacaoBem <= Datas.DataFinal && x.IdBem.Id_Bem == Bens)
+                                                           .ToList();
+
+            ViewBag.ValorDepreciado = (from c in TodasDepreciacaoComBens
+                                       select c.ValorDepreciado).Sum();
+            ViewBag.ValorCofins = (from c in TodasDepreciacaoComBens
+                                   select c.ValorCofins).Sum();
+            ViewBag.ValorPis = (from c in TodasDepreciacaoComBens
+                                select c.ValorPis).Sum();
+
+            return View("ListDepreciations", TodasDepreciacaoComBens);
+        }
+
+        public ActionResult ListDepreciations()
+        {
+
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult GraficoBemPorValores()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult GraficoBemPorValores(Graficos Grafico)
+        {
+            int numero = (int)Grafico.NumeroElementos;
+            int largura = (int)Grafico.Largura;
+            int altura = (int)Grafico.Altura;
+            string tipo = Grafico.TipoGrafico.ToString();
+            string cor = Grafico.Cor.ToString();
+
+            //var BensParaGrafico = (from c in ContextoBem.GetAll<Bem>()
+            //                             .Where(x => x.Inativo == false && x.Descontinuado == false)
+            //                             .Take(numero)
+            //                             .OrderByDescending(x => x.ValorCompra)
+            //                              select new {ValorCompra = c.ValorCompra, Descricao = c.Descricao }).ToList();
+            //var GraficoProdutos = new Chart(width: largura, height: altura, theme: ChartTheme.Blue)
+            //.AddTitle("Gráfico Bens")
+            //.AddLegend("Valor Compra")
+                       
+            //.DataBindCrossTable(BensParaGrafico,"ValorCompra","Descricao","ValorCompra",null,"Ascending")
+            //.Write();
+
+            var Bens = (from c in ContextoBem.GetAll<Bem>()
+                        .Where(x => x.Inativo == false && x.Descontinuado == false)
+                        .Take((int)Grafico.NumeroElementos)
+                        select new {Descricao = c.Descricao, ValorCompra = c.ValorCompra }).ToList();
+
+            var GraficoBem = new Chart(width: largura, height: altura)
+            .AddTitle("Gráfico Valores dos bens")
+            .AddSeries(
+            name:"Bens",
+            chartType:tipo,
+            legend:"gráfico de bens")
+            //.DataBindCrossTable(Bens,"Descricao","Descricao","ValorCompra",null,"Ascending")
+            .DataBindTable(Bens,"Descricao")
+            .Write();
+
+
+            return View("VerGraficoValorBem");
+        }
+
+        public ActionResult VerGraficoValorBem()
+        {
+            return View();
         }
 
     }
