@@ -34,6 +34,18 @@ namespace Heritage
             );
 
             
+<<<<<<< HEAD
+=======
+        }
+
+        protected void Application_Error(object sender, EventArgs e) 
+        {
+            Exception ex = Server.GetLastError();
+            if (ex is HttpException && ((HttpException)ex).GetHttpCode() == 404)
+            {
+                Response.Redirect("Error/Erro404");
+            }
+>>>>>>> a9fc3235562b3206127e723921f62ec4f9e9be45
         }
 
        
