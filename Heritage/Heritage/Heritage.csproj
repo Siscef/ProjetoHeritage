@@ -1152,6 +1152,7 @@
     <Content Include="Areas\Administracao\Views\Bem\ListDepreciations.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\GraficoBemPorValores.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\VerGraficoValorBem.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ShowAmountProperty.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />
@@ -1474,7 +1475,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>9917</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:10113/</IISUrl>
+          <IISUrl>http://localhost:10112/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -789,7 +789,7 @@ namespace Heritage.Areas.Administracao.Controllers
             return View();
         }
 
-<<<<<<< HEAD
+
         [HttpGet]
         public ActionResult GraficoBemPorValores()
         {
@@ -839,26 +839,32 @@ namespace Heritage.Areas.Administracao.Controllers
         public ActionResult VerGraficoValorBem()
         {
             return View();
-=======
-        public ActionResult GraficoBemPorValores()
-        {
-            var BensParaGrafico = (from c in ContextoBem.GetAll<Bem>()
-                                         .Where(x => x.Inativo == false && x.Descontinuado == false)
-                                         .Take(5)
-                                         .OrderByDescending(x => x.ValorCompra)
-                                          select new {ValorCompra = c.ValorCompra, Descricao = c.Descricao }).ToList();
-            var GraficoProdutos = new Chart(width: 600, height: 400, theme: ChartTheme.Vanilla3D)
-            .AddTitle("Gráfico Bens")
-            .AddLegend("Valor Compra")
-                       
-            .DataBindCrossTable(BensParaGrafico,"ValorCompra","Descricao","ValorCompra",null,"Ascending")
-            .Save(@"F:\graficos.jpeg", "jpeg")
-            .Write();
-
-
-            return null;
->>>>>>> a9fc3235562b3206127e723921f62ec4f9e9be45
         }
 
+
+        public ActionResult ShowAmountProperty()
+        {
+            IList<Bem> BemValorPatrimonial = (from c in ContextoBem.GetAll<Bem>()
+                                       .Where(x => x.Inativo == false && x.Descontinuado == false)
+                                       select c)
+                                       .ToList();
+
+            return View(BemValorPatrimonial);
+        }
+
+
+        public ActionResult ShowValueofAssetsbyCategory(int id)
+        {
+            IList<Bem> ValorDeBensPorCategoria = (from c in ContextoBem.GetAll<Bem>()
+                                                  .Where(x => x.Inativo == false && x.Descontinuado == false && x.IdCategoria.Id_Categoria == id)
+                                                  select c)
+                                                  .ToList();
+            return View(ValorDeBensPorCategoria);
+        }
+
+
+
+
+       
     }
 }

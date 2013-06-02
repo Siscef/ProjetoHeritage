@@ -33,9 +33,7 @@ namespace Heritage
                 new string [] {"Heritage.Controllers"}// Parameter defaults
             );
 
-            
-<<<<<<< HEAD
-=======
+
         }
 
         protected void Application_Error(object sender, EventArgs e) 
@@ -45,7 +43,7 @@ namespace Heritage
             {
                 Response.Redirect("Error/Erro404");
             }
->>>>>>> a9fc3235562b3206127e723921f62ec4f9e9be45
+
         }
 
        
