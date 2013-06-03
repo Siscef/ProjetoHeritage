@@ -1,0 +1,76 @@
+﻿@model Heritage.Models.Bem
+@{
+    ViewBag.Title = "StatusProperty";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row-fluid">
+   
+    <div class="span4">
+
+        <div class="wBlock gray">
+            <div class="dSpace">
+                <h3>Invoices</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--3,1,2,5,9,4,1,5,11,4,5-->
+                </span>
+                <span class="number">$19,350</span>
+            </div>
+            <div class="rSpace">
+                <span>981 <b>delivered</b></span>
+                <span>4 <b>in process</b></span>
+                <span>19 <b>returned</b></span>
+            </div>
+            <div class="clear"></div>
+            <div class="dSpace">
+                <h3>Users</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                </span>
+                <span class="number">2,513</span>
+            </div>
+            <div class="rSpace">
+                <span>351 <b>active</b></span>
+                <span>2102 <b>passive</b></span>
+                <span>100 <b>removed</b></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+
+    </div>
+    <div class="span4">
+
+        <div class="wBlock red">
+            <div class="dSpace">
+                <h3>Invoices statistics</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--130,190,260,230,290,400,340,360,390-->
+                </span>
+                <span class="number">60%</span>
+            </div>
+            <div class="rSpace">
+                <span>$1,530 <b>amount paid</b></span>
+                <span>$2,102 <b>in queue</b></span>
+                <span>$11,100 <b>total taxes</b></span>
+            </div>
+        </div>
+
+        <div class="wBlock green">
+            <div class="dSpace">
+                <h3>Tickets</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--28,25,40,32,24,34,26,26,41,36-->
+                </span>
+                <span class="number">131</span>
+            </div>
+            <div class="rSpace">
+                <span>15 <b>in process</b></span>
+                <span>99 <b>in queue</b></span>
+                <span>16 <b>total</b></span>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>

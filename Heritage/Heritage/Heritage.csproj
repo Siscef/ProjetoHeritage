@@ -1153,6 +1153,10 @@
     <Content Include="Areas\Administracao\Views\Bem\GraficoBemPorValores.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\VerGraficoValorBem.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\ShowAmountProperty.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\PisCofinsToDate.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ListPisCofins.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\StatusProperty.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />
