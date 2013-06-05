@@ -918,16 +918,94 @@ namespace Heritage.Areas.Administracao.Controllers
         {
             IList<Bem> Bens = ContextoBem.GetAll<Bem>()
                               .ToList();
-            ViewBag.Ativos = (from c in Bens
-                              .Where(x => x.Inativo == false)
-                              select c).Count();
-            ViewBag.Inativos = (from c in Bens
-                                .Where(x => x.Inativo == true)
+            decimal TodosBens = Bens.Count();
+
+            decimal Inativos = (from c in Bens
+                               .Where(x => x.Inativo == true)
                                 select c).Count();
-            ViewBag.Depreciavel = (from c in Bens
+            decimal Depreciavel = (from c in Bens
                                    .Where(x => x.BemDepreciavel == true)
                                    select c).Count();
-         
+            decimal Ativos = (from c in Bens
+                              .Where(x => x.Inativo == false)
+                              select c).Count();
+            decimal NaoDepreciavel = (from c in Bens
+                                   .Where(x => x.BemDepreciavel == false)
+                                      select c).Count();
+            decimal Descontinuado = (from c in Bens
+                                  .Where(x => x.Descontinuado == true)
+                                     select c).Count();
+            decimal NaoDescontinuado = (from c in Bens
+                                    .Where(x => x.Descontinuado == false)
+                                        select c).Count();//ok
+            decimal DepreciacaoAtiva = (from c in Bens
+                                    .Where(x => x.DepreciacaoAtiva == true)
+                                        select c).Count();//ok
+            decimal DepreciacaoInativa = (from c in Bens
+                                      .Where(x => x.DepreciacaoAtiva == false)
+                                          select c).Count();
+            double ValorTotal = (from c in Bens
+                                 select c.ValorCompra).Sum();
+            double ValorAtivos = (from c in Bens
+                                   .Where(x => x.Inativo == false)
+                                  select c.ValorCompra).Sum();
+            double ValorInativos = (from c in Bens
+                                   .Where(x => x.Inativo == true)
+                                    select c.ValorCompra).Sum();
+            double ValorDescontinuado = (from c in Bens
+                                        .Where(x => x.Descontinuado == true)
+                                         select c.ValorCompra).Sum();
+            double ValorNaoDescontinuado = (from c in Bens
+                                             .Where(x => x.Descontinuado == false)
+                                            select c.ValorCompra).Sum();
+            double ValorNaoDepreciavel = (from c in Bens
+                                          .Where(x => x.BemDepreciavel == false)
+                                          select c.ValorCompra).Sum();
+            double ValorDepreciavel = (from c in Bens
+                                       .Where(x => x.BemDepreciavel == true)
+                                       select c.ValorCompra).Sum();
+            double ValorDepreciacaoAtiva = (from c in Bens
+                                           .Where(x => x.DepreciacaoAtiva == true)
+                                            select c.ValorCompra).Sum();
+            double ValorDepreciacaoinativa = (from c in Bens
+                                           .Where(x => x.DepreciacaoAtiva == false)
+                                            select c.ValorCompra).Sum();
+            double FezManutencao = (from c in ContextoBem.GetAll<ManutencaoBem>()
+                                    .Where(x => x.IdBem.Id_Bem != 0)
+                                    select c).Count();
+            decimal Novos = (from c in Bens
+                             .Where(x => x.IdEstadoConservacao.Descricao.StartsWith("Novo"))
+                             select c).Count();
+            decimal Usados = (from c in Bens
+                             .Where(x => x.IdEstadoConservacao.Descricao.StartsWith("Usado"))
+                              select c).Count();
+
+            ViewBag.Novos = Novos >= 0 ? Novos : 0;//ok
+            ViewBag.Usados = Usados >= 0 ? Usados : 0;//ok
+            ViewBag.FezManutencao = FezManutencao >= 0 ? FezManutencao : 0; // 0
+            ViewBag.TodosBens = TodosBens >= 0 ? TodosBens : 0;
+            ViewBag.Ativos = Ativos >= 0 ? Ativos : 0;//ok
+            ViewBag.Inativos = Inativos >= 0 ? Inativos : 0;//ok
+            ViewBag.Depreciavel = Depreciavel >= 0 ? Depreciavel : 0;//ok
+            ViewBag.NaoDepreciavel = NaoDepreciavel >= 0 ? NaoDepreciavel : 0;//ok
+            ViewBag.Descontinuado = Descontinuado >= 0 ? Descontinuado : 0;//ok
+            ViewBag.NaoDescontinuado = NaoDescontinuado >= 0 ? NaoDescontinuado : 0;//ok
+            ViewBag.DepreciacaoAtiva = DepreciacaoAtiva >= 0 ? DepreciacaoAtiva : 0;//ok
+            ViewBag.DepreciacaoInativa = DepreciacaoInativa >= 0 ? DepreciacaoInativa : 0;//ok
+            ViewBag.ValorTotal = ValorTotal >= 0 ? ValorTotal : 0;//ok
+            ViewBag.ValorAtivos = ValorAtivos >= 0 ? ValorAtivos : 0;//ok
+            ViewBag.ValorInativos = ValorInativos >= 0 ? ValorInativos : 0;//ok
+            ViewBag.ValorDescontinuado = ValorDescontinuado >= 0 ? ValorDescontinuado : 0;//ok
+            ViewBag.ValorNaoDescontinuado = ValorNaoDescontinuado >= 0 ? ValorNaoDescontinuado : 0;
+            ViewBag.ValorNaoDepreciavel = ValorNaoDepreciavel >= 0 ? ValorNaoDepreciavel : 0;//ok
+            ViewBag.ValorDepreciavel = ValorDepreciavel >= 0 ? ValorDepreciavel : 0;//ok
+            ViewBag.ValorDepreciacaoAtiva = ValorDepreciacaoAtiva >= 0 ? ValorDepreciacaoAtiva : 0;//ok
+            ViewBag.ValorDepreciacaoinativa = ValorDepreciacaoinativa >= 0 ? ValorDepreciacaoinativa : 0;//ok
+            ViewBag.PorcentagemInativos = ((TodosBens * Inativos) / 100) >= 0 ? ((TodosBens * Inativos) / 100) : 0;//ok
+
+            ContextoBem.Dispose();
+
+
             return View();
         }
 

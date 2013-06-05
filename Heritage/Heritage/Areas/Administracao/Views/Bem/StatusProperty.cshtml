@@ -1,76 +1,153 @@
 ﻿@model Heritage.Models.Bem
 @{
     ViewBag.Title = "StatusProperty";
-    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Administracao/Views/Shared/_LayoutListas.cshtml";
 }
+<div class="menu">
+    @Html.Partial("MenuIndex")
+</div>
+<div class="content">
+    <div class="row-fluid">
+        <ul class="breadcrumb">
+            <li><a href="#">@Html.ActionLink("Adicionar Novo", "Create")</a> <span class="divider">></span></li>
+            <li class="active">@Html.ActionLink("Página Inicial", "Index")</li>
+        </ul>
+        <div class="span4">
 
+            <div class="wBlock gray">
 
-<div class="row-fluid">
-   
-    <div class="span4">
+                <div class="dSpace">
+                    <h3>Bens Ativos</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--3,1,2,5,9,4,1,5,11,4,5-->
+                    </span>
+                    <span class="number"> @ViewBag.Ativos</span>
+                </div>
 
-        <div class="wBlock gray">
-            <div class="dSpace">
-                <h3>Invoices</h3>
-                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                    <!--3,1,2,5,9,4,1,5,11,4,5-->
-                </span>
-                <span class="number">$19,350</span>
-            </div>
-            <div class="rSpace">
-                <span>981 <b>delivered</b></span>
-                <span>4 <b>in process</b></span>
-                <span>19 <b>returned</b></span>
+                <div class="rSpace">
+                    <span>@ViewBag.Inativos <b>inativo(s)</b></span>
+                    <span>@ViewBag.Depreciavel <b>depreciável</b></span>
+                    <span>@ViewBag.DepreciacaoAtiva <b>depreciação ativa</b></span>
+                </div>
+                <div class="clear"></div>
+                <div class="dSpace">
+                    <h3>Em operação</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                    </span>
+                    <span class="number">@ViewBag.NaoDescontinuado</span>
+                </div>
+                <div class="rSpace">
+                    <span>@ViewBag.DepreciacaoInativa <b>depreciação inativa</b></span>
+                    <span>@ViewBag.Descontinuado <b>fora de operação</b></span>
+                    <span>@ViewBag.NaoDepreciavel <b>não depreciável</b></span>
+                  <span>  @ViewBag.FezManutencao <b>Fez Manutenção</b> </span>
+                </div>
             </div>
             <div class="clear"></div>
-            <div class="dSpace">
-                <h3>Users</h3>
-                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                    <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
-                </span>
-                <span class="number">2,513</span>
-            </div>
-            <div class="rSpace">
-                <span>351 <b>active</b></span>
-                <span>2102 <b>passive</b></span>
-                <span>100 <b>removed</b></span>
-            </div>
+
         </div>
-        <div class="clear"></div>
+        <div class="span4">
+
+            <div class="wBlock red">
+                <div class="dSpace">
+                    <h3>R$ Bens Inativos</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--130,190,260,230,290,400,340,360,390-->
+                    </span>
+                    <span class="number">R$ @ViewBag.ValorInativos</span>
+                </div>
+                <div class="rSpace">
+                    <span>R$ @ViewBag.ValorDescontinuado <b>fora de operação</b></span>
+                    <span>R$ @ViewBag.ValorNaoDepreciavel <b>não depreciável</b></span>
+                    <span>R$ @ViewBag.ValorDepreciacaoinativa <b>depreciação inativa</b></span>
+                </div>
+            </div>
+
+            <div class="wBlock green">
+                <div class="dSpace">
+                    <h3> R$ Total</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--28,25,40,32,24,34,26,26,41,36-->
+                    </span>
+                    <span class="number">@ViewBag.ValorTotal</span>
+                </div>
+                <div class="rSpace">
+                    <span>@ViewBag.NaoDescontinuado <b>Em operação</b></span>
+                    <span>@ViewBag.Novos <b>Novo(s)</b></span>
+                    <span>@ViewBag.Usados <b>Usado(s)</b></span>
+                </div>
+
+            </div>
+
+            <div class="clear"></div>
+        </div>
 
     </div>
-    <div class="span4">
+    
+        <div class="span12">
 
-        <div class="wBlock red">
-            <div class="dSpace">
-                <h3>Invoices statistics</h3>
-                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                    <!--130,190,260,230,290,400,340,360,390-->
-                </span>
-                <span class="number">60%</span>
+            <div class="wBlock red auto">
+                <div class="dSpace">
+                    <h3>R$ Depreciação inativa</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--2,5,3,5,6,7,9,8,5,6,2,5-->
+                    </span>
+                    <span class="number"> R$ @ViewBag.ValorDepreciacaoinativa</span>
+                </div>
             </div>
-            <div class="rSpace">
-                <span>$1,530 <b>amount paid</b></span>
-                <span>$2,102 <b>in queue</b></span>
-                <span>$11,100 <b>total taxes</b></span>
+
+            <div class="wBlock green auto">
+                <div class="dSpace">
+                    <h3>R$ Ativos</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                    </span>
+                    <span class="number">@ViewBag.ValorAtivos</span>
+                </div>
             </div>
+
+            <div class="wBlock auto">
+                <div class="dSpace">
+                    <h3>R$ Depreciáveis</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--3,1,2,5,9,4,1,5,11,4,5-->
+                    </span>
+                    <span class="number">R$ @ViewBag.ValorDepreciavel</span>
+                </div>
+            </div>
+
+            <div class="wBlock yellow auto">
+                <div class="dSpace">
+                    <h3>R$ Depreciação ativa</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--130,190,260,230,290,400,340,360,390-->
+                    </span>
+                    <span class="number">R$ @ViewBag.ValorDepreciacaoAtiva</span>
+                </div>
+            </div>
+
+            <div class="wBlock blue auto">
+                <div class="dSpace">
+                    <h3>R$ Operação</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--3,1,2,5,9,4,1,5,11,4,5-->
+                    </span>
+                    <span class="number">R$ @ViewBag.ValorNaoDescontinuado</span>
+                </div>
+            </div>
+
+            <div class="wBlock gray auto">
+                <div class="dSpace">
+                    <h3>% Inativos</h3>
+                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                        <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                    </span>
+                    <span class="number">@ViewBag.PorcentagemInativos%</span>
+                </div>
+            </div>
+
         </div>
+    
 
-        <div class="wBlock green">
-            <div class="dSpace">
-                <h3>Tickets</h3>
-                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                    <!--28,25,40,32,24,34,26,26,41,36-->
-                </span>
-                <span class="number">131</span>
-            </div>
-            <div class="rSpace">
-                <span>15 <b>in process</b></span>
-                <span>99 <b>in queue</b></span>
-                <span>16 <b>total</b></span>
-            </div>
-        </div>
-
-        <div class="clear"></div>
-    </div>
 </div>
