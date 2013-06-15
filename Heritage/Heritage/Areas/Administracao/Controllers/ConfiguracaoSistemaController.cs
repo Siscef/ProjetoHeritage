@@ -8,7 +8,7 @@ using Heritage.Models.ContextoBanco;
 
 namespace Heritage.Areas.Administracao.Controllers
 {
-    [Authorize(Roles="Desenvolvedor")]
+    [Authorize(Roles="Desenvolvedor, Administrador")]
     public class ConfiguracaoSistemaController : Controller
     {
         private IContextoDados ContextoConfiguracao = new ContextoDadosNH();
@@ -108,7 +108,9 @@ namespace Heritage.Areas.Administracao.Controllers
                 ParametrosEditados.NomeEmpresaParaExibir = ParametrosParaEditar.NomeEmpresaParaExibir;
                 ParametrosEditados.RamoEmpresarial = ParametrosParaEditar.RamoEmpresarial;
                 ParametrosEditados.TelefoneParaExibir = ParametrosParaEditar.TelefoneParaExibir;
-                ParametrosEditados.TipoParaDepreciacao = ParametrosParaEditar.TipoParaDepreciacao;
+                ParametrosEditados.VidaUtilMinima = ParametrosParaEditar.VidaUtilMinima;
+                ParametrosEditados.ValorMinimoDepreciacao = ParametrosParaEditar.ValorMinimoDepreciacao;
+               
                
                 ContextoConfiguracao.SaveChanges();
  

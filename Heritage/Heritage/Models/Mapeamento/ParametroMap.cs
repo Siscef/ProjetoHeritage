@@ -23,7 +23,9 @@ namespace Heritage.Models.Mapeamento
             Map(x => x.EstadoParaExibir, "EstadoParaExibir").Length(100);
             Map(x => x.EMatriz, "EMatriz");
             Map(x => x.RamoEmpresarial, "RamoEmpresarial").Length(100);
-            Map(x => x.TipoParaDepreciacao, "TipoParaDepreciacao");
+            Map(x => x.ValorMinimoDepreciacao, "ValorMinimoDepreciacao").Not.Nullable();
+            Map(x => x.VidaUtilMinima, "VidaUtilMinima").Not.Nullable();
+           
 
         }
     }

@@ -28,7 +28,7 @@
                         @Html.LabelFor(model => model.NomeEmpresaParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.NomeEmpresaParaExibir)
+                        @Html.TextBoxFor(model => model.NomeEmpresaParaExibir, new { placeholder = "Digite a razão social da empresa"})
                         @Html.ValidationMessageFor(model => model.NomeEmpresaParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -39,7 +39,7 @@
                         @Html.LabelFor(model => model.CnpjParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.CnpjParaExibir)
+                        @Html.TextBoxFor(model => model.CnpjParaExibir, new { placeholder = "Digite o cnpj da empresa"})
                         @Html.ValidationMessageFor(model => model.CnpjParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -51,7 +51,7 @@
                         @Html.LabelFor(model => model.IEParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.IEParaExibir)
+                        @Html.TextBoxFor(model => model.IEParaExibir, new { placeholder = "Digite a inscrição estadual da empresa"})
                         @Html.ValidationMessageFor(model => model.IEParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -62,7 +62,7 @@
                         @Html.LabelFor(model => model.EnderecoParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.EnderecoParaExibir)
+                        @Html.TextBoxFor(model => model.EnderecoParaExibir, new {placeholder = "Digite o endereço da empresa, com número" })
                         @Html.ValidationMessageFor(model => model.EnderecoParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -73,7 +73,7 @@
                         @Html.LabelFor(model => model.BairroParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.BairroParaExibir)
+                        @Html.TextBoxFor(model => model.BairroParaExibir, new { placeholder = "Digite o bairro da empresa"})
                         @Html.ValidationMessageFor(model => model.BairroParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -84,7 +84,7 @@
                         @Html.LabelFor(model => model.CidadeParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.CidadeParaExibir)
+                        @Html.TextBoxFor(model => model.CidadeParaExibir, new {placeholder = "Digite a cidade da empresa" })
                         @Html.ValidationMessageFor(model => model.CidadeParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -95,7 +95,7 @@
                         @Html.LabelFor(model => model.EstadoParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.EstadoParaExibir)
+                        @Html.TextBoxFor(model => model.EstadoParaExibir, new {placeholder="Digite o estado(uf) da empresa" })
                         @Html.ValidationMessageFor(model => model.EstadoParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -106,7 +106,7 @@
                         @Html.LabelFor(model => model.TelefoneParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.TelefoneParaExibir)
+                        @Html.TextBoxFor(model => model.TelefoneParaExibir, new {placeholder="Digite o telefone da empresa" })
                         @Html.ValidationMessageFor(model => model.TelefoneParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -117,7 +117,7 @@
                         @Html.LabelFor(model => model.EmailParaExibir)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.EmailParaExibir)
+                        @Html.TextBoxFor(model => model.EmailParaExibir, new {placeholder="Digite o email da empresa" })
                         @Html.ValidationMessageFor(model => model.EmailParaExibir)
                     </div>
                     <div class="clear"></div>
@@ -139,23 +139,36 @@
                         @Html.LabelFor(model => model.RamoEmpresarial)
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.RamoEmpresarial)
+                        @Html.TextBoxFor(model => model.RamoEmpresarial, new { placeholder = "Digite a atividade econômica da empresa"})
                         @Html.ValidationMessageFor(model => model.RamoEmpresarial)
                     </div>
                     <div class="clear"></div>
                 </div>
 
-                 <div class="row-form">
+                <div class="row-form">
                     <div class="span2">
-                        @Html.LabelFor(model => model.TipoParaDepreciacao, "Tipo Depreciação:")
+                        @Html.LabelFor(model => model.ValorMinimoDepreciacao)
                     </div>
                     <div class="span9">
-                        @Html.DropDownListFor(model => model.TipoParaDepreciacao,(from Heritage.Models.TipoDepreciacao e in Enum.GetValues(typeof(Heritage.Models.TipoDepreciacao))
-                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione Tipo Depreciação")
-                        @Html.ValidationMessageFor(model => model.TipoParaDepreciacao)
+                        @Html.TextBoxFor(model => model.ValorMinimoDepreciacao, new { placeholder = "Digite o valor mínimo para o bem ser depreciado."})
+                        @Html.ValidationMessageFor(model => model.ValorMinimoDepreciacao)
                     </div>
                     <div class="clear"></div>
                 </div>
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.VidaUtilMinima)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.VidaUtilMinima, new { placeholder = "Digite a vida útil mínima para depreciação, em anos. Exemplo: 1"})
+                        @Html.ValidationMessageFor(model => model.VidaUtilMinima)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                
 
                 <div class="row-form">
                     <div class="span2">

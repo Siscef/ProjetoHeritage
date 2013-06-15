@@ -179,7 +179,8 @@
                                     <td>
                                         @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Localizacao }) |
                                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Localizacao }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Localizacao })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Localizacao })|
+                                        @Html.ActionLink("Ver Bens","LocationToProperty", new {id = item.Id_Localizacao})
                                     </td>
                                 </tr>
                             }

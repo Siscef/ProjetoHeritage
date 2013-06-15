@@ -183,5 +183,14 @@ namespace Heritage.Areas.Administracao.Controllers
                                                   .ToList();
             return View(ListLocationView);
         }
+
+
+        public ActionResult LocationToProperty(int id)
+        {
+            IList<Bem> ListPropertyToLocation = ContextoLocalizacao.GetAll<Bem>()
+                                                .Where(x => x.IdLocalizacao.Id_Localizacao == id)
+                                                .ToList();
+            return View(ListPropertyToLocation);
+        }
     }
 }

@@ -177,7 +177,8 @@
                                     <td>
                                         @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Categoria }) |
                                        @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Categoria }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Categoria })
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Categoria })|
+                                        @Html.ActionLink("Ver Bens", "PropertyByCategory", new {id=item.Id_Categoria })
                                     </td>
                                 </tr>
                             }

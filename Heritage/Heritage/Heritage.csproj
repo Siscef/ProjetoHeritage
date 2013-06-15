@@ -353,6 +353,7 @@
     <Compile Include="Models\Grupo.cs" />
     <Compile Include="Models\HistoricoBem.cs" />
     <Compile Include="Models\Interface\IMaiusculo.cs" />
+    <Compile Include="Models\LancamentoDepreciacao.cs" />
     <Compile Include="Models\Localizacao.cs" />
     <Compile Include="Models\ManutencaoBem.cs" />
     <Compile Include="Models\Mapeamento\AssistenciaTecnicaMap.cs" />
@@ -370,6 +371,7 @@
     <Compile Include="Models\Mapeamento\FornecedorMap.cs" />
     <Compile Include="Models\Mapeamento\GrupoMap.cs" />
     <Compile Include="Models\Mapeamento\HistoricoBemMap.cs" />
+    <Compile Include="Models\Mapeamento\LancamentoDepreciacaoMap.cs" />
     <Compile Include="Models\Mapeamento\LocalizacaoMap.cs" />
     <Compile Include="Models\Mapeamento\ManutencaoBemMap.cs" />
     <Compile Include="Models\Mapeamento\PapelMap.cs" />
@@ -885,6 +887,8 @@
     <Content Include="Content\aquarius\img\ui\ui-icons_888888_5F256x240.png" />
     <Content Include="Content\aquarius\img\ui\ui-icons_cd0a0a_5F256x240.png" />
     <Content Include="Content\aquarius\img\users\aqvatarius.jpg" />
+    <Content Include="Content\simple-tabs-css\simpletabs.css" />
+    <Content Include="Content\simple-tabs-css\style.css" />
     <Content Include="Scripts\2013.1.219\jquery-1.7.1.min.js" />
     <Content Include="Scripts\2013.1.219\jquery.validate.min.js" />
     <Content Include="Scripts\2013.1.219\telerik.all.min.js" />
@@ -937,6 +941,7 @@
     <Content Include="Scripts\js\plugins\jquery\jquery.mousewheel.min.js" />
     <Content Include="Scripts\js\plugins\maskedinput\jquery.maskedinput-1.3.min.js" />
     <Content Include="Scripts\js\plugins\mcustomscrollbar\jquery.mCustomScrollbar.min.js" />
+    <Content Include="Scripts\js\plugins\plugins.js" />
     <Content Include="Scripts\js\plugins\qtip\jquery.qtip-1.0.0-rc3.min.js" />
     <Content Include="Scripts\js\plugins\select2\select2.min.js" />
     <Content Include="Scripts\js\plugins\sparklines\jquery.sparkline.min.js" />
@@ -1024,7 +1029,7 @@
     <Content Include="Areas\Administracao\Views\Bem\AllProperty.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\CalculatesDepreciationOfAssets.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\CheckHistoricalDepreciation.cshtml" />
-    <Content Include="Areas\Administracao\Views\Bem\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\CreateOriginal.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\Delete.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\Details.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\Edit.cshtml" />
@@ -1157,6 +1162,16 @@
     <Content Include="Areas\Administracao\Views\Bem\ListPisCofins.cshtml" />
     <Content Include="Areas\Contabil\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\StatusProperty.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\BuyToDate.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\BensCompradosPeriodo.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\PropertyByResponsable.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\BensPorResponsavel.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\PropertyToProvider.cshtml" />
+    <Content Include="Areas\Administracao\Views\Categoria\PropertyByCategory.cshtml" />
+    <Content Include="Areas\Administracao\Views\Grupo\PropertyByGroup.cshtml" />
+    <Content Include="Areas\Administracao\Views\Localizacao\LocationToProperty.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\Create.cshtml" />
+    <Content Include="Areas\Administracao\Views\Shared\_LayoutTab.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />
@@ -1190,6 +1205,8 @@
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pgsql_membership.sql" />
+    <Content Include="Scripts\simple-tabs-js\simpletabs_1.3.js" />
+    <Content Include="Scripts\simple-tabs-js\simpletabs_1.3.packed.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

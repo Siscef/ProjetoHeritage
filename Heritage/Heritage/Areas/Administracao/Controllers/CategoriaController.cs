@@ -188,5 +188,17 @@ namespace Heritage.Areas.Administracao.Controllers
                                                .ToList();
             return View(ListAllCategory);
         }
+
+
+        public ActionResult PropertyByCategory(int id)
+        {
+            IList<Bem> BensPorCategoria = ContextoCategoria.GetAll<Bem>()
+                                          .Where(x => x.IdCategoria.Id_Categoria == id)
+                                          .OrderBy(x => x.Descricao)
+                                          .ToList();
+
+            return View(BensPorCategoria);
+        }
+
     }
 }

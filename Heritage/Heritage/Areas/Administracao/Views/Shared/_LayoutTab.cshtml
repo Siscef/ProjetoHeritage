@@ -1,25 +1,23 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-   
-   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    
-    <title>@ViewBag.Title</title>
 
-    <link rel="icon" type="image/ico" href="../../../../Content/aquarius/favicon.ico" />
-    <link href="../../../../Content/aquarius/css/stylesheets.css" rel="stylesheet" />
-    <link href="../../../../Content/aquarius/css/fullcalendar.print.css" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+
+    <title>@ViewBag.Title</title>
    
-    
-    <script  src="@Url.Content("~/Scripts/js/mascaras.js")" type="text/javascript"></script>
-    <script  src="@Url.Content("~/Scripts/jquery-1.6.3.min.js")" type="text/javascript"></script>
-    
-    <script  src="@Url.Content("~/Scripts/jquery.cep-1.0.min.js")" type="text/javascript"></script>
-    <script  src="@Url.Content("~/Scripts/AcharCep.js")" type="text/javascript"></script>    
-    
-    
-    @Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.min.css").Add("telerik.Default.css").Add("telerik.rtl.css"))
+    <link rel="icon" type="image/ico" href="../../../../Content/aquarius/favicon.ico" />
+    <link href="../../../../Content/simple-tabs-css/simpletabs.css" rel="stylesheet" />
+    <link href="../../../../Content/simple-tabs-css/style.css" rel="stylesheet" />
+     <link href="../../../../Content/aquarius/css/stylesheets.css" rel="stylesheet" />
+   
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+     <script src="@Url.Content("~/Scripts/simple-tabs-js/simpletabs_1.3.js")" type="text/javascript"></script>
+   
+  
+
+    @Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.min.css").Add("telerik.Default.css").Add("telerik.rtl.css")) 
 
 
 </head>
@@ -41,7 +39,7 @@
     </div>
 
     @RenderBody()
-    @Html.Telerik().ScriptRegistrar().jQuery(false)
+    @Html.Telerik().ScriptRegistrar().jQuery(true)
 
 </body>
 </html>

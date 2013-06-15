@@ -18,9 +18,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult Index()
         {
-            BemController Bem = new BemController();
-            Bem.CalculatesDepreciationOfAssets(User.Identity.Name);
-            
+                       
            var TodosBens = (from bem in ContextoBem.GetAll<Bem>()
                             select new { Id_Bem = bem.Id_Bem, ValorAtual = bem.ValorAtual, ValorCompra = bem.ValorCompra, ValorDepreciado = bem.ValorDepreciado, TaxaDepreciacaoAnual = bem.TaxaDepreciacaoAnual ,Descontinuado = bem.Descontinuado,Inativo = bem.Inativo }).ToList();
 
@@ -75,6 +73,13 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult Principal()
         {
+            IList<Parametros> ListaVerParametrosSistema = ContextoBem.GetAll<Parametros>()
+                                                          .ToList();
+            if (ListaVerParametrosSistema.Count() == 0)
+            {
+               return RedirectToAction("Create", "ConfiguracaoSistema");
+                
+            }
             return View();
         }
     }

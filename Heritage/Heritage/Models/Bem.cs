@@ -61,12 +61,34 @@ namespace Heritage.Models
         public virtual Responsavel IdResponsavel { get; set; }
         [Required(ErrorMessage = "A data para início da depreciação não pode ser vazia.")]
         [DataType(DataType.Date)]
-        [Display(Name = "Data Início Depreciação:")]
+        [Display(Name = "Data início depreciação:")]
         public virtual DateTime DataInicioDepreciacao { get; set; }
-        [Display(Name = "Depreciação Ativa?")]
+        [Display(Name = "Depreciação ativa?")]
         public virtual bool DepreciacaoAtiva { get; set; }
         [Display(Name = "O bem é depreciável?")]
         public virtual bool BemDepreciavel { get; set; }
+        [Display(Name="Valor residual:")]
+        [Range(0, int.MaxValue, ErrorMessage = "O Valor residual não pode ser negativo.")]
+        public virtual double ValorResidual { get; set; }
+        [Display(Name="Valor depreciável:")]
+        [Range(0, int.MaxValue, ErrorMessage = "O Valor depreciável não pode ser negativo.")]
+        public virtual double ValorDepreciavel { get; set; }
+        [Display(Name="Valor contábil:")]
+        [Range(0, int.MaxValue, ErrorMessage = "O Valor contábil não pode ser negativo.")]
+        public virtual double ValorContabil { get; set; }
+        [Required(ErrorMessage="O tipo depreciação do bem não pode ser vazia.")]
+        public virtual TipoDepreciacao TipoParaDepreciacao { get; set; }
+        [Display(Name = "Horas trabalhadas período:")]
+        public virtual double HorasTrabalhdadasPeriodo { get; set; }
+        [Display(Name = "Horas estimadas vida útil:")]
+        public virtual double HorasEstimadaVidaUtil { get; set; }
+        [Display(Name = "Unidade produzidas período:")]
+        public virtual double UnidadesProduzidasPeriodo { get; set; }
+        [Display(Name = "Unidades estimadas vida útil:")]
+        public virtual double UnidadesEstimadasVidaUtil { get; set; }
+        [Display(Name = "Valor salvamento:")]
+        public virtual double ValorSalvamento { get; set; }
+
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<HistoricoBem> IdsHistoricoBem { get; set; }
         public virtual IList<DepreciacaoBem> IdsDepreciacaoBem { get; set; }

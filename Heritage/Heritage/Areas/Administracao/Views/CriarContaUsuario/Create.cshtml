@@ -50,7 +50,7 @@
                         @Html.LabelFor(model => model.Senha, "Senha:")
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.Senha, new { placeholder = "Digite a senha." })
+                        @Html.EditorFor(model => model.Senha, new { placeholder = "Digite a senha.",maxlength="15" })
                         @Html.ValidationMessageFor(model => model.Senha)
                     </div>
                     <div class="clear"></div>
@@ -61,7 +61,7 @@
                         @Html.LabelFor(model => model.ConfirmeSenha, "Repetir senha:")
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.ConfirmeSenha, new { placeholder = "Digite a senha novamente." })
+                        @Html.EditorFor(model => model.ConfirmeSenha, new { placeholder = "Digite a senha novamente.",maxlength="15" })
                         @Html.ValidationMessageFor(model => model.ConfirmeSenha)
                     </div>
                     <div class="clear"></div>

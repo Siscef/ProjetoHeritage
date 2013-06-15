@@ -110,51 +110,55 @@
                     <div class="clear"></div>
                 </div>
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.Inativo)
-                    </div>
-                    <div class="span9">
-                        @Html.EditorFor(model => model.Inativo)
-                        @Html.ValidationMessageFor(model => model.Inativo)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.DepreciacaoAtiva)
-                    </div>
-                    <div class="span9">
-                        @Html.EditorFor(model => model.DepreciacaoAtiva)
-                        @Html.ValidationMessageFor(model => model.DepreciacaoAtiva)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
                  <div class="row-form">
                     <div class="span2">
-                        @Html.LabelFor(model => model.BemDepreciavel)
+                        @Html.LabelFor(model => model.TipoParaDepreciacao, "Tipo Depreciação:")
                     </div>
                     <div class="span9">
-                        @Html.EditorFor(model => model.BemDepreciavel)
-                        @Html.ValidationMessageFor(model => model.BemDepreciavel)
+                        @Html.DropDownListFor(model => model.TipoParaDepreciacao,(from Heritage.Models.TipoDepreciacao e in Enum.GetValues(typeof(Heritage.Models.TipoDepreciacao))
+                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione Tipo Depreciação")
+                        @Html.ValidationMessageFor(model => model.TipoParaDepreciacao)
                     </div>
                     <div class="clear"></div>
                 </div>
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.Descontinuado)
-                    </div>
-                    <div class="span9">
-                        @Html.EditorFor(model => model.Descontinuado)
-                        @Html.ValidationMessageFor(model => model.Descontinuado)
+
+                  <div class="row-form">
+
+                    <div class="span7">
+                        <div class="checkbox inline">
+                            @Html.LabelFor(model => model.DepreciacaoAtiva)
+                            @Html.EditorFor(model => model.DepreciacaoAtiva)
+                            @Html.ValidationMessageFor(model => model.DepreciacaoAtiva)
+
+                        </div>
+                        <div class="checkbox inline">
+                            @Html.LabelFor(model => model.BemDepreciavel)
+                            @Html.EditorFor(model => model.BemDepreciavel)
+                            @Html.ValidationMessageFor(model => model.BemDepreciavel)
+
+                        </div>
+
+                        <div class="checkbox inline">
+                            @Html.LabelFor(model => model.Descontinuado)
+                            @Html.EditorFor(model => model.Descontinuado)
+                            @Html.ValidationMessageFor(model => model.Descontinuado)
+
+                        </div>
+
+                        <div class="checkbox inline">
+                            @Html.LabelFor(model => model.Inativo)
+                            @Html.EditorFor(model => model.Inativo)
+                            @Html.ValidationMessageFor(model => model.Inativo)
+
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
+                <!-- fim das checkboxs-->             
 
+
+                
                 <div class="row-form">
                     <div class="span2">
                         @Html.LabelFor(model => model.NumeroNotaFiscal)
@@ -176,6 +180,29 @@
                     </div>
                     <div class="clear"></div>
                 </div>
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ValorResidual)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.ValorResidual, new { placeholder = "Por qual valor dejesas vender o bem após depreciação.Caso não queira, preencher com zero." })
+                        @Html.ValidationMessageFor(model => model.ValorResidual)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+                 <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ValorContabil)
+                    </div>
+                    <div class="span9">
+                        @Html.TextBoxFor(model => model.ValorContabil, new { placeholder = "O valor contábil, se o bem for novo é o preço de compra.Caso seja usado o valor de mercado." })
+                        @Html.ValidationMessageFor(model => model.ValorContabil)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
 
                 <div class="row-form">
                     <div class="span2">

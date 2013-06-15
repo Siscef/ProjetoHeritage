@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Heritage.Models;
 
 namespace Heritage.Models.Mapeamento
 {
@@ -27,6 +28,15 @@ namespace Heritage.Models.Mapeamento
             Map(x => x.TaxaDepreciacaoAnual, "TaxaDepreciacaoAnual").Not.Nullable();
             Map(x => x.DepreciacaoAtiva, "DepreciacaoAtiva").Nullable();
             Map(x => x.BemDepreciavel, "BemDepreciavel").Nullable();
+            Map(x => x.ValorContabil, "ValorContabil").Nullable().Check("ValorContabil > 0");
+            Map(x => x.ValorResidual, "ValorResidual").Nullable();
+            Map(x => x.ValorDepreciavel, "ValorDepreciavel").Nullable();
+            Map(x => x.TipoParaDepreciacao, "TipoParaDepreciacao");
+            Map(x => x.HorasEstimadaVidaUtil, "HorasEstimadaVidaUtil").Nullable();
+            Map(x => x.HorasTrabalhdadasPeriodo, "HorasTrabalhdadasPeriodo").Nullable();
+            Map(x => x.UnidadesEstimadasVidaUtil, "UnidadesEstimadasVidaUtil").Nullable();
+            Map(x => x.UnidadesProduzidasPeriodo, "UnidadesProduzidasPeriodo").Nullable();
+            Map(x => x.ValorSalvamento, "ValorSalvamento").Nullable();
 
 
             References(x => x.IdEstadoConservacao, "IdEstadoConservacao")

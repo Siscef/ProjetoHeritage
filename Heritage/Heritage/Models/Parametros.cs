@@ -15,11 +15,11 @@ namespace Heritage.Models
     public class Parametros
     {
         public virtual long IdParametro { get; set; }
-        [Display(Name="Nome Empresa:")]
+        [Display(Name="Nome empresa:")]
         public virtual string NomeEmpresaParaExibir { get; set; }
         [Display(Name="CNPJ:")]
         public virtual string CnpjParaExibir { get; set; }
-        [Display(Name="Inscrição Estadual:")]
+        [Display(Name="Inscrição estadual:")]
         public virtual string IEParaExibir { get; set; }
         [Display(Name="Endereço:")]
         public virtual string EnderecoParaExibir { get; set; }
@@ -32,11 +32,14 @@ namespace Heritage.Models
         [Display(Name="Telefone:")]
         public virtual string TelefoneParaExibir { get; set; }
         [Display(Name="E-mail:")]
-        public virtual string EmailParaExibir { get; set; }
-        public virtual TipoDepreciacao TipoParaDepreciacao { get; set; }
+        public virtual string EmailParaExibir { get; set; }       
         [Display(Name="Matriz?")]
         public virtual bool EMatriz { get; set; }
-        [Display(Name="Ramo Empresarial:")]
+        [Display(Name="Atividade econômica:")]
         public virtual string RamoEmpresarial { get; set; }
+        [Display(Name="Valor mínimo depreciação:")]
+        public virtual double ValorMinimoDepreciacao { get; set; }
+        [Display(Name="Vida útil em anos:")]
+        public virtual int VidaUtilMinima { get; set; }
     }
 }

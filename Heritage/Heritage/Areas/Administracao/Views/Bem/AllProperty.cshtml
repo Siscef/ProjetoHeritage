@@ -187,8 +187,8 @@
 
                                 <th width="25%">Id:</th>
                                 <th width="25%">Descrição:</th> 
-                                <th width="25%">Valor Compra</th>                               
-                                <th width="25%">Operações:</th>
+                                <th width="25%">Valor Compra:</th>                               
+                                <th width="25%">Categoria:</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -209,9 +209,7 @@
                                     </td>
                                    
                                     <td>
-                                        @Html.ActionLink("Alterar", "Edit", new { id = item.Id_Bem }) |
-                                       @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Bem }) |
-                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id_Bem })
+                                       @Html.DisplayFor(modelItem => item.IdCategoria.Nome)
                                     </td>
                                 </tr>
                             }

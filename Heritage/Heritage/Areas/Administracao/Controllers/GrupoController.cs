@@ -181,5 +181,14 @@ namespace Heritage.Areas.Administracao.Controllers
                                          .ToList();
             return View(ListAllGroup);
         }
+
+        public ActionResult PropertyByGroup(int id)
+        {
+            IList<Bem> ListaBensByGroup = ContextoGrupo.GetAll<Bem>()
+                                          .Where(x => x.IdGrupo.Id_Grupo == id)
+                                          .OrderBy(x => x.Descricao)
+                                          .ToList();
+            return View(ListaBensByGroup);
+        }
     }
 }
