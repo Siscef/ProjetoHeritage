@@ -1,8 +1,7 @@
 ﻿@model Heritage.Models.Bem
-
 @{
     ViewBag.Title = "Edit";
-    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Administracao/Views/Shared/_LayoutTab.cshtml";
 }
 <div class="span9">
     @Html.ActionLink("Página Inicial", "Index")
@@ -15,274 +14,397 @@
             <h2>Editar Bem: @ViewBag.Descricao</h2>
             <div class="clear"></div>
         </div>
+
+         <div class="@ViewBag.NomeDiv">
+            <h4>@ViewBag.Titulo</h4>
+            @ViewBag.Mensagem
+        </div>
+
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(model => model.Id_Bem)
             <div class="block-fluid">
                 @Html.ValidationSummary(true)
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.Descricao)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.Descricao)
-                        @Html.ValidationMessageFor(model => model.Descricao)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                <div class="simpleTabs">
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdEstadoConservacao, "Estado Conservação:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdEstadoConservacao.Id_EstadoConservacao, (IEnumerable<SelectListItem>)ViewBag.EstadoConservacao, "Selecione Estado Conservação")@Html.ActionLink("Novo Estado Conservação", "Create", "EstadoConservacao")
-                        @Html.ValidationMessageFor(model => model.IdEstadoConservacao)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                    <!-- dados -->
+                    <div class="simpleTabsContent">
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdEstabelecimento, "Estabelecimento:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdEstabelecimento.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Estabelecimento, "Selecione Estabelecimento")@Html.ActionLink("Novo Estabelecimento ", "Create", "Estabelecimento")
-                        @Html.ValidationMessageFor(model => model.IdEstabelecimento)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdFornecedor, "Fornecedor:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdFornecedor.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Fornecedor, "Selecione Fornecedor")@Html.ActionLink("Novo Fornecedor", "Create", "Fornecedor")
-                        @Html.ValidationMessageFor(model => model.IdFornecedor)
-                    </div>
-                    <div class="clear"></div>
-
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdCategoria, "Categoria:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdCategoria.Id_Categoria, (IEnumerable<SelectListItem>)ViewBag.Categoria, "Selecione Categoria")@Html.ActionLink("Nova Categoria", "Create", "Categoria")
-                        @Html.ValidationMessageFor(model => model.IdCategoria)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdGrupo, "Grupo:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdGrupo.Id_Grupo, (IEnumerable<SelectListItem>)ViewBag.Grupo, "Selecione Grupo")@Html.ActionLink("Novo Grupo", "Create", "Grupo")
-                        @Html.ValidationMessageFor(model => model.IdGrupo)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdLocalizacao, "Localizacao:")
-                    </div>
-
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdLocalizacao.Id_Localizacao, (IEnumerable<SelectListItem>)ViewBag.Localizacao, "Selecione Localizacao")@Html.ActionLink("Nova Localizacao", "Create", "Localizacao")
-                        @Html.ValidationMessageFor(model => model.IdLocalizacao)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.IdResponsavel, "Responsavel:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.IdResponsavel.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Responsavel, "Selecione Responsavel")@Html.ActionLink("Novo Responsavel", "Create", "Responsavel")
-                        @Html.ValidationMessageFor(model => model.IdResponsavel)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                 <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.TipoParaDepreciacao, "Tipo Depreciação:")
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownListFor(model => model.TipoParaDepreciacao,(from Heritage.Models.TipoDepreciacao e in Enum.GetValues(typeof(Heritage.Models.TipoDepreciacao))
-                                                     select new SelectListItem {Value = ((int)e).ToString(),Text = e.ToString() }),"Selecione Tipo Depreciação")
-                        @Html.ValidationMessageFor(model => model.TipoParaDepreciacao)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-
-                  <div class="row-form">
-
-                    <div class="span7">
-                        <div class="checkbox inline">
-                            @Html.LabelFor(model => model.DepreciacaoAtiva)
-                            @Html.EditorFor(model => model.DepreciacaoAtiva)
-                            @Html.ValidationMessageFor(model => model.DepreciacaoAtiva)
-
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.Descricao)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.Descricao, new { placeholder = "Digite a descrição do bem. Todos os detalhes" })
+                                @Html.ValidationMessageFor(model => model.Descricao)
+                            </div>
+                            <div class="clear"></div>
                         </div>
-                        <div class="checkbox inline">
-                            @Html.LabelFor(model => model.BemDepreciavel)
-                            @Html.EditorFor(model => model.BemDepreciavel)
-                            @Html.ValidationMessageFor(model => model.BemDepreciavel)
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorCompra)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorCompra, new { placeholder = "Digite o valor de compra" })
+                                @Html.ValidationMessageFor(model => model.ValorCompra)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.NumeroNotaFiscal)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.NumeroNotaFiscal, new { placeholder = "Digite o número da nota fiscal de compra" })
+                                @Html.ValidationMessageFor(model => model.NumeroNotaFiscal)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.DataAquisicao)
+                            </div>
+                            <div class="span9">
+                                @Html.Telerik().DatePickerFor(model => model.DataAquisicao)
+                                @Html.ValidationMessageFor(model => model.DataAquisicao)
+                                @ViewBag.DataInvalida
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorContabil)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorContabil, new { placeholder = "O valor contábil, se o bem for novo é o preço de compra.Caso seja usado o valor de mercado." })
+                                @Html.ValidationMessageFor(model => model.ValorContabil)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorResidual)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorResidual, new { placeholder = "Por qual valor dejesas vender o bem após depreciação.Caso não queira, preencher com zero." })
+                                @Html.ValidationMessageFor(model => model.ValorResidual)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.CoeficienteDepreciacao)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.CoeficienteDepreciacao, new { placeholder = "Digite o coeficinte depreciação para turno de 8(oito) horas: 1- um turno, 1,5- dois turnos, 2-três turnos" })
+                                @Html.ValidationMessageFor(model => model.CoeficienteDepreciacao)
+                            </div>
+                            <div class="clear"></div>
 
                         </div>
 
-                        <div class="checkbox inline">
-                            @Html.LabelFor(model => model.Descontinuado)
-                            @Html.EditorFor(model => model.Descontinuado)
-                            @Html.ValidationMessageFor(model => model.Descontinuado)
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.TaxaDepreciacaoAnual)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.TaxaDepreciacaoAnual, new { placeholder = "Digite a taxa depreciação anual por exemplo: 5,10,15,20 etc." })
+                                @Html.ValidationMessageFor(model => model.TaxaDepreciacaoAnual)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.Pis)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.Pis, new { placeholder = "Digite o pis do bem" })
+                                @Html.ValidationMessageFor(model => model.Pis)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.Cofins)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.Cofins, new { placeholder = "Digite o cofins do bem" })
+                                @Html.ValidationMessageFor(model => model.Cofins)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+
+                    </div>
+
+
+                    <!-- fim dados -->
+
+                    <!-- referencias -->
+                    <div class="simpleTabsContent">
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdEstadoConservacao, "Estado Conservação:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdEstadoConservacao.Id_EstadoConservacao, (IEnumerable<SelectListItem>)ViewBag.EstadoConservacao, "Selecione Estado Conservação")@Html.ActionLink("Novo Estado Conservação", "Create", "EstadoConservacao")
+                                @Html.ValidationMessageFor(model => model.IdEstadoConservacao)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdEstabelecimento, "Estabelecimento:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdEstabelecimento.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Estabelecimento, "Selecione Estabelecimento")@Html.ActionLink("Novo Estabelecimento ", "Create", "Estabelecimento")
+                                @Html.ValidationMessageFor(model => model.IdEstabelecimento)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdFornecedor, "Fornecedor:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdFornecedor.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Fornecedor, "Selecione Fornecedor")@Html.ActionLink("Novo Fornecedor", "Create", "Fornecedor")
+                                @Html.ValidationMessageFor(model => model.IdFornecedor)
+                            </div>
+                            <div class="clear"></div>
+
+                        </div>
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdCategoria, "Categoria:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdCategoria.Id_Categoria, (IEnumerable<SelectListItem>)ViewBag.Categoria, "Selecione Categoria")@Html.ActionLink("Nova Categoria", "Create", "Categoria")
+                                @Html.ValidationMessageFor(model => model.IdCategoria)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdGrupo, "Grupo:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdGrupo.Id_Grupo, (IEnumerable<SelectListItem>)ViewBag.Grupo, "Selecione Grupo")@Html.ActionLink("Novo Grupo", "Create", "Grupo")
+                                @Html.ValidationMessageFor(model => model.IdGrupo)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdLocalizacao, "Localização:")
+                            </div>
+
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdLocalizacao.Id_Localizacao, (IEnumerable<SelectListItem>)ViewBag.Localizacao, "Selecione Localizacao")@Html.ActionLink("Nova Localizacao", "Create", "Localizacao")
+                                @Html.ValidationMessageFor(model => model.IdLocalizacao)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.IdResponsavel, "Responsável:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.IdResponsavel.Id_Pessoa, (IEnumerable<SelectListItem>)ViewBag.Responsavel, "Selecione Responsavel")@Html.ActionLink("Novo Responsavel", "Create", "Responsavel")
+                                @Html.ValidationMessageFor(model => model.IdResponsavel)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
+
+
+                    </div>
+
+                    <ul class="simpleTabsNavigation">
+
+                        <li><a href="#">Dados</a></li>
+                        <li><a href="#">Referências</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
+
+                    <!-- fim referencias -->
+
+                    <!-- configuracoes -->
+                    <div class="simpleTabsContent">
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.TipoParaDepreciacao, "Tipo Depreciação:")
+                            </div>
+                            <div class="span9">
+                                @Html.DropDownListFor(model => model.TipoParaDepreciacao, (from Heritage.Models.TipoDepreciacao e in Enum.GetValues(typeof(Heritage.Models.TipoDepreciacao))
+                                                                                           select new SelectListItem { Value = ((int)e).ToString(), Text = e.ToString() }), "Selecione Tipo Depreciação")
+                                @Html.ValidationMessageFor(model => model.TipoParaDepreciacao)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.HorasTrabalhdadasPeriodo)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.HorasTrabalhdadasPeriodo, new { placeholder = "Digite a quantidade de horas trabalhadas no período." })
+                                @Html.ValidationMessageFor(model => model.HorasTrabalhdadasPeriodo)
+
+                            </div>
+                            <div class="clear"></div>
 
                         </div>
 
-                        <div class="checkbox inline">
-                            @Html.LabelFor(model => model.Inativo)
-                            @Html.EditorFor(model => model.Inativo)
-                            @Html.ValidationMessageFor(model => model.Inativo)
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.HorasEstimadaVidaUtil)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.HorasEstimadaVidaUtil, new { placeholder = "Digite a quantidade de horas estimada para este bem, durante toda sua vida útil." })
+                                @Html.ValidationMessageFor(model => model.HorasEstimadaVidaUtil)
+
+                            </div>
+                            <div class="clear"></div>
 
                         </div>
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <!-- fim das checkboxs-->             
 
 
-                
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.NumeroNotaFiscal)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.NumeroNotaFiscal, new {placeholder="Digite o número da nota fiscal de compra" })
-                        @Html.ValidationMessageFor(model => model.NumeroNotaFiscal)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.UnidadesProduzidasPeriodo)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.UnidadesProduzidasPeriodo, new { placeholder = "Digite a quantidade de unidades produzidas no período." })
+                                @Html.ValidationMessageFor(model => model.UnidadesProduzidasPeriodo)
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.ValorCompra)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.ValorCompra, new {placeholder="Digite o valor de compra" })
-                        @Html.ValidationMessageFor(model => model.ValorCompra)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                            </div>
+                            <div class="clear"></div>
 
-                 <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.ValorResidual)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.ValorResidual, new { placeholder = "Por qual valor dejesas vender o bem após depreciação.Caso não queira, preencher com zero." })
-                        @Html.ValidationMessageFor(model => model.ValorResidual)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-
-                 <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.ValorContabil)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.ValorContabil, new { placeholder = "O valor contábil, se o bem for novo é o preço de compra.Caso seja usado o valor de mercado." })
-                        @Html.ValidationMessageFor(model => model.ValorContabil)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                        </div>
 
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.CoeficienteDepreciacao)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.CoeficienteDepreciacao, new { placeholder="Digite o coeficinte depreciação para turno de 8(oito) horas: 1- um turno, 1,5- dois turnos, 2-três turnos"})
-                        @Html.ValidationMessageFor(model => model.CoeficienteDepreciacao)
-                    </div>
-                    <div class="clear"></div>
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.UnidadesEstimadasVidaUtil)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.UnidadesEstimadasVidaUtil, new { placeholder = "Digite a quantidade de unidades estimadas a serem produzidas durante toda vida útil do bem." })
+                                @Html.ValidationMessageFor(model => model.UnidadesEstimadasVidaUtil)
 
-                </div>    
-                
-                  <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.TaxaDepreciacaoAnual)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.TaxaDepreciacaoAnual, new { placeholder = "Digite a taxa depreciação anual por exemplo: 5,10,15,20 etc." })
-                        @Html.ValidationMessageFor(model => model.TaxaDepreciacaoAnual)
-                    </div>
-                    <div class="clear"></div>
-                </div>          
+                            </div>
+                            <div class="clear"></div>
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.Pis)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.Pis, new { placeholder="Digite o Pis do bem"})
-                        @Html.ValidationMessageFor(model => model.Pis)
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                        </div>
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.Cofins)
-                    </div>
-                    <div class="span9">
-                        @Html.TextBoxFor(model => model.Cofins, new { placeholder="Digite o Cofins do bem"})
-                        @Html.ValidationMessageFor(model => model.Cofins)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.DataAquisicao)
-                    </div>
-                    <div class="span9">
-                        @Html.Telerik().DatePickerFor(model => model.DataAquisicao)
-                        @Html.ValidationMessageFor(model => model.DataAquisicao)
-                        @ViewBag.DataInvalida
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorSalvamento)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorSalvamento, new { placeholder = "Digite o valor de salvamento, este campo só deve ser preenchido caso queira utilizar a depreciaçaõ com valor de salvamento." })
+                                @Html.ValidationMessageFor(model => model.ValorSalvamento)
 
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.DataInicioDepreciacao)
-                    </div>
-                    <div class="span9">
-                        @Html.Telerik().DatePickerFor(model => model.DataInicioDepreciacao)
-                        @Html.ValidationMessageFor(model => model.DataInicioDepreciacao)
-                        @ViewBag.DataInicioDepreciacaoMaior
-                    </div>
-                    <div class="clear"></div>
+                            </div>
+                            <div class="clear"></div>
 
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorMaximoDepreciacao)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorMaximoDepreciacao, new { placeholder = "Digite o valor máximo para a depreciação bem.Este valor utlizado como base de cálculo. por exemplo: valor compra: 3000, valor máximo para depreciar: 2500" })
+                                @Html.ValidationMessageFor(model => model.ValorMaximoDepreciacao)
+
+                            </div>
+                            <div class="clear"></div>
+
+                        </div>
+
+                        <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.DataInicioDepreciacao)
+                            </div>
+                            <div class="span9">
+                                @Html.Telerik().DatePickerFor(model => model.DataInicioDepreciacao)
+                                @Html.ValidationMessageFor(model => model.DataInicioDepreciacao)
+                                @ViewBag.DataInicioDepreciacaoMaior
+                            </div>
+                            <div class="clear"></div>
+
+                        </div>
+
+
+                        <div class="row-form">
+
+                            <div class="span7">
+
+                                <div class="checkbox inline">
+                                    @Html.LabelFor(model => model.Inativo)
+                                    @Html.EditorFor(model => model.Inativo)
+                                    @Html.ValidationMessageFor(model => model.Inativo)
+
+                                </div>
+
+
+                                <div class="checkbox inline">
+                                    @Html.LabelFor(model => model.BemDepreciavel)
+                                    @Html.EditorFor(model => model.BemDepreciavel)
+                                    @Html.ValidationMessageFor(model => model.BemDepreciavel)
+
+                                </div>
+
+                                <div class="checkbox inline">
+                                    @Html.LabelFor(model => model.Descontinuado)
+                                    @Html.EditorFor(model => model.Descontinuado)
+                                    @Html.ValidationMessageFor(model => model.Descontinuado)
+
+                                </div>
+
+
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- fim das checkboxs-->
+
+                        <div class="row-form">
+                            <div class="span2">
+                                <input type="submit" class="btn btn-success" value="Salvar" />
+                                <input type="reset" class="btn btn-warning" value="Limpar" />
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+
+                    <!-- fim confiracões -->
                 </div>
 
-                <div class="row-form">
-                    <div class="span2">
-                        <input type="submit" class="btn btn-success" value="Salvar" />
-                        <input type="reset" class="btn btn-warning" value="Limpar" />
-                    </div>
-                    <div class="clear"></div>
-                </div>
             </div>
-
-            
         }
 
     </div>

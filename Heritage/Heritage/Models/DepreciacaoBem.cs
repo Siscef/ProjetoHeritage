@@ -26,6 +26,7 @@ namespace Heritage.Models
         [Required(ErrorMessage = "Por favor,selecione um bem.")]
         public virtual Bem IdBem { get; set; }
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
+        public virtual TipoDepreciacao TipoParaDepreciacao { get; set; }
 
 
 
@@ -128,8 +129,23 @@ namespace Heritage.Models
             return CalculaTaxaMensal(Taxa,Coeficiente) * ValorMaximoDepreciacaoAnual;
         }
 
+        protected internal virtual double CalculaVidaUtilAnos(double CoeficienteDepreciacao, double TaxaDepreciacao)
+        { 
+            return (100 / (CoeficienteDepreciacao * TaxaDepreciacao));
 
-       
+        }
+
+        protected internal virtual double CalculaDepreciacaoVariacaoDasTaxasMensal(double ValorDepreciavel, double TaxaVidaUtilRestanteMensal)
+        {
+
+            return (ValorDepreciavel * TaxaVidaUtilRestanteMensal) / 100; 
+        }
+
+        protected internal virtual double CalculaDepreciacaoVariacaoDasTaxasAnual(double ValorDepreciavel, double TaxaVidaUtilRestanteAnual)
+        {
+
+            return (ValorDepreciavel * TaxaVidaUtilRestanteAnual) / 100;
+        }
 
 
     }

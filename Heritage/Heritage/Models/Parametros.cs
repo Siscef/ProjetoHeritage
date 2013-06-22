@@ -39,7 +39,7 @@ namespace Heritage.Models
         public virtual string RamoEmpresarial { get; set; }
         [Display(Name="Valor mínimo depreciação:")]
         public virtual double ValorMinimoDepreciacao { get; set; }
-        [Display(Name="Vida útil em anos:")]
+        [Display(Name="Depreciar bens com mais de x ano(s):")]
         public virtual int VidaUtilMinima { get; set; }
     }
 }

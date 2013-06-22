@@ -79,15 +79,23 @@ namespace Heritage.Models
         [Required(ErrorMessage="O tipo depreciação do bem não pode ser vazia.")]
         public virtual TipoDepreciacao TipoParaDepreciacao { get; set; }
         [Display(Name = "Horas trabalhadas período:")]
+        [Range(0, int.MaxValue, ErrorMessage = "Horas trabalhadas no período não pode ser negativo.")]
         public virtual double HorasTrabalhdadasPeriodo { get; set; }
         [Display(Name = "Horas estimadas vida útil:")]
+        [Range(0, int.MaxValue, ErrorMessage = "Horas trabalhadas vita útil não pode ser negativo.")]
         public virtual double HorasEstimadaVidaUtil { get; set; }
         [Display(Name = "Unidade produzidas período:")]
+        [Range(0, int.MaxValue, ErrorMessage = "Unidades produzidas no período não pode ser negativo.")]
         public virtual double UnidadesProduzidasPeriodo { get; set; }
         [Display(Name = "Unidades estimadas vida útil:")]
+        [Range(0, int.MaxValue, ErrorMessage = "Unidades produzidas vida útil não pode ser negativo.")]
         public virtual double UnidadesEstimadasVidaUtil { get; set; }
         [Display(Name = "Valor salvamento:")]
+        [Range(0, int.MaxValue, ErrorMessage = "O valor de salvamento não pode ser negativo.")]
         public virtual double ValorSalvamento { get; set; }
+        [Display(Name = "Depreciar até:")]
+        [Range(0, int.MaxValue, ErrorMessage = "O valor máximo depreciação não pode ser negativo.")]
+        public virtual double ValorMaximoDepreciacao { get; set; }
 
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<HistoricoBem> IdsHistoricoBem { get; set; }

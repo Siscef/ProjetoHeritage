@@ -26,15 +26,10 @@
                 @Html.ValidationSummary(true)
 
                 <div class="simpleTabs">
-                    <ul class="simpleTabsNavigation">
-                        
-                        <li><a href="#">Dados</a></li>
-                        <li><a href="#">Referências</a></li>
-                        <li><a href="#">Configurações</a></li>
-                    </ul>
+                   
                     <!-- dados -->
                     <div class="simpleTabsContent">
-
+                        
                         <div class="row-form">
                             <div class="span2">
                                 @Html.LabelFor(model => model.Descricao)
@@ -45,6 +40,19 @@
                             </div>
                             <div class="clear"></div>
                         </div>
+
+                            <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorCompra)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorCompra, new { placeholder = "Digite o valor de compra" })
+                                @Html.ValidationMessageFor(model => model.ValorCompra)
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+
                          <div class="row-form">
                             <div class="span2">
                                 @Html.LabelFor(model => model.NumeroNotaFiscal)
@@ -56,13 +64,27 @@
                             <div class="clear"></div>
                         </div>
 
-                        <div class="row-form">
+                       
+
+                         <div class="row-form">
                             <div class="span2">
-                                @Html.LabelFor(model => model.ValorCompra)
+                                @Html.LabelFor(model => model.DataAquisicao)
                             </div>
                             <div class="span9">
-                                @Html.TextBoxFor(model => model.ValorCompra, new { placeholder = "Digite o valor de compra" })
-                                @Html.ValidationMessageFor(model => model.ValorCompra)
+                                @Html.Telerik().DatePickerFor(model => model.DataAquisicao)
+                                @Html.ValidationMessageFor(model => model.DataAquisicao)
+                                @ViewBag.DataInvalida
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                          <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorContabil)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorContabil, new { placeholder = "O valor contábil, se o bem for novo é o preço de compra.Caso seja usado o valor de mercado." })
+                                @Html.ValidationMessageFor(model => model.ValorContabil)
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -77,17 +99,7 @@
                             </div>
                             <div class="clear"></div>
                         </div>
-
-                        <div class="row-form">
-                            <div class="span2">
-                                @Html.LabelFor(model => model.ValorContabil)
-                            </div>
-                            <div class="span9">
-                                @Html.TextBoxFor(model => model.ValorContabil, new { placeholder = "O valor contábil, se o bem for novo é o preço de compra.Caso seja usado o valor de mercado." })
-                                @Html.ValidationMessageFor(model => model.ValorContabil)
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+                                              
 
 
                         <div class="row-form">
@@ -135,25 +147,16 @@
                             </div>
                             <div class="clear"></div>
                         </div>
-                        <div class="row-form">
-                            <div class="span2">
-                                @Html.LabelFor(model => model.DataAquisicao)
-                            </div>
-                            <div class="span9">
-                                @Html.Telerik().DatePickerFor(model => model.DataAquisicao)
-                                @Html.ValidationMessageFor(model => model.DataAquisicao)
-                                @ViewBag.DataInvalida
-                            </div>
-                            <div class="clear"></div>
-                        </div>
-
-                     
+                      
+                        
+                    
                     </div>
+                    
 
                     <!-- fim dados -->
 
                     <!-- referencias -->
-                    <div class="simpleTabsContent">
+                    <div class="simpleTabsContent" >
 
                            <div class="row-form">
                             <div class="span2">
@@ -231,14 +234,19 @@
                                 @Html.ValidationMessageFor(model => model.IdResponsavel)
                             </div>
                             <div class="clear"></div>
-                        </div>
-
-                       
+                        </div>                    
 
 
 
 
                     </div>
+
+                    <ul class="simpleTabsNavigation">
+                        
+                        <li><a href="#">Dados</a></li>
+                        <li><a href="#">Referências</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
 
                     <!-- fim referencias -->
 
@@ -318,6 +326,19 @@
                             <div class="span9">
                                 @Html.TextBoxFor(model => model.ValorSalvamento, new { placeholder = "Digite o valor de salvamento, este campo só deve ser preenchido caso queira utilizar a depreciaçaõ com valor de salvamento."})
                                 @Html.ValidationMessageFor(model => model.ValorSalvamento)
+                               
+                            </div>
+                            <div class="clear"></div>
+
+                        </div>
+
+                          <div class="row-form">
+                            <div class="span2">
+                                @Html.LabelFor(model => model.ValorMaximoDepreciacao)
+                            </div>
+                            <div class="span9">
+                                @Html.TextBoxFor(model => model.ValorMaximoDepreciacao, new { placeholder = "Digite o valor máximo para a depreciação bem.Este valor utlizado como base de cálculo. por exemplo: valor compra: 3000, valor máximo para depreciar: 2500"})
+                                @Html.ValidationMessageFor(model => model.ValorMaximoDepreciacao)
                                
                             </div>
                             <div class="clear"></div>

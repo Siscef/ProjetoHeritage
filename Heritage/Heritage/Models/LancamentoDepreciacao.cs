@@ -11,9 +11,9 @@ namespace Heritage.Models
         public virtual long Id_LancamentoDepreciacao { get; set; }
         [Display(Name="Data Lançamento:")]
         public virtual DateTime DataLancamento { get; set; }
-        [Display(Name="Crédito:")]
+        [Display(Name = "Depreciação Acumulada:")]
         public virtual double Credito { get; set; }
-        [Display(Name="Débito:")]
+        [Display(Name = "Despesa de Depreciação:")]
         public virtual double Debito { get; set; }
     }
 }

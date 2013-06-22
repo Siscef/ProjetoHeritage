@@ -1242,6 +1242,7 @@
     <Content Include="Views\Shared\_LogOnPartial.cshtml" />
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\Error\Erro404.cshtml" />
+    <Content Include="Views\Shared\Copy of _LayoutLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
