@@ -29,7 +29,7 @@
             </li>
             <li class="openable">
                 <a href="#">
-                    <span class="isw-list"></span><span class="text">Cadastro</span>
+                    <span class="isw-plus"></span><span class="text">Cadastro</span>
                 </a>
                 <ul>
                     <li>
@@ -45,6 +45,12 @@
                     <li>
                         <a href="http://localhost:10112/administracao/estabelecimento/create">
                             <span class="icon-th"></span><span class="text">Estabelecimento</span>
+                        </a>
+                    </li>
+
+                     <li>
+                        <a href="http://localhost:10112/administracao/AssistenciaTecnica/create">
+                            <span class="icon-th"></span><span class="text">Assistência Técnica/Oficina</span>
                         </a>
                     </li>
                      <li>
@@ -63,9 +69,21 @@
                             <span class="icon-th"></span><span class="text">Grupo</span>
                         </a>
                     </li>
+
+                     <li>
+                        <a href="http://localhost:10112/administracao/Categoria/create">
+                            <span class="icon-th"></span><span class="text">Categoria</span>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="http://localhost:10112/administracao/localizacao/create">
                             <span class="icon-th"></span><span class="text">Localização</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://localhost:10112/administracao/Responsavel/create">
+                            <span class="icon-th"></span><span class="text">Responsável Pelo Bem</span>
                         </a>
                     </li>
 
@@ -74,6 +92,7 @@
                             <span class="icon-th"></span><span class="text">Conta Usuário</span>
                         </a>
                     </li>
+                    
 
 
                 </ul>
@@ -98,10 +117,22 @@
                             <span class="icon-eye-open"></span><span class="text">Responsáveis</span></a> 
                         
                          <a href="http://localhost:10112/Administracao/AssistenciaTecnica/AllTechnicalAssistance">
-                            <span class="icon-edit"></span><span class="text">Assistência Técnica</span></a>   
+                            <span class="icon-edit"></span><span class="text">Assistências Técnicas</span></a> 
                         
-                        <a href="http://localhost:10112/administracao/criarcontausuario/allaccount">
-                            <span class="icon-user"></span><span class="text">Usuários do Sistema</span></a>                     
+                         <a href="http://localhost:10112/Administracao/Categoria/ListAllCategory">
+                            <span class="icon-list-alt"></span><span class="text">Categorias</span></a>  
+
+                        <a href="http://localhost:10112/Administracao/Grupo/ListAllGroup">
+                            <span class="icon-chevron-up"></span><span class="text">Grupos</span></a>
+
+                         <a href="http://localhost:10112/Administracao/Peca/AllSins">
+                            <span class="icon-wrench"></span><span class="text">Peças</span></a>
+
+                        
+                           <a href="http://localhost:10112/Administracao/Localizacao/ListLocation">
+                            <span class="icon-search"></span><span class="text">Localização</span></a>
+                        
+                               
                         
                         
                         <div id="navPopMessages" class="popup" style="display: none;">
@@ -175,24 +206,58 @@
 
 
             </li>
-            <li>
-                <a href="#">
-                    <span class="isw-graph"></span><span class="text">Statistics</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="isw-text_document"></span><span class="text">Tabelas</span>
-                </a>
-            </li>
+           
+           <li class ="openable">
+               <a href="#">
+                   <span class="isw-list"></span><span class="text"> Estatísticas</span>
+               </a>
+               <ul>
+                   <li>
+                       <a href="http://localhost:10112/administracao/Bem/DepreciationsToDate">
+                            <span class="icon-user"></span><span class="text">Histórico Depreciação</span></a>  
+                   </li>
+                   
+                   
+                   
+               </ul>
+           </li>
+
+
+
+            <li class ="openable">
+               <a href="#">
+                   <span class="isw-documents"></span><span class="text"> Relatórios</span>
+               </a>
+               <ul>
+                   <li>
+                       <a href="http://localhost:10112/administracao/Bem/BuyToDate">
+                            <span class="icon-user"></span><span class="text">Compras no período</span></a>  
+                   </li>
+                   <li>
+                      <a href="http://localhost:10112/administracao/Bem/PropertyByResponsable">
+                            <span class="icon-user"></span><span class="text">Bens por responsável </span></a>  
+                   </li>                    
+                   
+                    <li>
+                      <a href="http://localhost:10112/administracao/Bem/PropertyToProvider">
+                            <span class="icon-user"></span><span class="text">Bens por fornecedor </span></a>  
+                   </li>
+
+                   
+                   
+               </ul>
+           </li>
+
+
+
             <li class="openable">
                 <a href="#">
-                    <span class="isw-zoom"></span><span class="text">Gráficos</span>
+                    <span class="isw-graph"></span><span class="text">Gráficos</span>
                 </a>
                 <ul>
                     <li>
-                        <a href="#">
-                            <span class="icon-picture"></span><span class="text">Bem x Categoria</span>
+                        <a href="http://localhost:10112/administracao/Bem/GraficoBemPorValores">
+                            <span class="icon-picture"></span><span class="text">Bens x Valores</span>
                         </a>
                     </li>
                     <li>
