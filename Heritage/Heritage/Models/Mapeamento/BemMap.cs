@@ -38,6 +38,7 @@ namespace Heritage.Models.Mapeamento
             Map(x => x.UnidadesProduzidasPeriodo, "UnidadesProduzidasPeriodo").Nullable();
             Map(x => x.ValorSalvamento, "ValorSalvamento").Nullable();
             Map(x => x.ValorMaximoDepreciacao, "ValorMaximoDepreciacao").Nullable();
+            Map(x => x.VidaUtil, "VidaUtil").Nullable();
 
 
             References(x => x.IdEstadoConservacao, "IdEstadoConservacao")

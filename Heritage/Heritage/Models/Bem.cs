@@ -67,16 +67,16 @@ namespace Heritage.Models
         public virtual bool DepreciacaoAtiva { get; set; }
         [Display(Name = "O bem é depreciável?")]
         public virtual bool BemDepreciavel { get; set; }
-        [Display(Name="Valor residual:")]
+        [Display(Name = "Valor residual:")]
         [Range(0, int.MaxValue, ErrorMessage = "O Valor residual não pode ser negativo.")]
         public virtual double ValorResidual { get; set; }
-        [Display(Name="Valor depreciável:")]
+        [Display(Name = "Valor depreciável:")]
         [Range(0, int.MaxValue, ErrorMessage = "O Valor depreciável não pode ser negativo.")]
         public virtual double ValorDepreciavel { get; set; }
-        [Display(Name="Valor contábil:")]
+        [Display(Name = "Valor contábil:")]
         [Range(0, int.MaxValue, ErrorMessage = "O Valor contábil não pode ser negativo.")]
         public virtual double ValorContabil { get; set; }
-        [Required(ErrorMessage="O tipo depreciação do bem não pode ser vazia.")]
+        [Required(ErrorMessage = "O tipo depreciação do bem não pode ser vazia.")]
         public virtual TipoDepreciacao TipoParaDepreciacao { get; set; }
         [Display(Name = "Horas trabalhadas período:")]
         [Range(0, int.MaxValue, ErrorMessage = "Horas trabalhadas no período não pode ser negativo.")]
@@ -96,6 +96,7 @@ namespace Heritage.Models
         [Display(Name = "Depreciar até:")]
         [Range(0, int.MaxValue, ErrorMessage = "O valor máximo depreciação não pode ser negativo.")]
         public virtual double ValorMaximoDepreciacao { get; set; }
+        public virtual double VidaUtil { get; set; }
 
         public virtual AuditoriaInterna IdAuditoriaInterna { get; set; }
         public virtual IList<HistoricoBem> IdsHistoricoBem { get; set; }
