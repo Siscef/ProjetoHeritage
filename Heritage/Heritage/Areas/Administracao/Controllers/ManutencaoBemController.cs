@@ -155,7 +155,8 @@ namespace Heritage.Areas.Administracao.Controllers
                                     {
                                         Bem BemParaAumentarValor = ContextoManutencao.Get<Bem>(ManutencaoBemParaSalvar.IdBem.Id_Bem);
                                         BemParaAumentarValor.ValorCompra += item.Valor;
-                                        TryUpdateModel<Bem>(BemParaAumentarValor);
+                                        BemParaAumentarValor.ValorContabil += item.Valor;
+                                       
                                         ContextoManutencao.SaveChanges();
 
                                         PecaDaManutencao PecaManutencao = new PecaDaManutencao();

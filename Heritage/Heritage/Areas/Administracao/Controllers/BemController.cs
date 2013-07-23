@@ -126,6 +126,7 @@ namespace Heritage.Areas.Administracao.Controllers
                 return View();
             }
 
+
             if (ModelState.IsValid)
             {
 
@@ -154,7 +155,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     BemSalvo.Pis = BemParaSalvar.Pis;
 
                     //dados da compra
-                    BemSalvo.Descricao = TransformaParaMaiusculo.PrimeiraLetraMaiuscula(BemParaSalvar.Descricao);
+                    BemSalvo.Descricao = BemParaSalvar.Descricao.ToUpperInvariant();
                     BemSalvo.ValorCompra = BemParaSalvar.ValorCompra;
                     BemSalvo.DataAquisicao = BemParaSalvar.DataAquisicao;
                     BemSalvo.NumeroNotaFiscal = BemParaSalvar.NumeroNotaFiscal;
@@ -819,7 +820,15 @@ namespace Heritage.Areas.Administracao.Controllers
         #region ChamadaPrincipalSistema
         public ActionResult CalculatesDepreciationOfAssets(string NomeUsuarioLogado)
         {
+            try
+            {
 
+            }
+                
+            finally
+            {
+
+            }
             IList<Bem> ListaBensParaCalculoImpostos = ContextoBem.GetAll<Bem>()
                                                       .Where(x => x.Descontinuado == false && x.Inativo == false && x.DataInicioDepreciacao.Day == DateTime.Now.Day && x.BemDepreciavel == true && x.DepreciacaoAtiva == true)
                                                       .ToList();
@@ -833,32 +842,41 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     if (VerificarValorDepreciado < itemBens.ValorDepreciavel)
                     {
-                        switch (itemBens.TipoParaDepreciacao)
+                        try
                         {
-                            case TipoDepreciacao.Linear_Quotas_Constantes:
-                                CalcularDepreciacaoLinear((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.Soma_Dígitos:
-                                CalcularDepreciacaoSomadosDigitos((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.Reducao_de_Saldos:
-                                CalcularDepreciacaoReducaoSaldos((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.UnidadesProduzidas:
-                                CalcularDepreciacaoUnidadesProduzidas((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.Horas_Trabalhadas:
-                                CalcularDepreciacaoHorasTrabalhadas((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
-                                CalcularDepreciacaoLinearComValorMaximoDepreciacao((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            case TipoDepreciacao.Variacao_Taxas:
-                                CalcularDepreciacaoVariacaodasTaxas((int)itemBens.Id_Bem, NomeUsuarioLogado);
-                                break;
-                            default:
-                                break;
+                            switch (itemBens.TipoParaDepreciacao)
+                            {
+                                case TipoDepreciacao.Linear_Quotas_Constantes:
+                                    CalcularDepreciacaoLinear((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.Soma_Dígitos:
+                                    CalcularDepreciacaoSomadosDigitos((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.Reducao_de_Saldos:
+                                    CalcularDepreciacaoReducaoSaldos((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.UnidadesProduzidas:
+                                    CalcularDepreciacaoUnidadesProduzidas((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.Horas_Trabalhadas:
+                                    CalcularDepreciacaoHorasTrabalhadas((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
+                                    CalcularDepreciacaoLinearComValorMaximoDepreciacao((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                case TipoDepreciacao.Variacao_Taxas:
+                                    CalcularDepreciacaoVariacaodasTaxas((int)itemBens.Id_Bem, NomeUsuarioLogado);
+                                    break;
+                                default:
+                                    break;
+                            }
+
                         }
+                        finally
+                        {
+                            
+                        }
+                       
 
                     }
                     else
@@ -1309,22 +1327,22 @@ namespace Heritage.Areas.Administracao.Controllers
         // 100% OK com lançamento contábil
         private void CalcularDepreciacaoLinear(int id, string NomeUsuario)
         {
+            DepreciacaoBem DepreciacaoVerUltimaData = VerificarUltimaDepreciacaoBem(id);
 
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                   .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                        .Where(x => x.Id_Bem == id)
-                                             select c.ValorDepreciavel).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel)
+            if (DepreciacaoVerUltimaData.DataDepreciacaoBem < DateTime.Now)
             {
                 Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
 
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                       .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                            .Where(x => x.Id_Bem == id)
+                                                 select c.ValorDepreciavel).First();
 
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada != 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel)
                 {
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1365,27 +1383,30 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoBem.SaveChanges();
 
                 }
+
+
+
             }
 
         }
         // 100% OK com lançamento contábil
         private void CalcularDepreciacaoVariacaodasTaxas(int id, string NomeUsuario)
         {
-
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                   .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                        .Where(x => x.Id_Bem == id)
-                                             select c.ValorDepreciavel).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel)
+            DepreciacaoBem DepreciacaoBemUltimaDesteBem = VerificarUltimaDepreciacaoBem(id);
+            if (DepreciacaoBemUltimaDesteBem.DataDepreciacaoBem < DateTime.Now)
             {
-                Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                  .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                            .Where(x => x.Id_Bem == id)
+                                                 select c.ValorDepreciavel).First();
 
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada == 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel)
                 {
+                    Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1425,22 +1446,26 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
-
                 }
+
+
+
             }
 
         }
         // 100% Ok com lancamento contábil
         private void CalcularDepreciacaoSomadosDigitos(int id, string NomeUsuario)
         {
-            double NumeroDeMesesVidaUtil = CalcularNumeroMesesVidaUtil(id);//15
-
-            double SomaDigitosMesesVidaUtil = CalcularSomaDigitoMesesVidaUtil(NumeroDeMesesVidaUtil);
-
-            Bem BemParaCalcularSomaDigitos = ContextoBem.Get<Bem>(id);
-            int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada((int)BemParaCalcularSomaDigitos.Id_Bem);
-            if (VerificarDeprecicaoDuplicada == 0)
+            DepreciacaoBem UltimaDepreciacaoBem = VerificarUltimaDepreciacaoBem(id);
+            if (UltimaDepreciacaoBem.DataDepreciacaoBem < DateTime.Now)
             {
+                double NumeroDeMesesVidaUtil = CalcularNumeroMesesVidaUtil(id);//15
+
+                double SomaDigitosMesesVidaUtil = CalcularSomaDigitoMesesVidaUtil(NumeroDeMesesVidaUtil);
+
+                Bem BemParaCalcularSomaDigitos = ContextoBem.Get<Bem>(id);
+
+
 
                 AuditoriaInterna Auditoria = new AuditoriaInterna();
                 Auditoria.Computador = Environment.MachineName;
@@ -1515,12 +1540,14 @@ namespace Heritage.Areas.Administracao.Controllers
 
                         }
 
-                    }
 
+                    }
 
                 }
 
+
             }
+
         }
 
 
@@ -1696,21 +1723,22 @@ namespace Heritage.Areas.Administracao.Controllers
         //100% ok com lancamento contábil
         private void CalcularDepreciacaoUnidadesProduzidas(int id, string NomeUsuario)
         {
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                   .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                        .Where(x => x.Id_Bem == id)
-                                             select c.ValorDepreciavel).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel)
+            DepreciacaoBem UltimaDepreciacoBem = VerificarUltimaDepreciacaoBem(id);
+            if (UltimaDepreciacoBem.DataDepreciacaoBem < DateTime.Now)
             {
-                Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                 .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                            .Where(x => x.Id_Bem == id)
+                                                 select c.ValorDepreciavel).First();
 
-
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada != 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel)
                 {
+                    Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+
+
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1739,7 +1767,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorContabil - BemParaAtualizarImpostos.ValorDepreciado;
-                    BemParaAtualizarImpostos.ValorContabil = BemParaAtualizarImpostos.ValorContabil - BemParaAtualizarImpostos.ValorDepreciado;
+                    BemParaAtualizarImpostos.ValorContabil = BemParaAtualizarImpostos.ValorContabil;
 
                     ContextoBem.SaveChanges();
 
@@ -1750,7 +1778,10 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
+
                 }
+
+
 
             }
 
@@ -1758,21 +1789,20 @@ namespace Heritage.Areas.Administracao.Controllers
         //100% com lancamento contabil e tudo.
         private void CalcularDepreciacaoHorasTrabalhadas(int id, string NomeUsuario)
         {
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                  .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                            .Where(x => x.Id_Bem == id)
-                                             select c.ValorDepreciavel).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel)
+            DepreciacaoBem UltimaDepreciacao = VerificarUltimaDepreciacaoBem(id);
+            if (UltimaDepreciacao.DataDepreciacaoBem < DateTime.Now)
             {
-                Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                  .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                                .Where(x => x.Id_Bem == id)
+                                                 select c.ValorDepreciavel).First();
 
-
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada == 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel)
                 {
+                    Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1801,7 +1831,7 @@ namespace Heritage.Areas.Administracao.Controllers
 
                     BemParaAtualizarImpostos.ValorDepreciado = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     BemParaAtualizarImpostos.ValorAtual = BemParaAtualizarImpostos.ValorContabil - BemParaAtualizarImpostos.ValorDepreciado;
-                    BemParaAtualizarImpostos.ValorContabil = BemParaAtualizarImpostos.ValorContabil - DepreciacaoBemCoeficienteUm.ValorDepreciado;
+                    BemParaAtualizarImpostos.ValorContabil = BemParaAtualizarImpostos.ValorContabil;
 
                     ContextoBem.SaveChanges();
 
@@ -1814,26 +1844,29 @@ namespace Heritage.Areas.Administracao.Controllers
 
                 }
 
+
+
+
             }
         }
         //100% com lancamento contabil e tudo.
         private void CalcularDepreciacaoReducaoSaldos(int id, string NomeUsuario)
         {
-            Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                   .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                          .Where(x => x.Id_Bem == id)
-                                             select c.ValorDepreciavel).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel && VerificarValorDepreciavel > BemParaAtualizarImpostos.ValorAtual)
+            DepreciacaoBem UltimaDepreciacaoBem = VerificarUltimaDepreciacaoBem(id);
+            if (UltimaDepreciacaoBem.DataDepreciacaoBem < DateTime.Now)
             {
+                Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                       .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                              .Where(x => x.Id_Bem == id)
+                                                 select c.ValorDepreciavel).First();
 
-
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada == 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel && VerificarValorDepreciavel > BemParaAtualizarImpostos.ValorAtual)
                 {
+
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1875,28 +1908,29 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoBem.SaveChanges();
 
                 }
+
+
+
             }
 
         }
         //100% com lancamento contabil e tudo.
         private void CalcularDepreciacaoLinearComValorMaximoDepreciacao(int id, string NomeUsuario)
         {
-
-            var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                   .Where(x => x.IdBem.Id_Bem == id)
-                                            select c.ValorDepreciado).Sum();
-            var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
-                                        .Where(x => x.Id_Bem == id)
-                                             select c.ValorMaximoDepreciacao).First();
-
-            if (VerificarValorDepreciado < VerificarValorDepreciavel)
+            DepreciacaoBem UltimaDepreciacaoDesteBem = VerificarUltimaDepreciacaoBem(id);
+            if (UltimaDepreciacaoDesteBem.DataDepreciacaoBem < DateTime.Now)
             {
-                Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                   .Where(x => x.IdBem.Id_Bem == id)
+                                                select c.ValorDepreciado).Sum();
+                var VerificarValorDepreciavel = (from c in ContextoBem.GetAll<Bem>()
+                                            .Where(x => x.Id_Bem == id)
+                                                 select c.ValorMaximoDepreciacao).First();
 
-
-                int VerificarDeprecicaoDuplicada = ListaVerificaDepreciacaoDuplicada(id);
-                if (VerificarDeprecicaoDuplicada != 0)
+                if (VerificarValorDepreciado < VerificarValorDepreciavel)
                 {
+                    Bem BemParaAtualizarImpostos = ContextoBem.Get<Bem>(id);
+
                     AuditoriaInterna AuditoriaCoeficienteUm = new AuditoriaInterna();
                     AuditoriaCoeficienteUm.Computador = Environment.MachineName;
                     AuditoriaCoeficienteUm.DataInsercao = DateTime.Now;
@@ -1937,6 +1971,8 @@ namespace Heritage.Areas.Administracao.Controllers
                     ContextoBem.SaveChanges();
 
                 }
+
+
             }
 
         }
@@ -1970,12 +2006,13 @@ namespace Heritage.Areas.Administracao.Controllers
             return NumeroDeMesesVidaUtil * 12;
         }
 
-        private int ListaVerificaDepreciacaoDuplicada(int id)
+        private DepreciacaoBem VerificarUltimaDepreciacaoBem(int id)
         {
-            IList<DepreciacaoBem> VerificarDeprecicaoDuplicada = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                                  .Where(x => x.IdBem.Id_Bem == id && x.DataDepreciacaoBem.Year != DateTime.Now.Year && x.DataDepreciacaoBem.Month != DateTime.Now.Month && x.DataDepreciacaoBem.Day != DateTime.Now.Day)
-                                                                  select c).ToList();
-            return VerificarDeprecicaoDuplicada.Count();
+            long IdUltimaDepreciacao = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                        .Where(x => x.IdBem.Id_Bem == id)
+                                        select c.Id_DepreciacaoBem).Max();
+            DepreciacaoBem DepreciacaoBemUltima = ContextoBem.Get<DepreciacaoBem>(IdUltimaDepreciacao);
+            return DepreciacaoBemUltima;
         }
 
         public double CalcularSomaDigitoMesesVidaUtil(double NumeroDeMesesVidaUtil)

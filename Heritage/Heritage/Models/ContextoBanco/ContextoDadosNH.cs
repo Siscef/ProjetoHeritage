@@ -125,5 +125,15 @@ namespace Heritage.Models.ContextoBanco
         {
             this._sessao.Dispose();
         }
+
+        public void BeginTransaction()
+        {
+            this._sessao.Transaction.Begin();
+        }
+
+        public void EndTransaction() 
+        {
+            this._sessao.Transaction.Commit();
+        }
     }
 }
