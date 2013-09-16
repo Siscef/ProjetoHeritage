@@ -1,11 +1,10 @@
-﻿@model Heritage.Models.ValidarData
-
+﻿@model Heritage.Models.TrocarSenha
 @{
-    ViewBag.Title = "PisCofinsToDate";
+    ViewBag.Title = "TrocarSenha";
     Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
 }
 
-<div class="span9">
+<<div class="span9">
     @Html.ActionLink("Página Inicial", "Index")
 </div>
 
@@ -13,13 +12,10 @@
     <div class="span12">
         <div class="head">
             <div class="isw-documents"></div>
-            <h2>Valores de Pis/Cofins</h2>
+            <h2>Alterar Senha</h2>
             <div class="clear"></div>
         </div>
-        <div class="@ViewBag.NomeDiv">
-            <h4>@ViewBag.Titulo</h4>
-            @ViewBag.Mensagem
-        </div>
+
         @using (Html.BeginForm())
         {
             <div class="block-fluid">
@@ -28,49 +24,52 @@
 
                 <div class="row-form">
                     <div class="span2">
-                        @Html.LabelFor(model => model.DataInicial)
+                        @Html.LabelFor(model => model.SenhaAtual)
                     </div>
                     <div class="span9">
-                        @Html.Telerik().DatePickerFor(model => model.DataInicial)
-                        @Html.ValidationMessageFor(model => model.DataInicial)
-                    </div>
-                    <div class="clear"></div>
-                </div>
-                <div class="row-form">
-                    <div class="span2">
-                        @Html.LabelFor(model => model.DataFinal)
-                    </div>
-                    <div class="span9">
-                        @Html.Telerik().DatePickerFor(model => model.DataFinal)
-                        @Html.ValidationMessageFor(model => model.DataFinal)
-                    </div>
-
-                    <div class="clear"></div>
-
-                </div>
-
-                <div class="row-form">
-                    <div class="span2">
-                        Bem:
-                    </div>
-                    <div class="span9">
-                        @Html.DropDownList("Bens", (IEnumerable<SelectListItem>)ViewBag.Bens, "Todos")
-
+                        @Html.EditorFor(model => model.SenhaAtual)
+                        @Html.ValidationMessageFor(model => model.SenhaAtual)
                     </div>
                     <div class="clear"></div>
                 </div>
 
+
                 <div class="row-form">
                     <div class="span2">
-                        <input type="submit" class="btn btn-success" value="Visualizar" />
+                        @Html.LabelFor(model => model.NovaSenha)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.NovaSenha)
+                        @Html.ValidationMessageFor(model => model.NovaSenha)
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        @Html.LabelFor(model => model.ConfirmaSenha)
+                    </div>
+                    <div class="span9">
+                        @Html.EditorFor(model => model.ConfirmaSenha)
+                        @Html.ValidationMessageFor(model => model.ConfirmaSenha)
+                    </div>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="row-form">
+                    <div class="span2">
+                        <input type="submit" class="btn btn-success" value="Salvar" />
                         <input type="reset" class="btn btn-warning" value="Limpar" />
-
                     </div>
                     <div class="clear"></div>
                 </div>
 
             </div>
         }
+
 
     </div>
 </div>

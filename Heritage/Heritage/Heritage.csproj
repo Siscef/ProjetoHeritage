@@ -341,6 +341,7 @@
     <Compile Include="Models\Cidade.cs" />
     <Compile Include="Models\ContextoBanco\ContextoDadosNH.cs" />
     <Compile Include="Models\ContextoBanco\IContextoDados.cs" />
+    <Compile Include="Models\Control.cs" />
     <Compile Include="Models\CriarConta.cs" />
     <Compile Include="Models\DateRange.cs" />
     <Compile Include="Models\DepreciacaoBem.cs" />
@@ -1011,7 +1012,9 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="DatabaseSchema.sql" />
     <Content Include="Global.asax" />
-    <Content Include="Areas\Administracao\Views\Web.config" />
+    <Content Include="Areas\Administracao\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Administracao\Views\AssistenciaTecnica\AllTechnicalAssistance.cshtml" />
     <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Create.cshtml" />
     <Content Include="Areas\Administracao\Views\AssistenciaTecnica\Delete.cshtml" />
@@ -1172,6 +1175,10 @@
     <Content Include="Areas\Administracao\Views\Localizacao\LocationToProperty.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\Create.cshtml" />
     <Content Include="Areas\Administracao\Views\Shared\_LayoutTab.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ValueDepreciateByDate.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ListValueDepreciate.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\TrocaSenhaSucesso.cshtml" />
+    <Content Include="Areas\Administracao\Views\CriarContaUsuario\TrocarSenha.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />

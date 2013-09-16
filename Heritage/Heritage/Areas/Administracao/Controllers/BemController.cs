@@ -820,15 +820,7 @@ namespace Heritage.Areas.Administracao.Controllers
         #region ChamadaPrincipalSistema
         public ActionResult CalculatesDepreciationOfAssets(string NomeUsuarioLogado)
         {
-            try
-            {
 
-            }
-                
-            finally
-            {
-
-            }
             IList<Bem> ListaBensParaCalculoImpostos = ContextoBem.GetAll<Bem>()
                                                       .Where(x => x.Descontinuado == false && x.Inativo == false && x.DataInicioDepreciacao.Day == DateTime.Now.Day && x.BemDepreciavel == true && x.DepreciacaoAtiva == true)
                                                       .ToList();
@@ -874,9 +866,9 @@ namespace Heritage.Areas.Administracao.Controllers
                         }
                         finally
                         {
-                            
+
                         }
-                       
+
 
                     }
                     else
@@ -1022,6 +1014,41 @@ namespace Heritage.Areas.Administracao.Controllers
             return View(ValorDeBensPorCategoria);
         }
 
+
+
+        public ActionResult ValueDepreciateByDate()
+        {
+            return View();
+
+        }
+
+        [HttpPost]
+        public ActionResult ValueDepreciateByDate(ValidarData Datas)
+        {
+            if (Datas.DataFinal < Datas.DataInicial)
+            {
+
+                ViewBag.Titulo = "Atenção";
+                ViewBag.Mensagem = "A data final não pode ser menor que a inicial";
+
+                return View();
+            }
+
+            IList<LancamentoDepreciacao> ListaLancamentoDepreciacaoPorData = ContextoBem.GetAll<LancamentoDepreciacao>().AsParallel()
+                                                                             .Where(x => x.DataLancamento >= Datas.DataInicial && x.DataLancamento <= Datas.DataFinal)
+                                                                             .OrderByDescending(x => x.DataLancamento)
+                                                                             .ToList();
+
+            @ViewBag.Credito = (from c in ListaLancamentoDepreciacaoPorData
+                                select c.Credito).Sum();
+            @ViewBag.Debito = (from c in ListaLancamentoDepreciacaoPorData
+                               select c.Debito).Sum();
+
+
+            return View("ListValueDepreciate", ListaLancamentoDepreciacaoPorData);
+        }
+
+
         public ActionResult PisCofinsToDate()
         {
             ViewBag.Bens = new SelectList(ContextoBem.GetAll<Bem>().Where(x => x.Inativo == false && x.Descontinuado == false).OrderBy(x => x.Descricao), "Id_Bem", "Descricao");
@@ -1072,6 +1099,11 @@ namespace Heritage.Areas.Administracao.Controllers
         }
 
         public ActionResult ListPisCofins()
+        {
+            return View();
+        }
+
+        public ActionResult ListValueDepreciate()
         {
             return View();
         }
@@ -1378,7 +1410,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
@@ -1442,7 +1474,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
@@ -1534,7 +1566,7 @@ namespace Heritage.Areas.Administracao.Controllers
                             LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                             LancamentoContabil.Credito = Depreciacao.ValorDepreciado;
                             LancamentoContabil.Debito = Depreciacao.ValorDepreciado * -1;
-                            LancamentoContabil.DataLancamento = DateTime.Now;
+                            LancamentoContabil.DataLancamento = Depreciacao.DataDepreciacaoBem;
                             ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                             ContextoBem.SaveChanges();
 
@@ -1705,7 +1737,7 @@ namespace Heritage.Areas.Administracao.Controllers
                         LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                         LancamentoContabil.Credito = Depreciacao.ValorDepreciado;
                         LancamentoContabil.Debito = Depreciacao.ValorDepreciado * -1;
-                        LancamentoContabil.DataLancamento = DateTime.Now;
+                        LancamentoContabil.DataLancamento = Depreciacao.DataDepreciacaoBem;
                         ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                         ContextoBem.SaveChanges();
 
@@ -1774,7 +1806,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
@@ -1838,7 +1870,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
@@ -1903,7 +1935,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
@@ -1966,7 +1998,7 @@ namespace Heritage.Areas.Administracao.Controllers
                     LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
                     LancamentoContabil.Credito = DepreciacaoBemCoeficienteUm.ValorDepreciado;
                     LancamentoContabil.Debito = DepreciacaoBemCoeficienteUm.ValorDepreciado * -1;
-                    LancamentoContabil.DataLancamento = DateTime.Now;
+                    LancamentoContabil.DataLancamento = DepreciacaoBemCoeficienteUm.DataDepreciacaoBem;
                     ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
                     ContextoBem.SaveChanges();
 
