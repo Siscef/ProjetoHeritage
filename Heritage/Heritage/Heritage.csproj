@@ -1179,6 +1179,9 @@
     <Content Include="Areas\Administracao\Views\Bem\ListValueDepreciate.cshtml" />
     <Content Include="Areas\Administracao\Views\CriarContaUsuario\TrocaSenhaSucesso.cshtml" />
     <Content Include="Areas\Administracao\Views\CriarContaUsuario\TrocarSenha.cshtml" />
+    <Content Include="conta\MenuIndex.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />

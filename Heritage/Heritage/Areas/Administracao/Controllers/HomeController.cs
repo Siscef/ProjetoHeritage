@@ -66,8 +66,8 @@ namespace Heritage.Areas.Administracao.Controllers
                                        where b.Descontinuado == true
                                        select b).Count();
 
-            BemController Bem = new BemController();
-            Bem.CalculatesDepreciationOfAssets(User.Identity.Name);
+            //BemController Bem = new BemController();
+            //Bem.CalculatesDepreciationOfAssets(User.Identity.Name);
             
             return View();
         }
