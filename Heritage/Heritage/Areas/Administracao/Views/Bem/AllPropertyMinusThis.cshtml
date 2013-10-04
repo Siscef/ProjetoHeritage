@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Heritage.Models.Bem>
 @{
-    ViewBag.Title = "LastProperty";
+    ViewBag.Title = "All Property";
     Layout = "~/Areas/Administracao/Views/Shared/_LayoutListas.cshtml";
 }
 
@@ -179,7 +179,7 @@
                                         @Html.ActionLink("Editar", "Edit", new { id = item.Id_Bem })|
                                         @Html.ActionLink("Detalhes", "Details", new { id = item.Id_Bem })|
                                         @Html.ActionLink("Deletar", "Delete", new { id = item.Id_Bem })|
-                                        @Html.ActionLink("C.D.Atrasada", "CalculateDepreciationDelayed", new { id = item.Id_Bem })
+                                        @Html.ActionLink("C.D.Atrasada", "CalcularDepreciacaoAtrasada", new { id = item.Id_Bem })
                                     </td>
                                 </tr>
                             }

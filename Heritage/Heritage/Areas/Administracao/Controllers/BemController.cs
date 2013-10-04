@@ -805,16 +805,6 @@ namespace Heritage.Areas.Administracao.Controllers
             return View(LastProperty);
         }
 
-        public ActionResult AllProperty()
-        {
-            IList<Bem> AllProperty = ContextoBem.GetAll<Bem>()
-                                     .Where(x => x.Inativo == false && x.Descontinuado == false)
-                                     .OrderBy(x => x.Descricao)
-                                     .ToList();
-
-            return View(AllProperty);
-        }
-
         #endregion
 
         #region ChamadaPrincipalSistema
@@ -889,6 +879,17 @@ namespace Heritage.Areas.Administracao.Controllers
         #endregion
 
         #region Consultas
+
+
+        public ActionResult AllProperty()
+        {
+            IList<Bem> AllProperty = ContextoBem.GetAll<Bem>()
+                                     .Where(x => x.Inativo == false && x.Descontinuado == false)
+                                     .OrderBy(x => x.Id_Bem)
+                                     .ToList();
+
+            return View(AllProperty);
+        }
 
         public ActionResult DepreciationsToDate()
         {
@@ -1107,6 +1108,15 @@ namespace Heritage.Areas.Administracao.Controllers
         {
             return View();
         }
+
+
+        public ActionResult AllPropertyMinusThis()
+        {
+           
+
+            return View();
+        }
+
 
         #endregion
 
@@ -2075,6 +2085,22 @@ namespace Heritage.Areas.Administracao.Controllers
             return DepreciacaoFeitas;
 
         }
+        #endregion
+
+
+        #region OperacoesComViews
+        public ActionResult CalculateDepreciationDelayed(int id)
+        {
+            CalcularDepreciacaoAtrasada(id);
+
+            IList<Bem> AllProperty = ContextoBem.GetAll<Bem>()
+                                    .Where(x => x.Inativo == false && x.Descontinuado == false && x.Id_Bem > id)
+                                    .OrderBy(x => x.Descricao)
+                                    .ToList();
+            return View("AllProperty", AllProperty); 
+        }
+
+
         #endregion
 
 

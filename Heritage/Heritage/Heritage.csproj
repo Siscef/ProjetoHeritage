@@ -1182,6 +1182,9 @@
     <Content Include="conta\MenuIndex.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Areas\Administracao\Views\Bem\AllPropertyMinusThis.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\CalculateDepreciationDelayed.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ListPropertyMinusThis.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />
