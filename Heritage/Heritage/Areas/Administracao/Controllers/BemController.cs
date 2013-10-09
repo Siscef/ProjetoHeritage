@@ -1112,12 +1112,25 @@ namespace Heritage.Areas.Administracao.Controllers
 
         public ActionResult AllPropertyMinusThis()
         {
-           
+
 
             return View();
         }
 
 
+        public ActionResult CalculateDepreciation()
+        {
+            IList<Bem> ListBem = ContextoBem.GetAll<Bem>()
+                                 .Where(x => x.Descontinuado == false && x.DepreciacaoAtiva == true && x.BemDepreciavel == true && x.Inativo == false)
+                                 .ToList();
+            foreach (var item in ListBem)
+            {
+                CalcularDepreciacaoAtrasada((int)item.Id_Bem);
+
+            }
+
+            return RedirectToAction("AllProperty");
+        }
         #endregion
 
         #region StatusProperty
@@ -1599,158 +1612,168 @@ namespace Heritage.Areas.Administracao.Controllers
 
             Bem BemParaCalculoDepreciacaoAtrasada = ContextoBem.Get<Bem>(id);
 
-            AuditoriaInterna Auditoria = new AuditoriaInterna();
-            Auditoria.Computador = Environment.MachineName;
-            Auditoria.DataInsercao = DateTime.Now;
-            Auditoria.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + BemParaCalculoDepreciacaoAtrasada.Descricao;
-            Auditoria.Tabela = "TB_DepreciacaoBem";
-            Auditoria.TipoOperacao = TipoOperacao.Insercao.ToString();
-            Auditoria.Usuario = User.Identity.Name;
-            ContextoBem.Add<AuditoriaInterna>(Auditoria);
-            ContextoBem.SaveChanges();
-
             TimeSpan DiferencaDeMeses = Convert.ToDateTime(DateTime.Now) - Convert.ToDateTime(BemParaCalculoDepreciacaoAtrasada.DataInicioDepreciacao.ToString("yyyy/MM/dd HH:mm:ss"));
             decimal Meses = Convert.ToDecimal(DiferencaDeMeses.Days);
-            decimal NumeroMeses = Math.Round((Meses / 30), 0) - 1;
+            decimal NumeroMeses = Math.Round((Meses / 30), 0) - 1;                 
 
-            for (int i = 1; i <= NumeroMeses; i++)
-            {
-
-                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
-                                                select c.ValorDepreciado).Sum();
-
-                if (VerificarValorDepreciado < BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel)
+                for (int i = 1; i <= NumeroMeses; i++)
                 {
-                    DepreciacaoBem Depreciacao = new DepreciacaoBem();
 
                     long IdUltimaDepreciacao = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                       .AsParallel()
+                                       .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
                                                 select c.Id_DepreciacaoBem).Max();
-                    DateTime UltimoMes = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                          .Where(x => x.Id_DepreciacaoBem == IdUltimaDepreciacao)
-                                          select c.DataDepreciacaoBem).First();
-                    var NumeroDepreciacaoesFeitas = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                            .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem && x.ValorDepreciado > 0)
-                                                     select c).ToList();
-                    var NumerodeMesesQuejaForamFeitasDepreciacoesAtivas = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                                          .Where(x => x.IdBem.Id_Bem == id && x.DepreciacaoFeita == true)
-                                                                           select c);
-                    double NumerodeMesesQuejaForamFeitasDepreciacoes = NumerodeMesesQuejaForamFeitasDepreciacoesAtivas.Count();
 
-                    double TotalDiferencaDeMeses = CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem) - Convert.ToDouble(NumeroDepreciacaoesFeitas.Count());
+                    DepreciacaoBem DepreciaBemfeitaPorUltimo = ContextoBem.Get<DepreciacaoBem>(IdUltimaDepreciacao);
 
-                    Depreciacao.ValorCofins = Depreciacao.CalculaCofinsMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.Cofins);
-                    Depreciacao.ValorPis = Depreciacao.CalculaPisMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.Pis);
-                    switch (BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao)
+                    DateTime UltimoMes = DepreciaBemfeitaPorUltimo.DataDepreciacaoBem;
+
+                    var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                    .AsParallel()
+                                                    .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                                    select c.ValorDepreciado).Sum();
+
+                    if (UltimoMes < DateTime.Now)
                     {
-                        case TipoDepreciacao.Linear_Quotas_Constantes:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoLinearMensal(BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual, BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel);
-                            break;
-                        case TipoDepreciacao.Soma_Dígitos:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoSomaDigitosMensal(TotalDiferencaDeMeses, CalcularSomaDigitoMesesVidaUtil(CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem)), BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel);
-
-                            break;
-                        case TipoDepreciacao.Reducao_de_Saldos:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoReducaoSaldosMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.ValorCompra, Depreciacao.CalculaVidaUtilAnos(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual), BemParaCalculoDepreciacaoAtrasada.ValorResidual);
-                            break;
-                        case TipoDepreciacao.UnidadesProduzidas:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoUnidadesProduzidasMensal(BemParaCalculoDepreciacaoAtrasada.UnidadesProduzidasPeriodo, BemParaCalculoDepreciacaoAtrasada.UnidadesEstimadasVidaUtil, BemParaCalculoDepreciacaoAtrasada.ValorContabil);
-                            break;
-                        case TipoDepreciacao.Horas_Trabalhadas:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoHorasTrabalhadasMensal(BemParaCalculoDepreciacaoAtrasada.HorasTrabalhdadasPeriodo, BemParaCalculoDepreciacaoAtrasada.HorasEstimadaVidaUtil, BemParaCalculoDepreciacaoAtrasada.ValorContabil);
-                            break;
-                        case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoLinearComValorMaximoDepreciacaoMensal(BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual, BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.ValorMaximoDepreciacao);
-                            break;
-                        case TipoDepreciacao.Variacao_Taxas:
-                            Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoVariacaoDasTaxasMensal(BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel, CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem) - NumerodeMesesQuejaForamFeitasDepreciacoes);
-                            break;
-                        default:
-                            break;
-                    }
-
-                    Depreciacao.IdBem = ContextoBem.Get<Bem>(BemParaCalculoDepreciacaoAtrasada.Id_Bem);
-                    Depreciacao.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(Auditoria.Id_AuditoriaInterna);
-                    if (UltimoMes.Month == 12)
-                    {
-                        Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1).AddYears(1);
-                    }
-
-                    Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1);
-
-                    if (Depreciacao.DataDepreciacaoBem.Month < DateTime.Now.Month + 1)
-                    {
-                        Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1);
-
-                    }
-                    Depreciacao.DepreciacaoFeita = true;
-                    Depreciacao.TaxaDepreciacao = Depreciacao.CalculaTaxaMensal(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual);
-                    Depreciacao.TipoParaDepreciacao = BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao;
-                    ContextoBem.Add<DepreciacaoBem>(Depreciacao);
-                    ContextoBem.SaveChanges();
-
-                    BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                                         .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
-                                                                         select c.ValorDepreciado).Sum();
-                    switch (BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao)
-                    {
-                        case TipoDepreciacao.Linear_Quotas_Constantes:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-
-                            break;
-                        case TipoDepreciacao.Soma_Dígitos:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-
-                            break;
-                        case TipoDepreciacao.Reducao_de_Saldos:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorResidual;
-                            break;
-                        case TipoDepreciacao.UnidadesProduzidas:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-                            break;
-                        case TipoDepreciacao.Horas_Trabalhadas:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-                            break;
-                        case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorSalvamento;
-                            break;
-                        case TipoDepreciacao.Variacao_Taxas:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorResidual;
-                            break;
-                        default:
-                            BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
-                            BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
-                            break;
-                    }
-                    ContextoBem.SaveChanges();
-
-                    if (Depreciacao.DataDepreciacaoBem.Year == DateTime.Now.Year)
-                    {
-                        LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
-                        LancamentoContabil.Credito = Depreciacao.ValorDepreciado;
-                        LancamentoContabil.Debito = Depreciacao.ValorDepreciado * -1;
-                        LancamentoContabil.DataLancamento = Depreciacao.DataDepreciacaoBem;
-                        ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
+                        AuditoriaInterna Auditoria = new AuditoriaInterna();
+                        Auditoria.Computador = Environment.MachineName;
+                        Auditoria.DataInsercao = DateTime.Now;
+                        Auditoria.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + BemParaCalculoDepreciacaoAtrasada.Descricao;
+                        Auditoria.Tabela = "TB_DepreciacaoBem";
+                        Auditoria.TipoOperacao = TipoOperacao.Insercao.ToString();
+                        Auditoria.Usuario = User.Identity.Name;
+                        ContextoBem.Add<AuditoriaInterna>(Auditoria);
                         ContextoBem.SaveChanges();
 
+                    if (VerificarValorDepreciado < BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel)
+                    {
+                        DepreciacaoBem Depreciacao = new DepreciacaoBem();
+
+                        var NumeroDepreciacaoesFeitas = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                         .AsParallel()
+                                                         .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem && x.ValorDepreciado > 0)
+                                                         select c).ToList();
+                        var NumerodeMesesQuejaForamFeitasDepreciacoesAtivas = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                                              .Where(x => x.IdBem.Id_Bem == id && x.DepreciacaoFeita == true)
+                                                                               select c);
+                        double NumerodeMesesQuejaForamFeitasDepreciacoes = NumerodeMesesQuejaForamFeitasDepreciacoesAtivas.Count();
+
+                        double TotalDiferencaDeMeses = CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem) - Convert.ToDouble(NumeroDepreciacaoesFeitas.Count());
+
+                        Depreciacao.ValorCofins = Depreciacao.CalculaCofinsMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.Cofins);
+                        Depreciacao.ValorPis = Depreciacao.CalculaPisMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.Pis);
+                        switch (BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao)
+                        {
+                            case TipoDepreciacao.Linear_Quotas_Constantes:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoLinearMensal(BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual, BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel);
+                                break;
+                            case TipoDepreciacao.Soma_Dígitos:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoSomaDigitosMensal(TotalDiferencaDeMeses, CalcularSomaDigitoMesesVidaUtil(CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem)), BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel);
+
+                                break;
+                            case TipoDepreciacao.Reducao_de_Saldos:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoReducaoSaldosMensal(BemParaCalculoDepreciacaoAtrasada.ValorContabil, BemParaCalculoDepreciacaoAtrasada.ValorCompra, Depreciacao.CalculaVidaUtilAnos(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual), BemParaCalculoDepreciacaoAtrasada.ValorResidual);
+                                break;
+                            case TipoDepreciacao.UnidadesProduzidas:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoUnidadesProduzidasMensal(BemParaCalculoDepreciacaoAtrasada.UnidadesProduzidasPeriodo, BemParaCalculoDepreciacaoAtrasada.UnidadesEstimadasVidaUtil, BemParaCalculoDepreciacaoAtrasada.ValorContabil);
+                                break;
+                            case TipoDepreciacao.Horas_Trabalhadas:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalcularDepreciacaoHorasTrabalhadasMensal(BemParaCalculoDepreciacaoAtrasada.HorasTrabalhdadasPeriodo, BemParaCalculoDepreciacaoAtrasada.HorasEstimadaVidaUtil, BemParaCalculoDepreciacaoAtrasada.ValorContabil);
+                                break;
+                            case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoLinearComValorMaximoDepreciacaoMensal(BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual, BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.ValorMaximoDepreciacao);
+                                break;
+                            case TipoDepreciacao.Variacao_Taxas:
+                                Depreciacao.ValorDepreciado = Depreciacao.CalculaDepreciacaoVariacaoDasTaxasMensal(BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel, CalcularNumeroMesesVidaUtil((int)BemParaCalculoDepreciacaoAtrasada.Id_Bem) - NumerodeMesesQuejaForamFeitasDepreciacoes);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        Depreciacao.IdBem = ContextoBem.Get<Bem>(BemParaCalculoDepreciacaoAtrasada.Id_Bem);
+                        Depreciacao.IdAuditoriaInterna = ContextoBem.Get<AuditoriaInterna>(Auditoria.Id_AuditoriaInterna);
+                        if (UltimoMes.Month == 12)
+                        {
+                            Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1).AddYears(1);
+                        }
+
+                        Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1);
+
+                        if (Depreciacao.DataDepreciacaoBem.Month < DateTime.Now.Month + 1)
+                        {
+                            Depreciacao.DataDepreciacaoBem = UltimoMes.AddMonths(1);
+
+                        }
+                        Depreciacao.DepreciacaoFeita = true;
+                        Depreciacao.TaxaDepreciacao = Depreciacao.CalculaTaxaMensal(BemParaCalculoDepreciacaoAtrasada.CoeficienteDepreciacao, BemParaCalculoDepreciacaoAtrasada.TaxaDepreciacaoAnual);
+                        Depreciacao.TipoParaDepreciacao = BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao;
+
+                        ContextoBem.Add<DepreciacaoBem>(Depreciacao);
+                        ContextoBem.SaveChanges();
+
+                        BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                                             .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                                                             select c.ValorDepreciado).Sum();
+                        switch (BemParaCalculoDepreciacaoAtrasada.TipoParaDepreciacao)
+                        {
+                            case TipoDepreciacao.Linear_Quotas_Constantes:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+
+                                break;
+                            case TipoDepreciacao.Soma_Dígitos:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+
+                                break;
+                            case TipoDepreciacao.Reducao_de_Saldos:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorResidual;
+                                break;
+                            case TipoDepreciacao.UnidadesProduzidas:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+                                break;
+                            case TipoDepreciacao.Horas_Trabalhadas:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+                                break;
+                            case TipoDepreciacao.Linear_Valor_Maximo_Depreciacao:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorSalvamento;
+                                break;
+                            case TipoDepreciacao.Variacao_Taxas:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorResidual;
+                                break;
+                            default:
+                                BemParaCalculoDepreciacaoAtrasada.ValorDepreciado = Depreciacao.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorAtual = BemParaCalculoDepreciacaoAtrasada.ValorContabil - BemParaCalculoDepreciacaoAtrasada.ValorDepreciado;
+                                BemParaCalculoDepreciacaoAtrasada.ValorContabil = BemParaCalculoDepreciacaoAtrasada.ValorContabil - Depreciacao.ValorDepreciado;
+                                break;
+                        }
+
+                        ContextoBem.SaveChanges();
+
+                        if (Depreciacao.DataDepreciacaoBem.Year == DateTime.Now.Year)
+                        {
+                            LancamentoDepreciacao LancamentoContabil = new LancamentoDepreciacao();
+                            LancamentoContabil.Credito = Depreciacao.ValorDepreciado;
+                            LancamentoContabil.Debito = Depreciacao.ValorDepreciado * -1;
+                            LancamentoContabil.DataLancamento = Depreciacao.DataDepreciacaoBem;
+                            ContextoBem.Add<LancamentoDepreciacao>(LancamentoContabil);
+                            ContextoBem.SaveChanges();
+
+                        }
 
                     }
 
@@ -2097,7 +2120,7 @@ namespace Heritage.Areas.Administracao.Controllers
                                     .Where(x => x.Inativo == false && x.Descontinuado == false && x.Id_Bem > id)
                                     .OrderBy(x => x.Descricao)
                                     .ToList();
-            return View("AllProperty", AllProperty); 
+            return View("AllProperty", AllProperty);
         }
 
 
