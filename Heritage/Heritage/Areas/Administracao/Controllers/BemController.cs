@@ -1122,6 +1122,7 @@ namespace Heritage.Areas.Administracao.Controllers
         {
             IList<Bem> ListBem = ContextoBem.GetAll<Bem>()
                                  .Where(x => x.Descontinuado == false && x.DepreciacaoAtiva == true && x.BemDepreciavel == true && x.Inativo == false)
+                                 .OrderBy(x => x.Id_Bem)
                                  .ToList();
             foreach (var item in ListBem)
             {
@@ -1613,37 +1614,39 @@ namespace Heritage.Areas.Administracao.Controllers
             Bem BemParaCalculoDepreciacaoAtrasada = ContextoBem.Get<Bem>(id);
 
             TimeSpan DiferencaDeMeses = Convert.ToDateTime(DateTime.Now) - Convert.ToDateTime(BemParaCalculoDepreciacaoAtrasada.DataInicioDepreciacao.ToString("yyyy/MM/dd HH:mm:ss"));
+
             decimal Meses = Convert.ToDecimal(DiferencaDeMeses.Days);
-            decimal NumeroMeses = Math.Round((Meses / 30), 0) - 1;                 
 
-                for (int i = 1; i <= NumeroMeses; i++)
+            decimal NumeroMeses = Math.Round((Meses / 30), 0) - 1;
+
+            for (int i = 1; i <= NumeroMeses; i++)
+            {
+
+                long IdUltimaDepreciacao = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                          .AsParallel()
+                                          .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                            select c.Id_DepreciacaoBem).Max();
+
+                DepreciacaoBem DepreciaBemfeitaPorUltimo = ContextoBem.Get<DepreciacaoBem>(IdUltimaDepreciacao);
+
+                DateTime UltimoMes = DepreciaBemfeitaPorUltimo.DataDepreciacaoBem;
+
+                var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
+                                                .AsParallel()
+                                                .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
+                                                select c.ValorDepreciado).Sum();
+
+                if (UltimoMes.Month <= DateTime.Now.Month || UltimoMes.Year <= DateTime.Now.Year)
                 {
-
-                    long IdUltimaDepreciacao = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                       .AsParallel()
-                                       .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
-                                                select c.Id_DepreciacaoBem).Max();
-
-                    DepreciacaoBem DepreciaBemfeitaPorUltimo = ContextoBem.Get<DepreciacaoBem>(IdUltimaDepreciacao);
-
-                    DateTime UltimoMes = DepreciaBemfeitaPorUltimo.DataDepreciacaoBem;
-
-                    var VerificarValorDepreciado = (from c in ContextoBem.GetAll<DepreciacaoBem>()
-                                                    .AsParallel()
-                                                    .Where(x => x.IdBem.Id_Bem == BemParaCalculoDepreciacaoAtrasada.Id_Bem)
-                                                    select c.ValorDepreciado).Sum();
-
-                    if (UltimoMes < DateTime.Now)
-                    {
-                        AuditoriaInterna Auditoria = new AuditoriaInterna();
-                        Auditoria.Computador = Environment.MachineName;
-                        Auditoria.DataInsercao = DateTime.Now;
-                        Auditoria.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + BemParaCalculoDepreciacaoAtrasada.Descricao;
-                        Auditoria.Tabela = "TB_DepreciacaoBem";
-                        Auditoria.TipoOperacao = TipoOperacao.Insercao.ToString();
-                        Auditoria.Usuario = User.Identity.Name;
-                        ContextoBem.Add<AuditoriaInterna>(Auditoria);
-                        ContextoBem.SaveChanges();
+                    AuditoriaInterna Auditoria = new AuditoriaInterna();
+                    Auditoria.Computador = Environment.MachineName;
+                    Auditoria.DataInsercao = DateTime.Now;
+                    Auditoria.DetalhesOperacao = "Insercao Tabela Depreciacao Bem Registro: " + BemParaCalculoDepreciacaoAtrasada.Descricao;
+                    Auditoria.Tabela = "TB_DepreciacaoBem";
+                    Auditoria.TipoOperacao = TipoOperacao.Insercao.ToString();
+                    Auditoria.Usuario = User.Identity.Name;
+                    ContextoBem.Add<AuditoriaInterna>(Auditoria);
+                    ContextoBem.SaveChanges();
 
                     if (VerificarValorDepreciado < BemParaCalculoDepreciacaoAtrasada.ValorDepreciavel)
                     {
@@ -2115,13 +2118,72 @@ namespace Heritage.Areas.Administracao.Controllers
         public ActionResult CalculateDepreciationDelayed(int id)
         {
             CalcularDepreciacaoAtrasada(id);
-
             IList<Bem> AllProperty = ContextoBem.GetAll<Bem>()
                                     .Where(x => x.Inativo == false && x.Descontinuado == false && x.Id_Bem > id)
                                     .OrderBy(x => x.Descricao)
                                     .ToList();
             return View("AllProperty", AllProperty);
         }
+
+        [HttpGet]
+        public ActionResult ClearAllDepreciation()
+        {
+            ViewBag.NomeDiv = "alert alert-block";
+            ViewBag.Titulo = "Atenção";
+            ViewBag.Mensagem = "Essa operação vai apagar todo o histórico depreciação.";
+            return View();
+        }
+
+
+        [HttpPost]
+        public ActionResult ClearAllDepreciation(DepreciacaoBem depreciacao)
+        {
+            IList<DepreciacaoBem> ListDepreciation = ContextoBem.GetAll<DepreciacaoBem>()
+                                                     .Where(x => x.DepreciacaoFeita == true)
+                                                     .ToList();
+            foreach (var item in ListDepreciation)
+            {
+                ContextoBem.Delete<DepreciacaoBem>(item);
+                ContextoBem.SaveChanges();
+
+            }
+
+            IList<LancamentoDepreciacao> ListLancamentos = ContextoBem.GetAll<LancamentoDepreciacao>()
+                                                           .Where(x => x.DataLancamento.Year == DateTime.Now.Year)
+                                                           .ToList();
+            foreach (var itemLancamentos in ListLancamentos)
+            {
+                ContextoBem.Delete<LancamentoDepreciacao>(itemLancamentos);
+                ContextoBem.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult DeleteHistoryDepreciation(int id)
+        {
+            IList<DepreciacaoBem> ListDeleteHistoryDepreciation = ContextoBem.GetAll<DepreciacaoBem>()
+                                                                 .Where(x => x.DepreciacaoFeita == true && x.IdBem.Id_Bem == id)
+                                                                 .ToList();
+            foreach (var itemDepreciacao in ListDeleteHistoryDepreciation)
+            {
+                if (itemDepreciacao.DataDepreciacaoBem.Year == DateTime.Now.Year)
+                {
+                    LancamentoDepreciacao LancamentoParaExclusao = (from c in ContextoBem.GetAll<LancamentoDepreciacao>()
+                                                               .Where(x => x.DataLancamento == itemDepreciacao.DataDepreciacaoBem && x.Credito == itemDepreciacao.ValorDepreciado)
+                                                                    select c).First();
+                    ContextoBem.Delete<LancamentoDepreciacao>(LancamentoParaExclusao);
+                    ContextoBem.SaveChanges();
+                }
+
+
+                ContextoBem.Delete<DepreciacaoBem>(itemDepreciacao);
+                ContextoBem.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Home");
+        }
+
 
 
         #endregion

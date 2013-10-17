@@ -1,5 +1,4 @@
 ﻿@model Heritage.Models.Bem
-
 @{
     ViewBag.Title = "Details";
     Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
@@ -25,13 +24,13 @@
         <th>
             @Html.LabelFor(model => model.ValorAtual)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.NumeroNotaFiscal)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.Inativo)
         </th>
-          <th>
+        <th>
             @Html.LabelFor(model => model.Descontinuado)
         </th>
         <th>
@@ -40,31 +39,28 @@
         <th>
             @Html.LabelFor(model => model.Cofins)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.TaxaDepreciacaoAnual)
         </th>
         <th>
             @Html.LabelFor(model => model.DataAquisicao)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.DataInicioDepreciacao)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.BemDepreciavel)
         </th>
-         <th>
+        <th>
             @Html.LabelFor(model => model.DepreciacaoAtiva)
         </th>
-        <th>
-            Localização:
+        <th>Localização:
         </th>
-         <th>
-            Estabelecimento:
+        <th>Estabelecimento:
         </th>
-        <th>
-            Operações:
+        @*<th>Operações:
 
-        </th>
+        </th>*@
     </tr>
     <tr>
 
@@ -84,13 +80,13 @@
             @Html.DisplayFor(model => model.ValorAtual)
         </td>
 
-         <td>
+        <td>
             @Html.DisplayFor(model => model.NumeroNotaFiscal)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.Inativo)
         </td>
-          <td>
+        <td>
             @Html.DisplayFor(model => model.Descontinuado)
         </td>
         <td>
@@ -99,32 +95,43 @@
         <td>
             @Html.DisplayFor(model => model.Cofins)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.TaxaDepreciacaoAnual)
         </td>
         <td>
             @Html.DisplayFor(model => model.DataAquisicao)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.DataInicioDepreciacao)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.BemDepreciavel)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.DepreciacaoAtiva)
         </td>
         <td>
             @Html.DisplayFor(model => model.IdLocalizacao.Descricao)
         </td>
-         <td>
+        <td>
             @Html.DisplayFor(model => model.IdEstabelecimento.RazaoSocial)
         </td>
-        <td>
-            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Bem }) |            
-            @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Bem })|
-            @Html.ActionLink("Hist. Depreciação","CheckHistoricalDepreciation",new {id = Model.Id_Bem})
-        </td>
+
     </tr>
 </table>
+<ul>
+    <li>
+        <h4>
+            @Html.ActionLink("Alterar", "Edit", new { id = Model.Id_Bem }) |  
+         @Html.ActionLink("Delete", "Delete", new { id = Model.Id_Bem })|
+         @Html.ActionLink("Hist. Depreciação", "CheckHistoricalDepreciation", new { id = Model.Id_Bem })|
+         @Html.ActionLink("Excluir Histórico Depreciação", "DeleteHistoryDepreciation", new { id = Model.Id_Bem })
+
+        </h4>
+
+    </li>
+
+
+</ul>
+
 

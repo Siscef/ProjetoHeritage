@@ -21,7 +21,7 @@
                     <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
                         <!--3,1,2,5,9,4,1,5,11,4,5-->
                     </span>
-                    <span class="number"> @ViewBag.Ativos</span>
+                    <span class="number">@ViewBag.Ativos</span>
                 </div>
 
                 <div class="rSpace">
@@ -41,7 +41,7 @@
                     <span>@ViewBag.DepreciacaoInativa <b>depreciação inativa</b></span>
                     <span>@ViewBag.Descontinuado <b>fora de operação</b></span>
                     <span>@ViewBag.NaoDepreciavel <b>não depreciável</b></span>
-                  <span>  @ViewBag.FezManutencao <b>Fez Manutenção</b> </span>
+                    <span>@ViewBag.FezManutencao <b>Fez Manutenção</b> </span>
                 </div>
             </div>
             <div class="clear"></div>
@@ -66,7 +66,7 @@
 
             <div class="wBlock green">
                 <div class="dSpace">
-                    <h3> R$ Total</h3>
+                    <h3>R$ Total</h3>
                     <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
                         <!--28,25,40,32,24,34,26,26,41,36-->
                     </span>
@@ -84,70 +84,70 @@
         </div>
 
     </div>
-    
-        <div class="span12">
 
-            <div class="wBlock red auto">
-                <div class="dSpace">
-                    <h3>R$ Depreciação inativa</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--2,5,3,5,6,7,9,8,5,6,2,5-->
-                    </span>
-                    <span class="number"> R$ @ViewBag.ValorDepreciacaoinativa</span>
-                </div>
+    <div class="span12">
+
+        <div class="wBlock red auto">
+            <div class="dSpace">
+                <h3>R$ Depreciação inativa</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--2,5,3,5,6,7,9,8,5,6,2,5-->
+                </span>
+                <span class="number">R$ @ViewBag.ValorDepreciacaoinativa</span>
             </div>
-
-            <div class="wBlock green auto">
-                <div class="dSpace">
-                    <h3>R$ Ativos</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
-                    </span>
-                    <span class="number">@ViewBag.ValorAtivos</span>
-                </div>
-            </div>
-
-            <div class="wBlock auto">
-                <div class="dSpace">
-                    <h3>R$ Depreciáveis</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--3,1,2,5,9,4,1,5,11,4,5-->
-                    </span>
-                    <span class="number">R$ @ViewBag.ValorDepreciavel</span>
-                </div>
-            </div>
-
-            <div class="wBlock yellow auto">
-                <div class="dSpace">
-                    <h3>R$ Depreciação ativa</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--130,190,260,230,290,400,340,360,390-->
-                    </span>
-                    <span class="number">R$ @ViewBag.ValorDepreciacaoAtiva</span>
-                </div>
-            </div>
-
-            <div class="wBlock blue auto">
-                <div class="dSpace">
-                    <h3>R$ Operação</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--3,1,2,5,9,4,1,5,11,4,5-->
-                    </span>
-                    <span class="number">R$ @ViewBag.ValorNaoDescontinuado</span>
-                </div>
-            </div>
-
-            <div class="wBlock gray auto">
-                <div class="dSpace">
-                    <h3>% Inativos</h3>
-                    <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                        <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
-                    </span>
-                    <span class="number">@ViewBag.PorcentagemInativos%</span>
-                </div>
-            </div>
-
         </div>
-    
+
+        <div class="wBlock green auto">
+            <div class="dSpace">
+                <h3>R$ Ativos</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                </span>
+                <span class="number">@ViewBag.ValorAtivos</span>
+            </div>
+        </div>
+
+        <div class="wBlock auto">
+            <div class="dSpace">
+                <h3>R$ Depreciáveis</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--3,1,2,5,9,4,1,5,11,4,5-->
+                </span>
+                <span class="number">R$ @ViewBag.ValorDepreciavel</span>
+            </div>
+        </div>
+
+        <div class="wBlock yellow auto">
+            <div class="dSpace">
+                <h3>R$ Depreciação ativa</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--130,190,260,230,290,400,340,360,390-->
+                </span>
+                <span class="number">R$ @ViewBag.ValorDepreciacaoAtiva</span>
+            </div>
+        </div>
+
+        <div class="wBlock blue auto">
+            <div class="dSpace">
+                <h3>R$ Operação</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--3,1,2,5,9,4,1,5,11,4,5-->
+                </span>
+                <span class="number">R$ @ViewBag.ValorNaoDescontinuado</span>
+            </div>
+        </div>
+
+        <div class="wBlock gray auto">
+            <div class="dSpace">
+                <h3>% Inativos</h3>
+                <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                    <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                </span>
+                <span class="number">@ViewBag.PorcentagemInativos%</span>
+            </div>
+        </div>
+
+    </div>
+
 
 </div>

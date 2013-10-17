@@ -74,61 +74,59 @@
 
     <div class="content">
 
-
         <div class="breadLine">
 
             <ul class="breadcrumb">
                 <li><a href="http://localhost:10112/Administracao/Home">Página Inicial</a> <span class="divider"></span></li>
-                
 
             </ul>
-                     
+
 
         </div>
 
         <div class="workplace">
 
-         @*   <div class="row-fluid">
-                <div class="span12">
-
-                    <div class="widgetButtons">
-                        <div class="bb"><a href="http://localhost:10112/Administracao/Bem/create"><span class="ibw-edit"></span></a></div>
-                        <div class="bb">
-                            <a href="#"><span class="ibw-folder"></span></a>
-                           
-                        </div>                      
-                       
-                        <div class="bb">
-                            <a href="#"><span class="ibw-mail"></span></a>
-                           
-                        </div>
-                        <div class="bb"><a href="http://localhost:10112/Administracao/ConfiguracaoSistema/Create"><span class="ibw-settings"></span></a></div>
-                    </div>
-
-                </div>
-            </div>*@
-
             <div class="row-fluid">
 
-               <div class="span4">
+                <div class="span4">
 
-                    <div class="wBlock red">
+                    <div class="wBlock gray">
+
                         <div class="dSpace">
-                            <h3>Média depreciação</h3>
+                            <h3>Bens Ativos</h3>
                             <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
-                                <!--130,190,260,230,290,400,340,360,390-->
+                                <!--3,1,2,5,9,4,1,5,11,4,5-->
                             </span>
-                            <span class="number">@ViewBag.MediaDepreciacao %</span>
+                            <span class="number">@ViewBag.Ativos</span>
+                        </div>
+
+                        <div class="rSpace">
+                            <span>@ViewBag.Inativos <b>inativo(s)</b></span>
+                            <span>@ViewBag.Depreciavel <b>depreciável</b></span>
+                            <span>@ViewBag.DepreciacaoAtiva <b>depreciação ativa</b></span>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="dSpace">
+                            <h3>Em operação</h3>
+                            <span class="mChartBar" sparktype="bar" sparkbarcolor="white">
+                                <!--5,10,15,20,23,21,25,20,15,10,25,20,10-->
+                            </span>
+                            <span class="number">@ViewBag.NaoDescontinuado</span>
                         </div>
                         <div class="rSpace">
-                            <span>R$ @ViewBag.TotalAmortizacaoMensal <b>Total depreciado desse mês</b></span>
-                            <span>R$ @ViewBag.TotalPisMensal <b>Total Pis</b></span>
-                            <span>R$ @ViewBag.TotalCofinsMensal <b>Total Cofins</b></span>
+                            <span>@ViewBag.DepreciacaoInativa <b>depreciação inativa</b></span>
+                            <span>@ViewBag.Descontinuado <b>fora de operação</b></span>
+                            <span>@ViewBag.NaoDepreciavel <b>não depreciável</b></span>
+                            <span>@ViewBag.FezManutencao <b>Fez Manutenção</b> </span>
                         </div>
                     </div>
 
                 </div>
-                 <div class="span4">
+
+
+
+
+                <div class="span4">
 
                     <div class="wBlock green">
                         <div class="dSpace">
@@ -138,6 +136,7 @@
                             </span>
                             <span class="number">@ViewBag.TotalBens</span>
                         </div>
+
                         <div class="rSpace">
                             <span>@ViewBag.TotalBensAtivos <b>ativos</b></span>
                             <span>@ViewBag.TotalBensObsoletos <b>obsoletos</b></span>
@@ -148,33 +147,16 @@
 
                 </div>
 
-               
+
+
+                <!-- a imagem do sistema -->
+                <div class="row-fluid">
+
+                    <img src="../../../../Content/aquarius/img/backgrounds/principal.jpg" alt="Heritage" width="90%" />
+
+                </div>
             </div>
-
-           
-
-
-           @* <div class="dr"><span></span></div>*@
-
-            <div class="row-fluid">
-
-              @* @Html.Partial("Noticias")*@     
-
-              
-
-
-            </div>
-
-           @* <div class="dr"><span></span></div>
-
-
-
-
-            <div class="dr"><span></span></div>*@
-
         </div>
-
-    </div>
 
     @RenderBody()
 

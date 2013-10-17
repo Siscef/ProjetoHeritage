@@ -630,6 +630,7 @@
     <Content Include="Content\aquarius\img\backgrounds\menu-item.jpg" />
     <Content Include="Content\aquarius\img\backgrounds\menu.jpg" />
     <Content Include="Content\aquarius\img\backgrounds\nav.jpg" />
+    <Content Include="Content\aquarius\img\backgrounds\principal.jpg" />
     <Content Include="Content\aquarius\img\checkbox\bg-input-focus.png" />
     <Content Include="Content\aquarius\img\checkbox\bg-input.png" />
     <Content Include="Content\aquarius\img\checkbox\sprite.png" />
@@ -1185,6 +1186,9 @@
     <Content Include="Areas\Administracao\Views\Bem\AllPropertyMinusThis.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\CalculateDepreciationDelayed.cshtml" />
     <Content Include="Areas\Administracao\Views\Bem\ListPropertyMinusThis.cshtml" />
+    <Content Include="Areas\Contabil\Views\Shared\Noticias.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\ClearAllDepreciation.cshtml" />
+    <Content Include="Areas\Administracao\Views\Bem\DeleteHistoryDepreciation.cshtml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\AcharCep.js" />
     <Content Include="Scripts\banco.sql" />

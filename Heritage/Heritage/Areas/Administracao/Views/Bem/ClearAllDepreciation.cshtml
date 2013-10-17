@@ -1,0 +1,25 @@
+﻿@model Heritage.Models.DepreciacaoBem
+@{
+    ViewBag.Title = "ClearAllDepreciation";
+    Layout = "~/Areas/Administracao/Views/Shared/_Layout.cshtml";
+}
+
+ <div class="@ViewBag.NomeDiv">
+            <h4>@ViewBag.Titulo</h4>
+            @ViewBag.Mensagem
+        </div>
+
+@using (Html.BeginForm())
+{
+   
+    <div class="row-form">
+        <div class="span2">
+            <input type="submit" class="btn btn-success" value="Limpar" />
+              @Html.ActionLink("Voltar", "Index", "Home", null, new { data_icon = "icon-remove", data_rel = "back" })
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+   
+}
+
